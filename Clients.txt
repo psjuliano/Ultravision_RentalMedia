@@ -1,0 +1,37 @@
+IdMembership :001
+Name :null
+Email: psouzajuliano@gmail.com
+Bank Name: null
+IBAN: 2018466
+Balance: 10
+Bonus: 100
+Notes: Porra Hello world!
+Conseguimos Marcelo!! :)
+*************
+IdMembership :001
+Name :null
+Email: hehehe
+Bank Name: null
+IBAN: tao feliz
+Balance: 0
+Bonus: 20
+Notes: Obrigada meu Deus!!!
+*************
+IdMembership :003
+Name :Marcelo
+Email: m@hotmail.com
+Bank Name: null
+IBAN: 29184444
+Balance: 0
+Bonus: 20
+Notes: hehheh Marcelo.
+*************
+IdMembership :004
+Name :Raul
+Email: r@gmail.com
+Bank Name: AIB
+IBAN: 201816
+Balance: 90
+Bonus: 100
+Notes: Heheheh Raul!
+*************

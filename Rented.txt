@@ -1,0 +1,39 @@
+IdMembership :001
+Name :Renata Freitas
+Email: re@gmail.com
+Plan Type: Music Lovers
+Status: Actived
+Bonus: 10
+ID Media: M001
+DateOut: 25/04/2020
+Return Date: 28/04/2020
+TmeReturn: -:-
+Balance: null
+Notes: Tu é abusa!
+*************
+IdMembership :001
+Name :Fabiana
+Email: f@gmail
+Plan Type: Music Lovers
+Status: Actived
+Bonus: 100
+ID Media: M001
+DateOut: 25/04/2020
+Return Date: 28/04/2020
+TmeReturn: -:-
+Balance: null
+Notes: Patabéns!!
+*************
+IdMembership :001
+Name :Emanuele
+Email: estranha@hotmail.com
+Plan Type: Video Lovers
+Status: in debit
+Bonus: 0
+ID Media: M002
+DateOut: 25/04/2020
+Return Date: 28/04/2020
+TmeReturn: -:-
+Balance: null
+Notes: Você está me devendo!! Caloteira.
+*************

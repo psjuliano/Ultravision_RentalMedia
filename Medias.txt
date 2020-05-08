@@ -1,0 +1,20 @@
+IdMedia :M001
+Title :007
+Director: James Bond
+Studio: *****
+Year of release: 1990
+MediaFormat: comboBoxChanged
+Price: 5,00
+Availability: 3
+Decription: So far so good!
+*************
+IdMedia :M001
+Title :
+Director: 
+Studio: 
+Year of release: 
+MediaFormat: comboBoxChanged
+Price: 
+Availability: 
+Decription: 
+*************
