@@ -4,7 +4,7 @@ package Model;
 /**
  *
  * @author Priscila
- * test
+ * testing github connection
  */
 class BoxSet extends Media implements TVLovers{
     private String studio;
