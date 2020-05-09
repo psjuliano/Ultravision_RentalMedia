@@ -9,10 +9,6 @@ import DAO.ClientDAO;
 import javax.swing.JOptionPane;
 import controller.ClientsRegister;
 import Model.PlanType;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *
@@ -107,7 +103,6 @@ public class RegisterClientView extends javax.swing.JFrame {
         jLBankname = new javax.swing.JLabel();
         jLIban = new javax.swing.JLabel();
         jTextBankname = new javax.swing.JTextField();
-        jTextIban = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaNotes = new javax.swing.JTextArea();
@@ -130,6 +125,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         jRadioBTv = new javax.swing.JRadioButton();
         jRadioBPr = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
+        jTextIban = new javax.swing.JFormattedTextField();
         jMBarRegister = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -250,6 +246,17 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         jButton2.setText("Close");
 
+        try {
+            jTextIban.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### #### ####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jTextIban.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextIbanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelRegisterLayout = new javax.swing.GroupLayout(jPanelRegister);
         jPanelRegister.setLayout(jPanelRegisterLayout);
         jPanelRegisterLayout.setHorizontalGroup(
@@ -276,7 +283,7 @@ public class RegisterClientView extends javax.swing.JFrame {
                                                 .addComponent(jLBankname, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(jPanelRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextBankname)
+                                                .addComponent(jTextBankname, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                                                 .addComponent(jTextIban)))
                                         .addGroup(jPanelRegisterLayout.createSequentialGroup()
                                             .addComponent(jLId)
@@ -293,7 +300,7 @@ public class RegisterClientView extends javax.swing.JFrame {
                                         .addGap(44, 44, 44)
                                         .addComponent(jButton2))
                                     .addComponent(jBSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelRegisterLayout.createSequentialGroup()
                         .addGroup(jPanelRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,8 +373,8 @@ public class RegisterClientView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLIban)
-                    .addComponent(jTextIban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBSave))
+                    .addComponent(jBSave)
+                    .addComponent(jTextIban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -414,7 +421,7 @@ public class RegisterClientView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
+                .addComponent(jPanelRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 684, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,6 +513,10 @@ public class RegisterClientView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioBTvActionPerformed
 
+    private void jTextIbanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIbanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextIbanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -585,7 +596,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextBankname;
     private javax.swing.JTextField jTextBonus;
     private javax.swing.JTextField jTextEmail;
-    private javax.swing.JTextField jTextIban;
+    private javax.swing.JFormattedTextField jTextIban;
     private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextName;
     private javax.swing.JTextField jTextStatus;
