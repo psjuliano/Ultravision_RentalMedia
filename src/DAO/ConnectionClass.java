@@ -20,7 +20,6 @@ public class ConnectionClass {
     public static Connection getConnectionClass(){
         
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             c = DriverManager.getConnection(URL,USER,PASSWORD);
             System.out.println("Connected!");
             
