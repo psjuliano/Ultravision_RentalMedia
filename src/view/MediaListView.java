@@ -1,4 +1,3 @@
-
 package view;
 
 import DAO.MediaDAO;
@@ -14,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Marcelo
  */
 public class MediaListView extends javax.swing.JFrame {
+
     List<Media> mediaList;
 
     /**
@@ -22,29 +22,31 @@ public class MediaListView extends javax.swing.JFrame {
     public MediaListView() {
         initComponents();
         createMediaList();
-        
+
     }
-     public void createMediaList() {
-         
-         createMediaList(null);
-         
-     }
+
+    public void createMediaList() {
+
+        createMediaList(null);
+
+    }
+
     public void createMediaList(Media mediaSearch) {
-        
+
         // *** Here is gonna print out the clients on the view ***
         /* *** Here is going to search the media by title, then it is going 
         to list it on the view *** */
         if (mediaSearch == null) {
             mediaList = MediaDAO.list(mediaSearch);
-        }else{
+        } else {
             mediaList = MediaDAO.list(mediaSearch);
         }
-      
-        DefaultTableModel content = (DefaultTableModel)jTableMedia.getModel();
-        
+
+        DefaultTableModel content = (DefaultTableModel) jTableMedia.getModel();
+
         // *** update the list ***
         content.setRowCount(0);
-        for(Media m: mediaList){
+        for (Media m : mediaList) {
             Object[] row = {
                 m.getIdMedia(),
                 m.getTitle(),
@@ -53,12 +55,11 @@ public class MediaListView extends javax.swing.JFrame {
                 m.getAvailability(),
                 //m.getPlanType().getPlanName(),
                 m.getPrice(),
-                m.getDescription(),
-               
-            };
+                m.getDescription(),};
             content.addRow(row);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,99 +238,99 @@ public class MediaListView extends javax.swing.JFrame {
     }//GEN-LAST:event_jBRentPageActionPerformed
 
     private void jTextSearchActionPerformed(java.awt.event.ActionEvent evt) {
-        
+
     }
 
     private void jTextSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSearchKeyPressed
         // TODO add your handling code here:
-        
-       // *** Here is going to active the enter on the keyboard ***
-        if (evt.getKeyCode()==9) {
-         jTextSearchActionPerformed(null);
+
+        // *** Here is going to active the enter on the keyboard ***
+        if (evt.getKeyCode() == 9) {
+            jTextSearchActionPerformed(null);
         }
-       
+
     }//GEN-LAST:event_jTextSearchKeyPressed
 
     private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
         // TODO add your handling code here:
-        
-      // *** Her is calling the loadData method *** 
+
+        // *** Her is calling the loadData method *** 
         loadData();
     }//GEN-LAST:event_jBOkActionPerformed
 
     private void jTextSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSearchKeyReleased
         // TODO add your handling code here:
-        
-         if (jTextSearch.getText().isEmpty()) {
+
+        if (jTextSearch.getText().isEmpty()) {
             loadData();
         }
-    }                                       
-    public void loadData(){
-        
+    }
+
+    public void loadData() {
+
         // *** Search clientsList ***
         Media mediaSearch = new Media();
-        
+
         try {
             int idMedia = Integer.parseInt(jTextSearch.getText());
             mediaSearch.setIdMedia(String.valueOf(idMedia));
-            
+
         } catch (Exception e) {
-            
+
         }
-        
+
         mediaSearch.setTitle(jTextSearch.getText());
- 
+
         createMediaList(mediaSearch);
     }//GEN-LAST:event_jTextSearchKeyReleased
 
     private void jBEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditActionPerformed
         // TODO add your handling code here:
-        
+
         // *** Update process ***
         // select the row to edit:
         int row = jTableMedia.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
-        }else{
+        } else {
             Media media = this.mediaList.get(row);
-            
-        //*** Sent to the edit clientsList page ***
-        NewMediaView editPage = new NewMediaView();
-        editPage.setMedia(media);
-        editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        editPage.setVisible(true);
+
+            //*** Sent to the edit clientsList page ***
+            NewMediaView editPage = new NewMediaView();
+            editPage.setMedia(media);
+            editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            editPage.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_jBEditActionPerformed
 
     private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
         // TODO add your handling code here:
-        
+
         //*** Delete data process *** 
-        
         // *** Check if any row was selected. ***
         int row = jTableMedia.getSelectedRow();
         if (row > -1) {
-         Media media = mediaList.get(row);
-        int option = JOptionPane
-        .showConfirmDialog(this, "Do you want to delete",
-                "data deleted confirmation", JOptionPane.YES_NO_OPTION);
-        
-        // *** Here is going to get the idMedia and delete it from the database. ***
-        if (option == JOptionPane.YES_OPTION){
-            
-            if (MediaDAO.delete(Integer.parseInt(media.getIdMedia()))) {
-                
-                JOptionPane.showMessageDialog(this, "deleted ");
-            }else{
-                JOptionPane.showMessageDialog(this, "Error");
-                
-         // *** update the list ***
-                createMediaList();
-            }     
-        }
-        }else{
-            
+            Media media = mediaList.get(row);
+            int option = JOptionPane
+                    .showConfirmDialog(this, "Do you want to delete",
+                            "data deleted confirmation", JOptionPane.YES_NO_OPTION);
+
+            // *** Here is going to get the idMedia and delete it from the database. ***
+            if (option == JOptionPane.YES_OPTION) {
+
+                if (MediaDAO.delete(Integer.parseInt(media.getIdMedia()))) {
+
+                    JOptionPane.showMessageDialog(this, "deleted ");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error");
+
+                    // *** update the list ***
+                    createMediaList();
+                }
+            }
+        } else {
+
             JOptionPane.showConfirmDialog(this, "Select a row to delete");
         }
     }//GEN-LAST:event_jBDeleteActionPerformed
@@ -386,6 +387,4 @@ public class MediaListView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextSearch;
     // End of variables declaration//GEN-END:variables
 
-  
-   
 }

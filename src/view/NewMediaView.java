@@ -1,4 +1,3 @@
-
 package view;
 
 import DAO.ClientDAO;
@@ -15,12 +14,13 @@ import Model.PlanType;
  * @author Marcelo
  */
 public class NewMediaView extends javax.swing.JFrame {
-     private Media media = new Media();
-     private NewMediaView mediaDetails;
-   // private final RentProcessView clientDetails;
-     
+
+    private Media media = new Media();
+    private NewMediaView mediaDetails;
+    // private final RentProcessView clientDetails;
+
     // *** Here is going to bring all clients details to the rent page. ***
-    public void setMedia(Media media){
+    public void setMedia(Media media) {
         this.media = media;
         jTextTitle.setText(media.getTitle());
         //jTextDirector.setText(media.getDirector());
@@ -28,8 +28,8 @@ public class NewMediaView extends javax.swing.JFrame {
         //jTextStudio.setText(media.getStudio());
         jTextYear.setText(String.valueOf(media.getYearOfRelease()));
         jTextPrice.setText(String.valueOf(media.getPrice()));
-        
-       /* int opMembership = media.getMediaFormat();
+
+        /* int opMembership = media.getMediaFormat();
          String t = 
         switch(opMembership){
             //edit page
@@ -46,43 +46,45 @@ public class NewMediaView extends javax.swing.JFrame {
             break;
                 
         }
-        */
-         //goupButton code:
-          String mF = media.getMediaFormat().toUpperCase();
-          System.out.println("stop here " + mF);
-          
-          switch(mF){
-              case "CD":
-                  jRadioBCd.setSelected(true);
-              break;
-              case "DVD":
-                  jRadioBDvd.setSelected(true);
-              break;
-              case "BLUERAY":
-                  jRadioBBlueray.setSelected(true);
-              break;
-          }
+         */
+        //goupButton code:
+        String mF = media.getMediaFormat().toUpperCase();
+        System.out.println("stop here " + mF);
+
+        switch (mF) {
+            case "CD":
+                jRadioBCd.setSelected(true);
+                break;
+            case "DVD":
+                jRadioBDvd.setSelected(true);
+                break;
+            case "BLUERAY":
+                jRadioBBlueray.setSelected(true);
+                break;
+        }
         // *** 
-        
+
         jTextidMedia.setVisible(true);
         jTextidMedia.setEditable(false);
         jLidMedia.setVisible(true);
         jTextidMedia.setText(media.getIdMedia());
-        
+
     }
+
     /**
      * Creates new form RentProcessView
      */
     public NewMediaView(NewMediaView mediaDetails) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         initComponents();
         jTextidMedia.setVisible(true);
         jTextidMedia.setEditable(false);
         jLidMedia.setVisible(true);
-        
-       this.mediaDetails = mediaDetails;
+
+        this.mediaDetails = mediaDetails;
     }
+
     /**
      * Creates new form MediaItens
      */
@@ -443,17 +445,17 @@ public class NewMediaView extends javax.swing.JFrame {
     private void jBSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveActionPerformed
         // TODO add your handling code here:
         //Here is gonna save the medias details
-        
+
         media.setTitle(jTextTitle.getText());
         //media.setDirector(jTextDirector.getText());
-        
-         //media.setBand(jTextBand.getText());
-         //media.setStudio(jTextStudio.getText());
-         media.setYearOfRelease(Integer.parseInt(jTextYear.getText()));
+
+        //media.setBand(jTextBand.getText());
+        //media.setStudio(jTextStudio.getText());
+        media.setYearOfRelease(Integer.parseInt(jTextYear.getText()));
         //media.setMediaFormat(buttonGroupMediaF.getSelection());
-         media.setPrice(Float.parseFloat(jTextPrice.getText()));
-         
-         /* PlanType p = new PlanType();
+        media.setPrice(Float.parseFloat(jTextPrice.getText()));
+
+        /* PlanType p = new PlanType();
           client.setPlanType(p);
           
         if ( jRadioBML.isSelected()) { 
@@ -469,7 +471,7 @@ public class NewMediaView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Select a plan");
         }
          */
-        /* Media m = new Media();
+ /* Media m = new Media();
          
         if (m.getRentedDays()!= 0) {
             String msg = "Media was registed";
@@ -495,7 +497,6 @@ public class NewMediaView extends javax.swing.JFrame {
                
         }
          */
-        
     }//GEN-LAST:event_jBSaveActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

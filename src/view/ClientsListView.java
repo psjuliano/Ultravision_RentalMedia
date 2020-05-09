@@ -1,4 +1,3 @@
-
 package view;
 
 import DAO.ClientDAO;
@@ -12,10 +11,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Priscila
  */
-
-
 public class ClientsListView extends javax.swing.JFrame {
-    
+
     List<ClientsRegister> clientsList;
 
     /**
@@ -24,27 +21,29 @@ public class ClientsListView extends javax.swing.JFrame {
     public ClientsListView() {
         initComponents();
         createClientList();
-        
+
     }
-     public void createClientList() {
-         
-         createClientList(null);
-         
-     }
+
+    public void createClientList() {
+
+        createClientList(null);
+
+    }
+
     public void createClientList(ClientsRegister clientSearch) {
-        
+
         // *** Here is gonna print out the clients on the view ***
         if (clientSearch == null) {
             clientsList = ClientDAO.list();
-        }else{
+        } else {
             clientsList = ClientDAO.list(clientSearch);
         }
-      
-        DefaultTableModel content = (DefaultTableModel)jTableClients.getModel();
-        
+
+        DefaultTableModel content = (DefaultTableModel) jTableClients.getModel();
+
         // *** Update the list ***
         content.setRowCount(0);
-        for(ClientsRegister c: clientsList){
+        for (ClientsRegister c : clientsList) {
             Object[] row = {
                 c.getIdMembership(),
                 c.getName(),
@@ -60,6 +59,7 @@ public class ClientsListView extends javax.swing.JFrame {
             content.addRow(row);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -255,124 +255,124 @@ public class ClientsListView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //*** Delete data process *** 
-        
         // *** Check if any row was selected: ***
         int row = jTableClients.getSelectedRow();
         if (row > -1) {
-         ClientsRegister client = clientsList.get(row);
-        int option = JOptionPane
-        .showConfirmDialog(this, "Do you want to delete",
-            "data deleted confirmation", JOptionPane.YES_NO_OPTION);
-        
-       // *** Here is going to get the idMedia and delete it from the database. ***
-        if (option == JOptionPane.YES_OPTION){
-            if (ClientDAO.delete(client.getIdMembership())) {
-                JOptionPane.showMessageDialog(this, "deleted");
-                
-       // *** update the list ***
-                createClientList();
-            }else{
-                JOptionPane.showMessageDialog(this, "Error ");
-            }     
-        }
-          
-        }else{
+            ClientsRegister client = clientsList.get(row);
+            int option = JOptionPane
+                    .showConfirmDialog(this, "Do you want to delete",
+                            "data deleted confirmation", JOptionPane.YES_NO_OPTION);
+
+            // *** Here is going to get the idMedia and delete it from the database. ***
+            if (option == JOptionPane.YES_OPTION) {
+                if (ClientDAO.delete(client.getIdMembership())) {
+                    JOptionPane.showMessageDialog(this, "deleted");
+
+                    // *** update the list ***
+                    createClientList();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error ");
+                }
+            }
+
+        } else {
             JOptionPane.showMessageDialog(this, "Select a row to delete");
         }
     }//GEN-LAST:event_jBDeleteActionPerformed
 
     private void jBgotoRentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBgotoRentPageActionPerformed
         // TODO add your handling code here:
-        
+
         // *** Here is going to sent to the rentProcessView windows. ***
         int row = jTableClients.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
-        }else{
+        } else {
             ClientsRegister client = this.clientsList.get(row);
-        
-        RentProcessView rent = new RentProcessView(null);// fiz05/05 ver se esta certo
-        rent.setClient(client);
-        
-        // *** Close the window ***
-        rent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        rent.setVisible(true);
-        //rent.setEnabled(false);
-        
+
+            RentProcessView rent = new RentProcessView(null);// fiz05/05 ver se esta certo
+            rent.setClient(client);
+
+            // *** Close the window ***
+            rent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            rent.setVisible(true);
+            //rent.setEnabled(false);
+
         }
     }//GEN-LAST:event_jBgotoRentPageActionPerformed
 
     private void jBCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCloseActionPerformed
         // TODO add your handling code here:
-          dispose();
-      
+        dispose();
+
     }//GEN-LAST:event_jBCloseActionPerformed
 
     private void jBEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditActionPerformed
         // TODO add your handling code here:
         // *** Update process ***
-        
+
         // *** Select the row to edit: ***
         int row = jTableClients.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
-        }else{
+        } else {
             ClientsRegister client = this.clientsList.get(row);
-         
-        //*** sent to the edit clientsList page ***
-        RegisterClientView editPage = new RegisterClientView(this);
-        editPage.setClient(client);
-        editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        editPage.setVisible(true);
-        
+
+            //*** sent to the edit clientsList page ***
+            RegisterClientView editPage = new RegisterClientView(this);
+            editPage.setClient(client);
+            editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            editPage.setVisible(true);
+
         }
     }//GEN-LAST:event_jBEditActionPerformed
 
     private void jTextSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSearchActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jTextSearchActionPerformed
 
     private void jBOkClientLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkClientLActionPerformed
         // TODO add your handling code here:
-        
+
         // *** Here is going to refresh the window ***
         loadData();
     }//GEN-LAST:event_jBOkClientLActionPerformed
-       
+
     private void jTextSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSearchKeyPressed
         // TODO add your handling code here:
-        
+
         // *** Here is going to active the enter on the keyboard ***
-        if (evt.getKeyCode()==10) {
-         jBOkClientLActionPerformed(null);
+        if (evt.getKeyCode() == 10) {
+            jBOkClientLActionPerformed(null);
         }
     }//GEN-LAST:event_jTextSearchKeyPressed
 
     private void jTextSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSearchKeyReleased
         // TODO add your handling code here:
-        
-         // *** Here is going to refresh the the list ***
-         if (jTextSearch.getText().isEmpty()) {
+
+        // *** Here is going to refresh the the list ***
+        if (jTextSearch.getText().isEmpty()) {
             loadData();
         }
     }//GEN-LAST:event_jTextSearchKeyReleased
-    public void loadData(){
-        
+    public void loadData() {
+
         // *** Search clientsList process ***
         ClientsRegister clientSearch = new ClientsRegister();
         clientSearch.setName(jTextSearch.getText());
-        
+
         // *** Here is converting String to int ***
         try {
             int idMembership = Integer.parseInt(jTextSearch.getText());
             clientSearch.setIdMembership(String.valueOf(idMembership));
-            
+
         } catch (Exception e) {
-            
+
         }
-         createClientList(clientSearch);
+        createClientList(clientSearch);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -405,7 +405,7 @@ public class ClientsListView extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClientsListView().setVisible(true);
-                
+
             }
         });
     }
@@ -427,5 +427,4 @@ public class ClientsListView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextSearch;
     // End of variables declaration//GEN-END:variables
 
-    
 }

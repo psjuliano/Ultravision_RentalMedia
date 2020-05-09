@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.io.FileWriter;
@@ -14,7 +13,7 @@ import javax.print.attribute.standard.Media;
  * @author Marcelo
  */
 public class RentRegister {
-    
+
     // *** Attributes ***
     protected String iDMembership;
     protected String client;
@@ -126,8 +125,5 @@ public class RentRegister {
     public void setPlanType(String planType) {
         this.planType = planType;
     }
-    
-    }
-    
-    
 
+}

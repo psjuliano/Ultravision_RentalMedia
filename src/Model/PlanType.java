@@ -1,4 +1,3 @@
-
 package Model;
 
 /**
@@ -6,7 +5,8 @@ package Model;
  * @author Priscila
  */
 public class PlanType {
-    protected int idPlan; 
+
+    protected int idPlan;
     protected String planName;
 
     public int getIdPlan() {
@@ -24,8 +24,5 @@ public class PlanType {
     public void setPlanName(String planName) {
         this.planName = planName;
     }
-   
 
-   
-    
 }

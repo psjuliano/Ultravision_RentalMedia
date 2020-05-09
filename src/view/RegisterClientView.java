@@ -9,19 +9,20 @@ import DAO.ClientDAO;
 import javax.swing.JOptionPane;
 import controller.ClientsRegister;
 import Model.PlanType;
+import javax.mail.internet.InternetAddress;
 
 /**
  *
  * @author Priscila
  */
 public class RegisterClientView extends javax.swing.JFrame {
-    
+
     private ClientsRegister client = new ClientsRegister();
-    
+
     // *** Here is going to bring all the clients details to edit page:
     private ClientsListView clientList;
-    
-    public void setClient(ClientsRegister client){
+
+    public void setClient(ClientsRegister client) {
         this.client = client;
         jTextName.setText(client.getName());
         jTextEmail.setText(client.getEmail());
@@ -31,34 +32,34 @@ public class RegisterClientView extends javax.swing.JFrame {
         jTextBonus.setText(String.valueOf(client.getBonus()));
         jTextStatus.setText(client.getPlanStatus());
         jTextAreaNotes.setText(client.getNotes());
-        
+
         /* *** Here is a statement of comparation. It is going to check the plan type
-        of the client and bring to the edit page. *** */  
+        of the client and bring to the edit page. *** */
         int opMembership = client.getPlanType().getIdPlan();
-        switch(opMembership){
+        switch (opMembership) {
             //edit page
             case 1: // music lovers
                 jRadioBML.setSelected(true);
-            break;
-            
+                break;
+
             case 2: //tv lovers
-            jRadioBTv.setSelected(true);
-            break;
-             
+                jRadioBTv.setSelected(true);
+                break;
+
             case 3: //video lovers
                 jRadioBVL.setSelected(true);
-            break;
-                
+                break;
+
             case 4: // premium
                 jRadioBPr.setSelected(true);
-                
-            break;
+
+                break;
         }
         // *** Here is going to block the id field to be editable. ***
         jTextId.setVisible(true);
         jLId.setVisible(true);
         jTextId.setEditable(false);
-        
+
         jTextId.setText(client.getIdMembership());
         jBSave.setText("update");
     }
@@ -72,8 +73,8 @@ public class RegisterClientView extends javax.swing.JFrame {
         jTextId.setVisible(false);
         jTextId.setEditable(false);
         jLId.setVisible(false);
-        
-       this.clientList = clientList; 
+
+        this.clientList = clientList;
     }
 
     /**
@@ -438,9 +439,7 @@ public class RegisterClientView extends javax.swing.JFrame {
 
     private void jTextIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIdActionPerformed
         // TODO add your handling code here:
-       
-        
-       
+
     }//GEN-LAST:event_jTextIdActionPerformed
 
     private void jBSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBSaveMouseClicked
@@ -453,60 +452,66 @@ public class RegisterClientView extends javax.swing.JFrame {
 
     private void jBSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveActionPerformed
         // TODO add your handling code here:
-        
+
         //Here is gonna save the clients details
-        
         //client.setIdMembership(jTextId.getText());
         client.setName(jTextName.getText());
-        client.setEmail(jTextEmail.getText());
+        try {
+            InternetAddress emailAddr = new InternetAddress(jTextEmail.getText());
+            emailAddr.validate();
+            client.setEmail(jTextEmail.getText());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "E-mail not valid");
+            return;
+        }
         client.setBankName(jTextBankname.getText());
         //client.setBankCard(jTextCard.getText());
-       //client.setPlanType(jRadioBTvActionPerformed().getText());
+        //client.setPlanType(jRadioBTvActionPerformed().getText());
         client.setPlanStatus(jTextStatus.getText());
         //client.setBalance(jTexBalance.getText());
         //client.setBonus(jTextBonus.getText());
         client.setNotes(jTextAreaNotes.getText());
-        
-          //goupButton code:
-          PlanType p = new PlanType();
-          client.setPlanType(p);
-          
-        if ( jRadioBML.isSelected()) { 
+
+        //goupButton code:
+        PlanType p = new PlanType();
+        client.setPlanType(p);
+
+        if (jRadioBML.isSelected()) {
             p.setIdPlan(1);
-        }else if (jRadioBVL.isSelected()) {
+        } else if (jRadioBVL.isSelected()) {
             p.setIdPlan(3);
-        }else if (jRadioBTv.isSelected()) {
+        } else if (jRadioBTv.isSelected()) {
             p.setIdPlan(2);
-        }else if (jRadioBPr.isSelected()) {
+        } else if (jRadioBPr.isSelected()) {
             p.setIdPlan(4);
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "Select a plan");
         }
-        if (p.getIdPlan()!= 0) {
+        if (p.getIdPlan() != 0) {
             String msg = "Client was registed";
             boolean sucess = false;
             if (client.getIdMembership() == null) {
                 sucess = ClientDAO.insert(client);
-            }else{
-                 sucess = ClientDAO.update(client);
-                 msg = "Client was updated";
+            } else {
+                sucess = ClientDAO.update(client);
+                msg = "Client was updated";
             }
-            
+
             if (sucess) {
                 JOptionPane.showMessageDialog(this, msg);
-                
+
                 if (clientList != null) {
-                   clientList.createClientList();
+                    clientList.createClientList();
                 }
                 dispose();
-                
-            }else{
+
+            } else {
                 JOptionPane.showMessageDialog(this, "Error in register a client");
             }
-               
+
         }
-        
+
     }//GEN-LAST:event_jBSaveActionPerformed
 
     private void jRadioBTvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBTvActionPerformed
@@ -552,8 +557,6 @@ public class RegisterClientView extends javax.swing.JFrame {
             }
         });
     }
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BGroupPlan;

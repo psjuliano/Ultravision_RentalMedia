@@ -10,7 +10,8 @@ import java.util.logging.Logger;
  *
  * @author Priscila
  */
-public class MediaRegister{
+public class MediaRegister {
+
     // *** Attributes ***
     protected String idMedia;
     protected String title;
@@ -22,7 +23,7 @@ public class MediaRegister{
     protected String price;
     protected String availability;
     protected String description;
-    
+
     // *** Getter and Setter ***
     public String getIdMedia() {
         return idMedia;
@@ -103,5 +104,4 @@ public class MediaRegister{
     public void setDescription(String description) {
         this.description = description;
     }
-    }
-    
+}

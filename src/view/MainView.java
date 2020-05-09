@@ -19,6 +19,7 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
         initComponents();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,7 +114,7 @@ public class MainView extends javax.swing.JFrame {
         //Sent to set media page
         MediaListView mediaList = new MediaListView();
         mediaList.setVisible(true);
-        
+
     }//GEN-LAST:event_jBGtoSetMediaActionPerformed
 
     private void jBGotoSetClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGotoSetClientActionPerformed
@@ -125,14 +126,13 @@ public class MainView extends javax.swing.JFrame {
 
     private void jBGotoRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGotoRentActionPerformed
         // TODO add your handling code here:
-        
+
         // sent to Rent page
         RentProcessView rent = new RentProcessView(null);//fiz 05/05
         // close the window
         rent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         rent.setVisible(true);
-        
-        
+
     }//GEN-LAST:event_jBGotoRentActionPerformed
 
     private void jBGotoClientRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGotoClientRActionPerformed

@@ -15,12 +15,13 @@ import javax.swing.JOptionPane;
  * @author Marcelo
  */
 public class RentProcessView extends javax.swing.JFrame {
-     private ClientsRegister client = new ClientsRegister();
-     private RentProcessView clientDetails;
-   // private final RentProcessView clientDetails;
-     
+
+    private ClientsRegister client = new ClientsRegister();
+    private RentProcessView clientDetails;
+    // private final RentProcessView clientDetails;
+
     // *** Here is going to bring all clients details to the rent page. ***
-    public void setClient(ClientsRegister client){
+    public void setClient(ClientsRegister client) {
         this.client = client;
         jTextName.setText(client.getName());
         jTextEmail.setText(client.getEmail());
@@ -28,19 +29,20 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextStatus.setText(client.getPlanStatus());
         jTextBonus.setText(String.valueOf(client.getBonus()));
         jTextAreaNotes.setText(client.getNotes());
-        
+
         jTextId.setVisible(true);
         jLId.setVisible(true);
         jTextId.setText(client.getIdMembership());
     }
+
     /**
      * Creates new form RentProcessView
      */
     public RentProcessView(RentProcessView clientDetails) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         initComponents();
-    // *** Here is going to block the fields to be editable on the RentP. windows. ***
+        // *** Here is going to block the fields to be editable on the RentP. windows. ***
         jTextId.setVisible(true);
         jTextId.setEditable(false);
         jLId.setVisible(true);
@@ -49,8 +51,8 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextPlanType.setEditable(false);
         jTextStatus.setEditable(false);
         jTextBonus.setEditable(false);
-        
-       this.clientDetails = clientDetails; 
+
+        this.clientDetails = clientDetails;
     }
 
     /**
@@ -364,12 +366,9 @@ public class RentProcessView extends javax.swing.JFrame {
 
     private void jBRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRentActionPerformed
         // TODO add your handling code here:
-        
+
         // Here is gonna save the media rented:
-      
-        
         //Here is gonna clear the fields
-        
         jTextId.setText("");
         jTextName.setText("");
         jTextEmail.setText("");
@@ -381,8 +380,7 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextDateReturn.setText("");
         jTextTime.setText("");
         jTextAreaNotes.setText("");
-        
-        
+
     }//GEN-LAST:event_jBRentActionPerformed
 
     /**

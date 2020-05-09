@@ -1,13 +1,12 @@
-
 package Model;
 
 /**
  *
  * @author Priscila
  */
-    // *** This is a mother class, that is going to extends to her children. ***
-  public class Media {
-      
+// *** This is a mother class, that is going to extends to her children. ***
+public class Media {
+
     // ***** Attributes *****
     protected String idMedia;
     protected String title;
@@ -17,15 +16,15 @@ package Model;
     protected int availability;
     protected MediaFormat mediaFormat;
     protected String description;
-    
+
     // *** toString is going to print the attribubes values and methods. ***
     @Override
     public String toString() {
-        return "Media{" + "idMedia=" + idMedia + ", title=" + title + ", yearOfRelease=" +
-         yearOfRelease + ", price=" + price + ", rentedDays=" + rentedDays + ", availability=" + 
-           availability + ", mediaFormat=" + mediaFormat + ", description=" + description + '}';
+        return "Media{" + "idMedia=" + idMedia + ", title=" + title + ", yearOfRelease="
+                + yearOfRelease + ", price=" + price + ", rentedDays=" + rentedDays + ", availability="
+                + availability + ", mediaFormat=" + mediaFormat + ", description=" + description + '}';
     }
-            
+
     // *** Getter and Setter ***
     public String getIdMedia() {
         return idMedia;
@@ -38,11 +37,11 @@ package Model;
     public int getYearOfRelease() {
         return yearOfRelease;
     }
-    
+
     public float getPrice() {
         return price;
     }
-   
+
     public int getRentedDays() {
         return rentedDays;
     }
@@ -50,7 +49,7 @@ package Model;
     public int getAvailability() {
         return availability;
     }
-   
+
     public String getMediaFormat() {
         return mediaFormat.toString().toUpperCase();
     }
@@ -90,5 +89,5 @@ package Model;
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
 }

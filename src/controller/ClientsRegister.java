@@ -1,4 +1,3 @@
-
 package controller;
 
 import Model.PlanType;
@@ -15,6 +14,7 @@ import java.util.logging.Logger;
  * @author Priscila
  */
 public class ClientsRegister {
+
     // *** Attributes ***
     private String idMembership;
     private String name;
@@ -26,7 +26,7 @@ public class ClientsRegister {
     private float balance;
     private int bonus;
     private String notes;
-    
+
     // *** Getter and Setter ***
     public String getIdMembership() {
         return idMembership;
@@ -107,27 +107,25 @@ public class ClientsRegister {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-    
+
     // Here is just to test on the console
     @Override
     public String toString() {
         return "\n" + "ClientsRegister"
-        + "\n" + "idMembership= " + idMembership 
-        +"\n"  + "name= " + name 
-        +"\n"  + "email= " + email
-        + "\n" + "bankName= " + bankName 
-        + "\n" + "bankCard= " + bankCard 
-        + "\n" + "planType= " + planType
-        + "\n" + "planStatus= " + planStatus 
-        + "\n" + "balance= " + balance 
-        + "\n" + "bonus= " + bonus 
-        + "\n" + "notes= " + notes;
-        
+                + "\n" + "idMembership= " + idMembership
+                + "\n" + "name= " + name
+                + "\n" + "email= " + email
+                + "\n" + "bankName= " + bankName
+                + "\n" + "bankCard= " + bankCard
+                + "\n" + "planType= " + planType
+                + "\n" + "planStatus= " + planStatus
+                + "\n" + "balance= " + balance
+                + "\n" + "bonus= " + bonus
+                + "\n" + "notes= " + notes;
+
     }
-    
-    
-      //Aqui seria pra usar no console, se a gente não for tralhar com banco de dados
-    
+
+    //Aqui seria pra usar no console, se a gente não for tralhar com banco de dados
     /*public void status(){
         System.out.println("****************");
         System.out.println("Name: " +this.getLName()) ;
@@ -152,9 +150,8 @@ public class ClientsRegister {
     public void PlanType(){
             
     }
-    */
-    
-     /*public String Save(){
+     */
+ /*public String Save(){
         
         try {
             FileWriter fw = new FileWriter("Clients.txt", true);
@@ -274,11 +271,6 @@ public class ClientsRegister {
         this.planStatus = PlanStatus;
     }
       
- */ 
-     // Termina aqui esse pedaço de codigo que trata a qestão dos planos
-
-   
-    
+     */
+    // Termina aqui esse pedaço de codigo que trata a qestão dos planos
 }
-
-
