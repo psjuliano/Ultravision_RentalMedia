@@ -133,13 +133,13 @@ public class RentProcessView extends javax.swing.JFrame {
         jTableRent.setAutoCreateRowSorter(true);
         jTableRent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Client:", "IDMembership:", "Email:", "Plan Type:", "Status", "IDMedia:", "DateOut:", "Return:", "Bonus:", "Notes:"
+                "IDMedia:", "Plan Type:", "DateOut:", "Return:", "Notes:"
             }
         ));
         jScrollPane1.setViewportView(jTableRent);
