@@ -1,12 +1,13 @@
 package view;
 
 import DAO.ClientDAO;
-import DAO.MediaDAO;
+import DAO.MovieDAO;
 import Model.Media;
 import controller.MediaRegister;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import Model.MediaFormat;
+import Model.MediaType;
 import Model.PlanType;
 
 /**
@@ -125,8 +126,6 @@ public class NewMediaView extends javax.swing.JFrame {
         jLAvailability = new javax.swing.JLabel();
         jTextAvailability = new javax.swing.JTextField();
         jBSave = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jRadioBDvd = new javax.swing.JRadioButton();
         jRadioBCd = new javax.swing.JRadioButton();
@@ -135,8 +134,7 @@ public class NewMediaView extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jRadioBMusic = new javax.swing.JRadioButton();
         jRadioBTv = new javax.swing.JRadioButton();
-        jRadioBLives = new javax.swing.JRadioButton();
-        jRadioBBoxSet = new javax.swing.JRadioButton();
+        jRadioBMovie = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -207,22 +205,6 @@ public class NewMediaView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
-        jButton1.setText("Edit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         buttonGroupMediaF.add(jRadioBDvd);
@@ -235,7 +217,7 @@ public class NewMediaView extends javax.swing.JFrame {
         jRadioBBlueray.setText("BLUERAY");
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
-        jLabel1.setText("Titles:");
+        jLabel1.setText("Media Type: ");
 
         jRadioBMusic.setText("Music");
         jRadioBMusic.addActionListener(new java.awt.event.ActionListener() {
@@ -246,9 +228,7 @@ public class NewMediaView extends javax.swing.JFrame {
 
         jRadioBTv.setText("TV");
 
-        jRadioBLives.setText("Live");
-
-        jRadioBBoxSet.setText("BoxSet");
+        jRadioBMovie.setText("Movie");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -298,31 +278,26 @@ public class NewMediaView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jRadioBMusic)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jRadioBTv)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioBLives)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioBBoxSet))
+                                        .addComponent(jRadioBMovie))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jRadioBDvd)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jRadioBCd)
                                         .addGap(16, 16, 16)
                                         .addComponent(jRadioBBlueray)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton2)
-                            .addGap(37, 37, 37)
+                            .addGap(177, 177, 177)
                             .addComponent(jBSave))
                         .addComponent(jLDescription)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -378,13 +353,12 @@ public class NewMediaView extends javax.swing.JFrame {
                                     .addComponent(jRadioBCd)
                                     .addComponent(jRadioBBlueray))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel1)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jRadioBMusic)
                                     .addComponent(jRadioBTv)
-                                    .addComponent(jRadioBLives)
-                                    .addComponent(jRadioBBoxSet)))))
+                                    .addComponent(jRadioBMovie)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -399,10 +373,7 @@ public class NewMediaView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jBSave))))
+                        .addComponent(jBSave)))
                 .addContainerGap())
         );
 
@@ -455,31 +426,26 @@ public class NewMediaView extends javax.swing.JFrame {
         //media.setMediaFormat(buttonGroupMediaF.getSelection());
         media.setPrice(Float.parseFloat(jTextPrice.getText()));
 
-        /* PlanType p = new PlanType();
-          client.setPlanType(p);
-          
-        if ( jRadioBML.isSelected()) { 
-            p.setIdPlan(1);
-        }else if (jRadioBVL.isSelected()) {
-            p.setIdPlan(3);
+        
+        if ( jRadioBMusic.isSelected()) { 
+            media.setMediaType(MediaType.MUSIC.name());
         }else if (jRadioBTv.isSelected()) {
-            p.setIdPlan(2);
-        }else if (jRadioBPr.isSelected()) {
-            p.setIdPlan(4);
-            
+            media.setMediaType(MediaType.TV.name());
+        }else if (jRadioBMovie.isSelected()) {
+           media.setMediaType(MediaType.MOVIE.name());
         }else{
-            JOptionPane.showMessageDialog(this, "Select a plan");
+            JOptionPane.showMessageDialog(this, "Select a Media Type");
         }
-         */
+         
  /* Media m = new Media();
          
         if (m.getRentedDays()!= 0) {
             String msg = "Media was registed";
             boolean sucess = false;
             if (m.getRentedDays()== null) {
-                sucess = MediaDAO.insert(media);
+                sucess = MovieDAO.insert(media);
             }else{
-                 sucess = MediaDAO.update(media);
+                 sucess = MovieDAO.update(media);
                  msg = "Media was updated";
             }
             
@@ -498,14 +464,6 @@ public class NewMediaView extends javax.swing.JFrame {
         }
          */
     }//GEN-LAST:event_jBSaveActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextBandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextBandActionPerformed
         // TODO add your handling code here:
@@ -554,8 +512,6 @@ public class NewMediaView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupMediaF;
     private javax.swing.JButton jBSave;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLAvailability;
     private javax.swing.JLabel jLBand;
     private javax.swing.JLabel jLDescription;
@@ -572,10 +528,9 @@ public class NewMediaView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioBBlueray;
-    private javax.swing.JRadioButton jRadioBBoxSet;
     private javax.swing.JRadioButton jRadioBCd;
     private javax.swing.JRadioButton jRadioBDvd;
-    private javax.swing.JRadioButton jRadioBLives;
+    private javax.swing.JRadioButton jRadioBMovie;
     private javax.swing.JRadioButton jRadioBMusic;
     private javax.swing.JRadioButton jRadioBTv;
     private javax.swing.JScrollPane jScrollPane1;

@@ -2,7 +2,7 @@ package tests;
 
 import DAO.ClientDAO;
 import DAO.ConnectionClass;
-import DAO.MediaDAO;
+import DAO.MovieDAO;
 import controller.ClientsRegister;
 
 /**
@@ -25,7 +25,7 @@ public class TestClientDao {
         // client.setBankCard(2);
 
         //System.out.println("Os dados foram salvos? " + ClientDAO.insert(client));
-        //System.out.println(MediaDAO.list());
+        //System.out.println(MovieDAO.list());
         //System.out.println(ClientDAO.list());
         // System.out.println("***********************");
         //ConnectionClass.getConnectionClass();

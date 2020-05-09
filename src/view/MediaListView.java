@@ -1,8 +1,10 @@
 package view;
 
-import DAO.MediaDAO;
+import DAO.MovieDAO;
 import controller.ClientsRegister;
 import Model.Media;
+import Model.Movie;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -14,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MediaListView extends javax.swing.JFrame {
 
-    List<Media> mediaList;
+    List<Object> mediaList = new ArrayList<Object>();
 
     /**
      * Creates new form MediaListView
@@ -36,17 +38,13 @@ public class MediaListView extends javax.swing.JFrame {
         // *** Here is gonna print out the clients on the view ***
         /* *** Here is going to search the media by title, then it is going 
         to list it on the view *** */
-        if (mediaSearch == null) {
-            mediaList = MediaDAO.list(mediaSearch);
-        } else {
-            mediaList = MediaDAO.list(mediaSearch);
-        }
-
+        
         DefaultTableModel content = (DefaultTableModel) jTableMedia.getModel();
 
         // *** update the list ***
         content.setRowCount(0);
-        for (Media m : mediaList) {
+        List<Movie> movieList = MovieDAO.list();
+        for (Movie m : movieList) {
             Object[] row = {
                 m.getIdMedia(),
                 m.getTitle(),
@@ -57,8 +55,27 @@ public class MediaListView extends javax.swing.JFrame {
                 m.getPrice(),
                 m.getDescription(),};
             content.addRow(row);
+            mediaList.add(m);
         }
-    }
+        /*
+        List<Music> musicList = MusicDAO.list((Music)mediaSearch);
+        for (Music m : musicList) {
+            Object[] row = {
+                m.getIdMedia(),
+                m.getTitle(),
+                m.getYearOfRelease(),
+                m.getMediaFormat(),
+                m.getAvailability(),
+                //m.getPlanType().getPlanName(),
+                m.getPrice(),
+                m.getDescription(),};
+            content.addRow(row);
+            mediaList.add(m);
+        }
+        */
+        
+    } 
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -293,11 +310,11 @@ public class MediaListView extends javax.swing.JFrame {
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
         } else {
-            Media media = this.mediaList.get(row);
+            //Media media = this.mediaList.get(row);
 
             //*** Sent to the edit clientsList page ***
             NewMediaView editPage = new NewMediaView();
-            editPage.setMedia(media);
+           // editPage.setMedia(media);
             editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             editPage.setVisible(true);
         }
@@ -311,7 +328,7 @@ public class MediaListView extends javax.swing.JFrame {
         // *** Check if any row was selected. ***
         int row = jTableMedia.getSelectedRow();
         if (row > -1) {
-            Media media = mediaList.get(row);
+            //Media media = mediaList.get(row);
             int option = JOptionPane
                     .showConfirmDialog(this, "Do you want to delete",
                             "data deleted confirmation", JOptionPane.YES_NO_OPTION);
@@ -319,7 +336,7 @@ public class MediaListView extends javax.swing.JFrame {
             // *** Here is going to get the idMedia and delete it from the database. ***
             if (option == JOptionPane.YES_OPTION) {
 
-                if (MediaDAO.delete(Integer.parseInt(media.getIdMedia()))) {
+                if (MovieDAO.delete(Integer.parseInt(/*media.getIdMedia()*/ "0"))) {
 
                     JOptionPane.showMessageDialog(this, "deleted ");
                 } else {

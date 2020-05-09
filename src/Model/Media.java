@@ -16,13 +16,15 @@ public class Media {
     protected int availability;
     protected MediaFormat mediaFormat;
     protected String description;
+    protected String mediaType;
 
     // *** toString is going to print the attribubes values and methods. ***
     @Override
     public String toString() {
         return "Media{" + "idMedia=" + idMedia + ", title=" + title + ", yearOfRelease="
                 + yearOfRelease + ", price=" + price + ", rentedDays=" + rentedDays + ", availability="
-                + availability + ", mediaFormat=" + mediaFormat + ", description=" + description + '}';
+                + availability + ", mediaFormat=" + mediaFormat + ", description=" 
+                + description + "mediaType=" + mediaType +'}';
     }
 
     // *** Getter and Setter ***
@@ -57,6 +59,9 @@ public class Media {
     public String getDescription() {
         return description;
     }
+    public String getMediaType() {
+        return mediaType;
+    }
 
     public void setIdMedia(String idMedia) {
         this.idMedia = idMedia.valueOf(idMedia);
@@ -90,4 +95,7 @@ public class Media {
         this.description = description;
     }
 
+     public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
 }
