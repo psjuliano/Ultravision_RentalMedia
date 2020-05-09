@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
+import DAO.ClientDAO;
+import DAO.MediaDAO;
 import Model.Media;
 import controller.MediaRegister;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import Model.MediaFormat;
+import Model.PlanType;
 
 /**
  *
@@ -19,7 +19,7 @@ public class NewMediaView extends javax.swing.JFrame {
      private NewMediaView mediaDetails;
    // private final RentProcessView clientDetails;
      
-    // here is going to bring all clients details to the rent page:
+    // *** Here is going to bring all clients details to the rent page. ***
     public void setMedia(Media media){
         this.media = media;
         jTextTitle.setText(media.getTitle());
@@ -29,7 +29,8 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextYear.setText(String.valueOf(media.getYearOfRelease()));
         jTextPrice.setText(String.valueOf(media.getPrice()));
         
-        /*int opMembership = media.getMediaFormat().getBytes();
+       /* int opMembership = media.getMediaFormat();
+         String t = 
         switch(opMembership){
             //edit page
             case 1: // Dvd
@@ -46,6 +47,23 @@ public class NewMediaView extends javax.swing.JFrame {
                 
         }
         */
+         //goupButton code:
+          String mF = media.getMediaFormat().toUpperCase();
+          System.out.println("stop here " + mF);
+          
+          switch(mF){
+              case "CD":
+                  jRadioBCd.setSelected(true);
+              break;
+              case "DVD":
+                  jRadioBDvd.setSelected(true);
+              break;
+              case "BLUERAY":
+                  jRadioBBlueray.setSelected(true);
+              break;
+          }
+        // *** 
+        
         jTextidMedia.setVisible(true);
         jTextidMedia.setEditable(false);
         jLidMedia.setVisible(true);
@@ -428,15 +446,15 @@ public class NewMediaView extends javax.swing.JFrame {
         
         media.setTitle(jTextTitle.getText());
         //media.setDirector(jTextDirector.getText());
-        //media.setBand(jTextBand.getText());
-        //media.setStudio(jTextStudio.getText());
-       // media.setYearOfRelease(jTextYear.getText());
-        //media.setMediaFormat(buttonGroupMediaF.getSelection());
-        //media.setPrice(jTextPrice.getText());
         
-          //goupButton code:
-          /*MediaFormat mediaF = new MediaFormat();
-          mediaF.setPlanType(p);
+         //media.setBand(jTextBand.getText());
+         //media.setStudio(jTextStudio.getText());
+         media.setYearOfRelease(Integer.parseInt(jTextYear.getText()));
+        //media.setMediaFormat(buttonGroupMediaF.getSelection());
+         media.setPrice(Float.parseFloat(jTextPrice.getText()));
+         
+         /* PlanType p = new PlanType();
+          client.setPlanType(p);
           
         if ( jRadioBML.isSelected()) { 
             p.setIdPlan(1);
@@ -450,31 +468,34 @@ public class NewMediaView extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Select a plan");
         }
-        if (p.getIdPlan()!= 0) {
-            String msg = "Client was registed";
+         */
+        /* Media m = new Media();
+         
+        if (m.getRentedDays()!= 0) {
+            String msg = "Media was registed";
             boolean sucess = false;
-            if (client.getIdMembership() == null) {
-                sucess = ClientDAO.insert(client);
+            if (m.getRentedDays()== null) {
+                sucess = MediaDAO.insert(media);
             }else{
-                 sucess = ClientDAO.update(client);
-                 msg = "Client was updated";
+                 sucess = MediaDAO.update(media);
+                 msg = "Media was updated";
             }
             
             if (sucess) {
                 JOptionPane.showMessageDialog(this, msg);
                 
-                if (clientList != null) {
-                   clientList.createClientList();
+                if (mediaList != null) {
+                   mediaList.createMediaList();
                 }
                 dispose();
                 
             }else{
-                JOptionPane.showMessageDialog(this, "Error in register a client");
+                JOptionPane.showMessageDialog(this, "Error in register a media");
             }
                
         }
+         */
         
-        */
     }//GEN-LAST:event_jBSaveActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

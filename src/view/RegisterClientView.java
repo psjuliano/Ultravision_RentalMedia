@@ -7,7 +7,7 @@ package view;
 
 import DAO.ClientDAO;
 import javax.swing.JOptionPane;
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 import Model.PlanType;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -22,7 +22,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     
     private ClientsRegister client = new ClientsRegister();
     
-    // here is going to bring all the clients details to edit page:
+    // *** Here is going to bring all the clients details to edit page:
     private ClientsListView clientList;
     
     public void setClient(ClientsRegister client){
@@ -36,6 +36,8 @@ public class RegisterClientView extends javax.swing.JFrame {
         jTextStatus.setText(client.getPlanStatus());
         jTextAreaNotes.setText(client.getNotes());
         
+        /* *** Here is a statement of comparation. It is going to check the plan type
+        of the client and bring to the edit page. *** */  
         int opMembership = client.getPlanType().getIdPlan();
         switch(opMembership){
             //edit page
@@ -51,25 +53,26 @@ public class RegisterClientView extends javax.swing.JFrame {
                 jRadioBVL.setSelected(true);
             break;
                 
-            case 4: // pr
+            case 4: // premium
                 jRadioBPr.setSelected(true);
                 
             break;
         }
-        
+        // *** Here is going to block the id field to be editable. ***
         jTextId.setVisible(true);
         jLId.setVisible(true);
+        jTextId.setEditable(false);
+        
         jTextId.setText(client.getIdMembership());
         jBSave.setText("update");
-        
     }
-
 
     /**
      * Creates new form RegisterClient
      */
     public RegisterClientView(ClientsListView clientList) {
         initComponents();
+        // *** Here is going to hide the id field on the RegisterClientView. ***
         jTextId.setVisible(false);
         jTextId.setEditable(false);
         jLId.setVisible(false);

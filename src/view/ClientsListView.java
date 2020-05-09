@@ -2,7 +2,7 @@
 package view;
 
 import DAO.ClientDAO;
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Priscila
  */
 
-// oieee
+
 public class ClientsListView extends javax.swing.JFrame {
     
     List<ClientsRegister> clientsList;
@@ -42,7 +42,7 @@ public class ClientsListView extends javax.swing.JFrame {
       
         DefaultTableModel content = (DefaultTableModel)jTableClients.getModel();
         
-        // *** update the list ***
+        // *** Update the list ***
         content.setRowCount(0);
         for(ClientsRegister c: clientsList){
             Object[] row = {
@@ -253,9 +253,10 @@ public class ClientsListView extends javax.swing.JFrame {
 
     private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
         // TODO add your handling code here:
+
+        //*** Delete data process *** 
         
-        //*** delete data process *** 
-        // check if any row was selected
+        // *** Check if any row was selected: ***
         int row = jTableClients.getSelectedRow();
         if (row > -1) {
          ClientsRegister client = clientsList.get(row);
@@ -263,7 +264,7 @@ public class ClientsListView extends javax.swing.JFrame {
         .showConfirmDialog(this, "Do you want to delete",
             "data deleted confirmation", JOptionPane.YES_NO_OPTION);
         
-       //Here is going to get the idMedia and delete it from the database
+       // *** Here is going to get the idMedia and delete it from the database. ***
         if (option == JOptionPane.YES_OPTION){
             if (ClientDAO.delete(client.getIdMembership())) {
                 JOptionPane.showMessageDialog(this, "deleted");
@@ -278,12 +279,12 @@ public class ClientsListView extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Select a row to delete");
         }
-        
     }//GEN-LAST:event_jBDeleteActionPerformed
 
     private void jBgotoRentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBgotoRentPageActionPerformed
         // TODO add your handling code here:
         
+        // *** Here is going to sent to the rentProcessView windows. ***
         int row = jTableClients.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
@@ -293,23 +294,25 @@ public class ClientsListView extends javax.swing.JFrame {
         RentProcessView rent = new RentProcessView(null);// fiz05/05 ver se esta certo
         rent.setClient(client);
         
-        // *** close the window ***
+        // *** Close the window ***
         rent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         rent.setVisible(true);
+        //rent.setEnabled(false);
         
         }
     }//GEN-LAST:event_jBgotoRentPageActionPerformed
 
     private void jBCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCloseActionPerformed
         // TODO add your handling code here:
-        
+          dispose();
+      
     }//GEN-LAST:event_jBCloseActionPerformed
 
     private void jBEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditActionPerformed
         // TODO add your handling code here:
-        
         // *** Update process ***
-        // select the row to edit:
+        
+        // *** Select the row to edit: ***
         int row = jTableClients.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
@@ -321,13 +324,12 @@ public class ClientsListView extends javax.swing.JFrame {
         editPage.setClient(client);
         editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         editPage.setVisible(true);
+        
         }
-      
     }//GEN-LAST:event_jBEditActionPerformed
 
     private void jTextSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSearchActionPerformed
         // TODO add your handling code here:
-        
         
     }//GEN-LAST:event_jTextSearchActionPerformed
 
@@ -336,7 +338,6 @@ public class ClientsListView extends javax.swing.JFrame {
         
         // *** Here is going to refresh the window ***
         loadData();
-        
     }//GEN-LAST:event_jBOkClientLActionPerformed
        
     private void jTextSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSearchKeyPressed
@@ -346,7 +347,6 @@ public class ClientsListView extends javax.swing.JFrame {
         if (evt.getKeyCode()==10) {
          jBOkClientLActionPerformed(null);
         }
-       
     }//GEN-LAST:event_jTextSearchKeyPressed
 
     private void jTextSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSearchKeyReleased
@@ -405,6 +405,7 @@ public class ClientsListView extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClientsListView().setVisible(true);
+                
             }
         });
     }
