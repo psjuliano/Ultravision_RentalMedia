@@ -1,7 +1,7 @@
 
 package DAO;
 
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 import Model.PlanType;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

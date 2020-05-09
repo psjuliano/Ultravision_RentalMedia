@@ -4,7 +4,7 @@ package tests;
 import DAO.ClientDAO;
 import DAO.ConnectionClass;
 import DAO.MediaDAO;
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 
 /**
  *

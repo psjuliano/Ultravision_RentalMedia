@@ -4,6 +4,9 @@ package Model;
  *
  * @author Marcelo
  */
+
+  /* *** This class extends Media class, and implements VideoLovers class. It is going
+  to link all attributes from the Media, also it is going get all VideoLovers behaviour. */
 public class Music extends Media implements MusicLovers{
     // *** Attributes ****
     protected String band;
@@ -19,6 +22,7 @@ public class Music extends Media implements MusicLovers{
         
     }
    
+    // *** toString is going to print the attribubes values and methods. ***
     @Override
     public String toString() {
         return "Media{" + "idMedia=" + idMedia + ", title=" + title + ", yearOfRelease=" +

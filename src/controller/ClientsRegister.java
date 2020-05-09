@@ -1,6 +1,7 @@
 
 package controller;
 
+import Model.PlanType;
 import java.awt.List;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,24 +15,25 @@ import java.util.logging.Logger;
  * @author Priscila
  */
 public class ClientsRegister {
+    // *** Attributes ***
     private String idMembership;
     private String name;
     private String email;
     private String bankName;
-    private String iban;//int
-   // private float plan;
-    private String planType;
+    private int bankCard;
+    private PlanType planType;
     private String planStatus;
-    private String balance;//float
-    private String bonus;//float
+    private float balance;
+    private int bonus;
     private String notes;
-
+    
+    // *** Getter and Setter ***
     public String getIdMembership() {
         return idMembership;
     }
 
     public void setIdMembership(String idMembership) {
-        this.idMembership = idMembership;
+        this.idMembership = idMembership.valueOf(idMembership.toUpperCase());
     }
 
     public String getName() {
@@ -58,19 +60,19 @@ public class ClientsRegister {
         this.bankName = bankName;
     }
 
-    public String getIban() {
-        return iban;
+    public int getBankCard() {
+        return bankCard;
     }
 
-    public void setIban(String iban) {
-        this.iban = iban;
+    public void setBankCard(int bankCard) {
+        this.bankCard = bankCard;
     }
 
-    public String getPlanType() {
+    public PlanType getPlanType() {
         return planType;
     }
 
-    public void setPlanType(String planType) {
+    public void setPlanType(PlanType planType) {
         this.planType = planType;
     }
 
@@ -82,19 +84,19 @@ public class ClientsRegister {
         this.planStatus = planStatus;
     }
 
-    public String getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
-    public String getBonus() {
+    public int getBonus() {
         return bonus;
     }
 
-    public void setBonus(String bonus) {
+    public void setBonus(int bonus) {
         this.bonus = bonus;
     }
 
@@ -104,6 +106,23 @@ public class ClientsRegister {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+    
+    // Here is just to test on the console
+    @Override
+    public String toString() {
+        return "\n" + "ClientsRegister"
+        + "\n" + "idMembership= " + idMembership 
+        +"\n"  + "name= " + name 
+        +"\n"  + "email= " + email
+        + "\n" + "bankName= " + bankName 
+        + "\n" + "bankCard= " + bankCard 
+        + "\n" + "planType= " + planType
+        + "\n" + "planStatus= " + planStatus 
+        + "\n" + "balance= " + balance 
+        + "\n" + "bonus= " + bonus 
+        + "\n" + "notes= " + notes;
+        
     }
     
     
@@ -135,7 +154,7 @@ public class ClientsRegister {
     }
     */
     
-     public String Save(){
+     /*public String Save(){
         
         try {
             FileWriter fw = new FileWriter("Clients.txt", true);
@@ -144,7 +163,7 @@ public class ClientsRegister {
             pw.println("Name :" +this.name);
             pw.println("Email: "+this.email);
             pw.println("Bank Name: "+this.bankName);
-            pw.println("IBAN: "+this.iban);
+            pw.println("IBAN: "+this.bankCard);
             pw.println("Balance: "+this.balance);
             pw.println("Bonus: "+this.bonus);
             pw.println("Notes: "+this.notes);
@@ -257,6 +276,9 @@ public class ClientsRegister {
       
  */ 
      // Termina aqui esse pedaço de codigo que trata a qestão dos planos
+
+   
+    
 }
 
 

@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import DAO.MediaDAO;
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 import Model.Media;
 import java.util.List;
 import javax.swing.JFrame;
@@ -270,8 +266,9 @@ public class MediaListView extends javax.swing.JFrame {
     }                                       
     public void loadData(){
         
-        //Search clientsList:
+        // *** Search clientsList ***
         Media mediaSearch = new Media();
+        
         try {
             int idMedia = Integer.parseInt(jTextSearch.getText());
             mediaSearch.setIdMedia(String.valueOf(idMedia));
@@ -296,7 +293,7 @@ public class MediaListView extends javax.swing.JFrame {
         }else{
             Media media = this.mediaList.get(row);
             
-        //*** sent to the edit clientsList page ***
+        //*** Sent to the edit clientsList page ***
         NewMediaView editPage = new NewMediaView();
         editPage.setMedia(media);
         editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -308,8 +305,9 @@ public class MediaListView extends javax.swing.JFrame {
     private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
         // TODO add your handling code here:
         
-        //*** delete data process *** 
-        // check if any row was selected
+        //*** Delete data process *** 
+        
+        // *** Check if any row was selected. ***
         int row = jTableMedia.getSelectedRow();
         if (row > -1) {
          Media media = mediaList.get(row);
@@ -317,7 +315,7 @@ public class MediaListView extends javax.swing.JFrame {
         .showConfirmDialog(this, "Do you want to delete",
                 "data deleted confirmation", JOptionPane.YES_NO_OPTION);
         
-        //Here is going to get the idMedia and delete it from the database
+        // *** Here is going to get the idMedia and delete it from the database. ***
         if (option == JOptionPane.YES_OPTION){
             
             if (MediaDAO.delete(Integer.parseInt(media.getIdMedia()))) {

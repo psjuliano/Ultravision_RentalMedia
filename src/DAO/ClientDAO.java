@@ -1,7 +1,7 @@
 
 package DAO;
 
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 import Model.PlanType;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -205,7 +205,7 @@ public class ClientDAO {
                 PlanType p = new PlanType();
                 p.setIdPlan(result.getInt("plan_id"));
                 p.setPlanName(result.getString("plan"));
-                
+               
                 c.setPlanType(p);
                 
                 client.add(c);  

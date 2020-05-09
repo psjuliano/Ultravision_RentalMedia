@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 import Model.Media;
 import Model.PlanType;
 import java.sql.Connection;
@@ -138,7 +138,11 @@ public class MediaDAO {
             String sql = "SELECT * FROM media";
                    // + "left join movie on media.id = movie.id "
                    // + "WHERE title like ? or id = ?";
-            
+                   /*select media. *,
+                    movie.director,
+                    from jogo
+                    inner join movie on idmedia = id */
+                   
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql);
             
@@ -177,3 +181,4 @@ public class MediaDAO {
     
     
     
+

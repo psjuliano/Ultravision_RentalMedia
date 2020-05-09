@@ -5,7 +5,7 @@
  */
 package view;
 
-import Model.ClientsRegister;
+import controller.ClientsRegister;
 import controller.RentRegister;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,12 +19,12 @@ public class RentProcessView extends javax.swing.JFrame {
      private RentProcessView clientDetails;
    // private final RentProcessView clientDetails;
      
-    // here is going to bring all clients details to the rent page:
+    // *** Here is going to bring all clients details to the rent page. ***
     public void setClient(ClientsRegister client){
         this.client = client;
         jTextName.setText(client.getName());
         jTextEmail.setText(client.getEmail());
-        jTextPlanType.setText(String.valueOf(client.getPlanType()));
+        jTextPlanType.setText(String.valueOf(client.getPlanType().getPlanName()));
         jTextStatus.setText(client.getPlanStatus());
         jTextBonus.setText(String.valueOf(client.getBonus()));
         jTextAreaNotes.setText(client.getNotes());
@@ -32,10 +32,7 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextId.setVisible(true);
         jLId.setVisible(true);
         jTextId.setText(client.getIdMembership());
-        
     }
-    
-
     /**
      * Creates new form RentProcessView
      */
@@ -43,9 +40,15 @@ public class RentProcessView extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         initComponents();
+    // *** Here is going to block the fields to be editable on the RentP. windows. ***
         jTextId.setVisible(true);
         jTextId.setEditable(false);
         jLId.setVisible(true);
+        jTextName.setEditable(false);
+        jTextEmail.setEditable(false);
+        jTextPlanType.setEditable(false);
+        jTextStatus.setEditable(false);
+        jTextBonus.setEditable(false);
         
        this.clientDetails = clientDetails; 
     }
