@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Marcelo
  */
-// test
+
 public class MovieDAO {
 
     // This class is going to treat all transaction on my database from the view
@@ -67,7 +67,7 @@ public class MovieDAO {
             }
                     
 
-            // *** Finish the commad and realease space memory that is not being used. ***
+            // *** Finish the command and realease space memory that is not being used. ***
             stmt.close();
 
             return (result > 0) ? true : false;
@@ -186,15 +186,12 @@ public class MovieDAO {
                 m.setIdMedia(result.getString("idMedia"));
                 m.setTitle(result.getString("title"));
                 m.setDirector(result.getString("director"));
-                //m.setBand(result.getString("band"));
-                //m.setStudio(result.getString("studio"));
                 m.setYearOfRelease(result.getInt("year_of_release"));
                 m.setPrice(result.getInt("price"));
                 m.setRentedDays(result.getInt("rented_of_day"));
                 m.setAvailability(result.getInt("avaiability"));
                 m.setMediaFormat(result.getString("media_format"));
                 m.setDescription(result.getString("description"));
-                //c.setEmail(result.getString("plan").charAt(0));
                 movieList.add(m);
             }
 

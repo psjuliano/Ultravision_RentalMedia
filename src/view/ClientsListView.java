@@ -80,13 +80,9 @@ public class ClientsListView extends javax.swing.JFrame {
         jBgotoRentPage = new javax.swing.JButton();
         jBDelete = new javax.swing.JButton();
         jBEdit = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("*** Ultra-Vision Rental Media ***");
-        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CLIENTS LIST"));
 
@@ -98,7 +94,7 @@ public class ClientsListView extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "IDMembership:", "Name:", "E-mail:", "Bank Name:", "IBAN:", "Plan Type:", "Status:", "Balance:", "bonus:", "Notes:"
+                "IDMembership:", "Name:", "E-mail:", "Bank Name:", "Bank Card:", "Plan Type:", "Status:", "Balance:", "bonus:", "Notes:"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -224,14 +220,6 @@ public class ClientsListView extends javax.swing.JFrame {
                 .addComponent(jBClose))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,7 +232,7 @@ public class ClientsListView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,13 +243,14 @@ public class ClientsListView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //*** Delete data process *** 
-        // *** Check if any row was selected: ***
+        
+        // *** Check if any row was selected ***
         int row = jTableClients.getSelectedRow();
         if (row > -1) {
             ClientsRegister client = clientsList.get(row);
             int option = JOptionPane
                     .showConfirmDialog(this, "Do you want to delete",
-                            "data deleted confirmation", JOptionPane.YES_NO_OPTION);
+                       "data deleted confirmation", JOptionPane.YES_NO_OPTION);
 
             // *** Here is going to get the idMedia and delete it from the database. ***
             if (option == JOptionPane.YES_OPTION) {
@@ -270,6 +259,7 @@ public class ClientsListView extends javax.swing.JFrame {
 
                     // *** update the list ***
                     createClientList();
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "Error ");
                 }
@@ -295,20 +285,22 @@ public class ClientsListView extends javax.swing.JFrame {
 
             // *** Close the window ***
             rent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            
             rent.setVisible(true);
-            //rent.setEnabled(false);
-
+            rent.setEnabled(false);
         }
     }//GEN-LAST:event_jBgotoRentPageActionPerformed
 
     private void jBCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCloseActionPerformed
         // TODO add your handling code here:
-        dispose();
+        // *** Close the register client window without close the program.
+       dispose();
 
     }//GEN-LAST:event_jBCloseActionPerformed
 
     private void jBEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditActionPerformed
         // TODO add your handling code here:
+        
         // *** Update process ***
 
         // *** Select the row to edit: ***
@@ -318,7 +310,7 @@ public class ClientsListView extends javax.swing.JFrame {
         } else {
             ClientsRegister client = this.clientsList.get(row);
 
-            //*** sent to the edit clientsList page ***
+            //*** Sent to the edit clientsList page ***
             RegisterClientView editPage = new RegisterClientView(this);
             editPage.setClient(client);
             editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -362,8 +354,9 @@ public class ClientsListView extends javax.swing.JFrame {
         ClientsRegister clientSearch = new ClientsRegister();
         clientSearch.setName(jTextSearch.getText());
 
-        // *** Here is converting String to int ***
+       
         try {
+             // *** Here is converting String to int ***
             int idMembership = Integer.parseInt(jTextSearch.getText());
             clientSearch.setIdMembership(String.valueOf(idMembership));
 
@@ -418,9 +411,6 @@ public class ClientsListView extends javax.swing.JFrame {
     private javax.swing.JButton jBgotoRentPage;
     private javax.swing.JLabel jLImg;
     private javax.swing.JLabel jLSearch;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClients;

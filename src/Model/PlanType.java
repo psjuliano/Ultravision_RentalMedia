@@ -5,10 +5,11 @@ package Model;
  * @author Priscila
  */
 public class PlanType {
-
+// *** Attributes ***
     protected int idPlan;
     protected String planName;
-
+    
+// **** Getter and Setter ****    
     public int getIdPlan() {
         return idPlan;
     }

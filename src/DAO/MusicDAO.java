@@ -33,8 +33,10 @@ public class MusicDAO {
                     // *** Here is going to get the values insert on the database ***
                     + "VALUES (?,?,?,?,?,?,?,?)";
 
-            // *** PreparedStament is a class that execute commads sql, getting the value. *** vai retornar o codigo da midia gerada 
-            PreparedStatement stmt = connectionClass.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            /* *** PreparedStament is a class that execute commads sql, getting the value. 
+            Here is goig to get the media key that was created. */ 
+            PreparedStatement stmt = connectionClass.prepareStatement(
+                    sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             // *** Here is going to get the information on the Media class. ***
             stmt.setString(1, music.getTitle());
@@ -113,7 +115,6 @@ public class MusicDAO {
                 sql = "update music SET band = ? WHERE idmedia = ? ";
 
                 PreparedStatement stmtMusic = conn.prepareStatement(sql);
-                //stmtMusic.setString(1, music.getDirector());
                 stmtMusic.setString(2, music.getIdMedia());
 
                 numberRows = stmtMusic.executeUpdate();
@@ -181,16 +182,13 @@ public class MusicDAO {
                 Music music = new Music();
                 music.setIdMedia(result.getString("idMedia"));
                 music.setTitle(result.getString("title"));
-                //music.setDirector(result.getString("director"));
-                //m.setBand(result.getString("band"));
-                //m.setStudio(result.getString("studio"));
+                music.setBand(result.getString("band"));
                 music.setYearOfRelease(result.getInt("year_of_release"));
                 music.setPrice(result.getInt("price"));
                 music.setRentedDays(result.getInt("rented_of_day"));
                 music.setAvailability(result.getInt("avaiability"));
                 music.setMediaFormat(result.getString("media_format"));
                 music.setDescription(result.getString("description"));
-                //c.setEmail(result.getString("plan").charAt(0));
                 musicList.add(music);
             }
 

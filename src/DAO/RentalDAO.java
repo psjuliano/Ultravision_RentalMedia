@@ -45,7 +45,7 @@ public class RentalDAO {
             // *** Execute the program ***
             int result = stmt.executeUpdate();
 
-            // *** Finish the commad and realease space memory that is not being used. ***
+            // *** Finish the command and realease space memory that is not being used. ***
             stmt.close();
 
             return (result > 0) ? true : false;

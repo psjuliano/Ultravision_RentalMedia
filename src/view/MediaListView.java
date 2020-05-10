@@ -38,12 +38,11 @@ public class MediaListView extends javax.swing.JFrame {
 
     public void createMediaList(Media mediaSearch) {
 
-        // *** Here is gonna print out the clients on the view ***
+        // *** Here is gonna print out the medias on the view ***
         /* *** Here is going to search the media by title, then it is going 
         to list it on the view *** */
         DefaultTableModel content = (DefaultTableModel) jTableMedia.getModel();
 
-        // *** update the list ***
         content.setRowCount(0);
         List<Movie> movieList = MovieDAO.list();
         for (Movie m : movieList) {
@@ -53,7 +52,7 @@ public class MediaListView extends javax.swing.JFrame {
                 m.getYearOfRelease(),
                 m.getMediaFormat(),
                 m.getAvailability(),
-                //m.getPlanType().getPlanName(),
+               // m.getPlanType().getPlanName(),
                 m.getPrice(),
                 m.getDescription(),};
             content.addRow(row);
@@ -111,13 +110,9 @@ public class MediaListView extends javax.swing.JFrame {
         jBOk = new javax.swing.JButton();
         jBEdit = new javax.swing.JButton();
         jBDelete = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("*** Ultra-Vision Rental Media ***");
-        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("MEDIA LIST"));
 
@@ -150,6 +145,11 @@ public class MediaListView extends javax.swing.JFrame {
 
         jBClose.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jBClose.setText("Close");
+        jBClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCloseActionPerformed(evt);
+            }
+        });
 
         jBRentPage.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jBRentPage.setText("Go to the Rent Page");
@@ -223,7 +223,7 @@ public class MediaListView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBOk))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
@@ -239,14 +239,6 @@ public class MediaListView extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        jMenu1.setText("Home");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,8 +248,8 @@ public class MediaListView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -299,7 +291,7 @@ public class MediaListView extends javax.swing.JFrame {
 
     public void loadData() {
 
-        // *** Search clientsList ***
+        // *** Search mediaList ***
         Media mediaSearch = new Media();
 
         try {
@@ -319,7 +311,8 @@ public class MediaListView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // *** Update process ***
-        // select the row to edit:
+        
+        // *** Select the row to edit ***
         int row = jTableMedia.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
@@ -375,7 +368,7 @@ public class MediaListView extends javax.swing.JFrame {
 
                         JOptionPane.showMessageDialog(this, "deleted ");
 
-                        // *** update the list ***
+                        // *** Update the list ***
                         createMediaList();
 
                     } else {
@@ -386,9 +379,9 @@ public class MediaListView extends javax.swing.JFrame {
                 if (media.getClass() == BoxSet.class) {
                     if (TvDAO.delete(Integer.parseInt(((BoxSet) media).getIdMedia()))) {
 
-                        JOptionPane.showMessageDialog(this, "deleted ");
+                        JOptionPane.showMessageDialog(this, "Deleted ");
 
-                        // *** update the list ***
+                        // *** Update the list ***
                         createMediaList();
 
                     } else {
@@ -402,6 +395,14 @@ public class MediaListView extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(this, "Select a row to delete");
         }
     }//GEN-LAST:event_jBDeleteActionPerformed
+
+    private void jBCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCloseActionPerformed
+        // TODO add your handling code here:
+        
+        // *** Close the register client window without close the program.
+        dispose();
+        
+    }//GEN-LAST:event_jBCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,9 +447,6 @@ public class MediaListView extends javax.swing.JFrame {
     private javax.swing.JButton jBRentPage;
     private javax.swing.JLabel jLSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMedia;

@@ -127,9 +127,6 @@ public class RegisterClientView extends javax.swing.JFrame {
         jRadioBPr = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jTextIban = new javax.swing.JFormattedTextField();
-        jMBarRegister = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         jMenu3.setText("File");
         jMenuBar1.add(jMenu3);
@@ -246,6 +243,11 @@ public class RegisterClientView extends javax.swing.JFrame {
         jRadioBPr.setText("Premium");
 
         jButton2.setText("Close");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         try {
             jTextIban.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### #### ####")));
@@ -285,7 +287,7 @@ public class RegisterClientView extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(jPanelRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jTextBankname, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                                                .addComponent(jTextIban)))
+                                                .addComponent(jTextIban, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
                                         .addGroup(jPanelRegisterLayout.createSequentialGroup()
                                             .addComponent(jLId)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -408,25 +410,17 @@ public class RegisterClientView extends javax.swing.JFrame {
                     .addComponent(jSeparator4)))
         );
 
-        jMenu1.setText("File");
-        jMBarRegister.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMBarRegister.add(jMenu2);
-
-        setJMenuBar(jMBarRegister);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 684, Short.MAX_VALUE))
+                .addComponent(jPanelRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(jPanelRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
         );
 
         pack();
@@ -522,6 +516,12 @@ public class RegisterClientView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextIbanActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        // *** Close the register client window without close the program.
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -575,9 +575,6 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenuBar jMBarRegister;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
