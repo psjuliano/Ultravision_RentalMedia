@@ -22,7 +22,10 @@ public class Music extends Media implements MusicLovers {
         this.mediaFormat = MediaFormat.CD;
 
     }
+    
+public Music() {
 
+} 
     // *** toString is going to print the attribubes values and methods. ***
     @Override
     public String toString() {

@@ -6,7 +6,7 @@ package Model;
  */
 /* *** This class extends Media class, and implements TVLovers class. It is going
   to link all attributes from the Media, also it is going get all TVLovers behaviour. ***/
-class BoxSet extends Media implements TVLovers {
+public class BoxSet extends Media implements TVLovers {
 
     // *** Attributes ***
     private String studio;
@@ -20,6 +20,9 @@ class BoxSet extends Media implements TVLovers {
         this.mediaFormat = MediaFormat.BLUERAY;
 
     }
+    public BoxSet() {
+        
+}
     // *** Here is going to verifier if the mediaFormat are the right type. *** 
 
     @Override
@@ -61,6 +64,10 @@ class BoxSet extends Media implements TVLovers {
 
     public String getStudio() {
         return this.studio;
+    }
+    
+    public void setStudio(String studio) {
+        this.studio = studio;
     }
 
     public MediaFormat mediaFormat() {
