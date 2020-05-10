@@ -1,9 +1,12 @@
 package view;
 
 import DAO.MovieDAO;
-import controller.ClientsRegister;
+import DAO.MusicDAO;
+import DAO.TvDAO;
+import Model.BoxSet;
 import Model.Media;
 import Model.Movie;
+import Model.Music;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -38,7 +41,6 @@ public class MediaListView extends javax.swing.JFrame {
         // *** Here is gonna print out the clients on the view ***
         /* *** Here is going to search the media by title, then it is going 
         to list it on the view *** */
-        
         DefaultTableModel content = (DefaultTableModel) jTableMedia.getModel();
 
         // *** update the list ***
@@ -57,8 +59,8 @@ public class MediaListView extends javax.swing.JFrame {
             content.addRow(row);
             mediaList.add(m);
         }
-        /*
-        List<Music> musicList = MusicDAO.list((Music)mediaSearch);
+
+        List<Music> musicList = MusicDAO.list();
         for (Music m : musicList) {
             Object[] row = {
                 m.getIdMedia(),
@@ -72,10 +74,22 @@ public class MediaListView extends javax.swing.JFrame {
             content.addRow(row);
             mediaList.add(m);
         }
-        */
-        
-    } 
-    
+
+        List<BoxSet> tvList = TvDAO.list();
+        for (BoxSet bs : tvList) {
+            Object[] row = {
+                bs.getIdMedia(),
+                bs.getTitle(),
+                bs.getYearOfRelease(),
+                bs.getMediaFormat(),
+                bs.getAvailability(),
+                //m.getPlanType().getPlanName(),
+                bs.getPrice(),
+                bs.getDescription(),};
+            content.addRow(row);
+            mediaList.add(bs);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -310,11 +324,20 @@ public class MediaListView extends javax.swing.JFrame {
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "select a row ");
         } else {
-            //Media media = this.mediaList.get(row);
+            Object media = this.mediaList.get(row);
 
             //*** Sent to the edit clientsList page ***
-            NewMediaView editPage = new NewMediaView();
-           // editPage.setMedia(media);
+            NewMediaView editPage = new NewMediaView(this);
+            if (media.getClass() == Movie.class) {
+                editPage.setMovie((Movie) media);
+            }
+            if (media.getClass() == Music.class) {
+                editPage.setMusic((Music) media);
+            }
+            if (media.getClass() == BoxSet.class) {
+                editPage.setBoxSet((BoxSet) media);
+            }
+
             editPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             editPage.setVisible(true);
         }
@@ -328,23 +351,52 @@ public class MediaListView extends javax.swing.JFrame {
         // *** Check if any row was selected. ***
         int row = jTableMedia.getSelectedRow();
         if (row > -1) {
-            //Media media = mediaList.get(row);
+            Object media = mediaList.get(row);
             int option = JOptionPane
                     .showConfirmDialog(this, "Do you want to delete",
                             "data deleted confirmation", JOptionPane.YES_NO_OPTION);
 
             // *** Here is going to get the idMedia and delete it from the database. ***
             if (option == JOptionPane.YES_OPTION) {
+                if (media.getClass() == Movie.class) {
+                    if (MovieDAO.delete(Integer.parseInt(((Movie) media).getIdMedia()))) {
 
-                if (MovieDAO.delete(Integer.parseInt(/*media.getIdMedia()*/ "0"))) {
-
-                    JOptionPane.showMessageDialog(this, "deleted ");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error");
-
-                    // *** update the list ***
-                    createMediaList();
+                        JOptionPane.showMessageDialog(this, "deleted ");
+                        
+                         // *** update the list ***
+                        createMediaList();
+                    } else {
+                        
+                        JOptionPane.showMessageDialog(this, "Error");
+                    }
                 }
+                if (media.getClass() == Music.class) {
+                    if (MusicDAO.delete(Integer.parseInt(((Music) media).getIdMedia()))) {
+
+                        JOptionPane.showMessageDialog(this, "deleted ");
+                        
+                         // *** update the list ***
+                        createMediaList();
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error");
+
+                       
+                    }
+                }
+                    if (media.getClass() == BoxSet.class) {
+                    if (TvDAO.delete(Integer.parseInt(((BoxSet) media).getIdMedia()))) {
+
+                        JOptionPane.showMessageDialog(this, "deleted ");
+                        
+                         // *** update the list ***
+                        createMediaList();
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error");
+                    }
+                }
+
             }
         } else {
 

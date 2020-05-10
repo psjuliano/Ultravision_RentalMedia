@@ -102,11 +102,12 @@ public class MovieDAO {
             stmt.setString(1, movie.getTitle());
             stmt.setInt(2, movie.getYearOfRelease());
             stmt.setInt(3, movie.getRentedDays());
-            stmt.setInt(4, movie.getAvailability());
-            stmt.setString(5, movie.getMediaFormat());
-            stmt.setString(6, movie.getDescription());
-            stmt.setString(7, movie.getMediaType());
-            stmt.setString(8, movie.getIdMedia());
+            stmt.setFloat(4, movie.getPrice());
+            stmt.setInt(5, movie.getAvailability());
+            stmt.setString(6, movie.getMediaFormat());
+            stmt.setString(7, movie.getDescription());
+            stmt.setString(8, movie.getMediaType());
+            stmt.setString(9, movie.getIdMedia());
            
             // *** Here is going to make sure if the update was executed. ***  
             int numberRows = stmt.executeUpdate();
@@ -124,8 +125,10 @@ public class MovieDAO {
             stmt.close();
             
             return numberRows > 0;
-
+           
         } catch (Exception e) {
+             System.out.println(e);
+
             return false;
         }
     }
@@ -173,7 +176,7 @@ public class MovieDAO {
             /* *** Here are all fields from the database, also is join the plan_type table
         on the media table.*** */
             String sql = "SELECT * FROM media "
-            + "left join movie on media.idmedia= movie.idmedia ";
+            + "join movie on media.idmedia= movie.idmedia ";
             
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql);

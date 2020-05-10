@@ -174,7 +174,7 @@ public class MusicDAO {
             /* *** Here are all fields from the database, also is join the plan_type table
         on the media table.*** */
             String sql = "SELECT * FROM media "
-            + "left join music on media.idmedia= music.idmedia ";
+            + "join music on media.idmedia= music.idmedia ";
             
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql);

@@ -20,9 +20,6 @@ public class BoxSet extends Media implements TVLovers {
         this.mediaFormat = MediaFormat.BLUERAY;
 
     }
-    public BoxSet() {
-        
-}
     // *** Here is going to verifier if the mediaFormat are the right type. *** 
 
     @Override
@@ -37,6 +34,11 @@ public class BoxSet extends Media implements TVLovers {
         }
         return this;
     }
+
+    public BoxSet() {
+        
+    }
+    
 
     // *** toString is going to print the attributes values and methods. ***
     @Override
@@ -65,12 +67,14 @@ public class BoxSet extends Media implements TVLovers {
     public String getStudio() {
         return this.studio;
     }
-    
-    public void setStudio(String studio) {
-        this.studio = studio;
-    }
 
+    
     public MediaFormat mediaFormat() {
         return this.mediaFormat;
     }
+
+    public void setStudio(String studio) {
+        this.studio = studio;
+    }
+    
 }

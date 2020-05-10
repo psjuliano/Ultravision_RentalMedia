@@ -6,6 +6,8 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroupMediaF">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupT">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -87,29 +89,19 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLDirector" alignment="0" pref="97" max="32767" attributes="0"/>
-                                              <Component id="jLBand" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLComplement" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jTextTitle" alignment="0" pref="204" max="32767" attributes="0"/>
-                                      <Component id="jTextDirector" max="32767" attributes="0"/>
-                                      <Component id="jTextBand" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTextComplement" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLYear" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLStudio" min="-2" pref="74" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLYear" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTextStudio" max="32767" attributes="0"/>
-                                      <Component id="jTextYear" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="jTextYear" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -195,34 +187,24 @@
                                       <Component id="jLidMedia" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jTextidMedia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jTextTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLDirector" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextDirector" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLBand" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextBand" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLComplement" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextComplement" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLStudio" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextStudio" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLYear" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jTextYear" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="21" max="32767" attributes="0"/>
                                   <Component id="jLMediaF" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -320,17 +302,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextPriceActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLDirector">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="11" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Director:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextDirector">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLBand">
+        <Component class="javax.swing.JLabel" name="jLComplement">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="11" style="0"/>
@@ -338,20 +310,10 @@
             <Property name="text" type="java.lang.String" value="Band: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextBand">
+        <Component class="javax.swing.JTextField" name="jTextComplement">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextBandActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextComplementActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLStudio">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="11" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Studio: "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextStudio">
         </Component>
         <Component class="javax.swing.JLabel" name="jLDescription">
           <Properties>
@@ -438,6 +400,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioBMusic">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroupT"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Music"/>
           </Properties>
           <Events>
@@ -446,13 +411,25 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioBTv">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroupT"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="TV"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioBTvActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioBMovie">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroupT"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Movie"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioBMovieActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

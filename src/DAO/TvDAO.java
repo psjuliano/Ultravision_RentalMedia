@@ -174,7 +174,7 @@ public class TvDAO {
             /* *** Here are all fields from the database, also is join the plan_type table
         on the media table.*** */
             String sql = "SELECT * FROM media "
-            + "left join tv on media.idmedia= tv.idmedia ";
+            + "join tv on media.idmedia= tv.idmedia ";
             
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql);
