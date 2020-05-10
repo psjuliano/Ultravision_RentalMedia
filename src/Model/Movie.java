@@ -22,9 +22,9 @@ public class Movie extends Media implements VideoLovers {
     }
 
     public Movie() {
-        
+
     }
-    
+
     @Override
 
     // *** Here is going to verifier if the mediaFormat are the right type. ***
@@ -62,5 +62,5 @@ public class Movie extends Media implements VideoLovers {
     public MediaFormat mediaFormat() {
         return mediaFormat;
     }
-    
+
 }

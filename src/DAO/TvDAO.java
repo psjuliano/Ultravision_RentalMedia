@@ -1,4 +1,3 @@
-
 package DAO;
 
 import Model.BoxSet;
@@ -57,16 +56,15 @@ public class TvDAO {
                     tv.setIdMedia(String.valueOf(idMedia));
                     String sqlTv = "INSERT into tv(idmedia, studio)"
                             + "values (?,?)";
-                    
-              PreparedStatement stmtTv = connectionClass.prepareStatement(sqlTv);
-                stmtTv.setInt(1,idMedia);
-                stmtTv.setString(2, tv.getStudio());
-                
-                result = stmtTv.executeUpdate();
-                stmtTv.close();
+
+                    PreparedStatement stmtTv = connectionClass.prepareStatement(sqlTv);
+                    stmtTv.setInt(1, idMedia);
+                    stmtTv.setString(2, tv.getStudio());
+
+                    result = stmtTv.executeUpdate();
+                    stmtTv.close();
                 }
             }
-                    
 
             // *** Finish the commad and realease space memory that is not being used. ***
             stmt.close();
@@ -108,22 +106,22 @@ public class TvDAO {
             stmt.setString(6, tv.getDescription());
             stmt.setString(7, tv.getMediaType());
             stmt.setString(8, tv.getIdMedia());
-           
+
             // *** Here is going to make sure if the update was executed. ***  
             int numberRows = stmt.executeUpdate();
-            if (numberRows >0) {
+            if (numberRows > 0) {
                 sql = "update tv SET studio = ? WHERE idmedia = ? ";
-                
+
                 PreparedStatement stmtTv = conn.prepareStatement(sql);
                 stmtTv.setString(1, tv.getStudio());
                 stmtTv.setString(2, tv.getIdMedia());
-                
+
                 numberRows = stmtTv.executeUpdate();
                 stmtTv.close();
             }
-            
+
             stmt.close();
-            
+
             return numberRows > 0;
 
         } catch (Exception e) {
@@ -144,15 +142,15 @@ public class TvDAO {
             stmt.setInt(1, idMedia);
             int numberRows = stmt.executeUpdate();
             stmt.close();
-            if (numberRows >0) {
+            if (numberRows > 0) {
                 sql = "DELETE FROM media WHERE idMedia = ?";
-                
-             PreparedStatement stmtMedia = conn.prepareStatement(sql);
 
-            stmtMedia.setInt(1, idMedia);
-            numberRows = stmtMedia.executeUpdate();
-            stmtMedia.close();
-                
+                PreparedStatement stmtMedia = conn.prepareStatement(sql);
+
+                stmtMedia.setInt(1, idMedia);
+                numberRows = stmtMedia.executeUpdate();
+                stmtMedia.close();
+
             }
             return numberRows > 0;
 
@@ -174,8 +172,8 @@ public class TvDAO {
             /* *** Here are all fields from the database, also is join the plan_type table
         on the media table.*** */
             String sql = "SELECT * FROM media "
-            + "join tv on media.idmedia= tv.idmedia ";
-            
+                    + "join tv on media.idmedia= tv.idmedia ";
+
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql);
 
@@ -206,4 +204,3 @@ public class TvDAO {
         return tvList;
     }
 }
-

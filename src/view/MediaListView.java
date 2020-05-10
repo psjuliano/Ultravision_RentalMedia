@@ -362,11 +362,11 @@ public class MediaListView extends javax.swing.JFrame {
                     if (MovieDAO.delete(Integer.parseInt(((Movie) media).getIdMedia()))) {
 
                         JOptionPane.showMessageDialog(this, "deleted ");
-                        
-                         // *** update the list ***
+
+                        // *** update the list ***
                         createMediaList();
                     } else {
-                        
+
                         JOptionPane.showMessageDialog(this, "Error");
                     }
                 }
@@ -374,24 +374,23 @@ public class MediaListView extends javax.swing.JFrame {
                     if (MusicDAO.delete(Integer.parseInt(((Music) media).getIdMedia()))) {
 
                         JOptionPane.showMessageDialog(this, "deleted ");
-                        
-                         // *** update the list ***
+
+                        // *** update the list ***
                         createMediaList();
-                        
+
                     } else {
                         JOptionPane.showMessageDialog(this, "Error");
 
-                       
                     }
                 }
-                    if (media.getClass() == BoxSet.class) {
+                if (media.getClass() == BoxSet.class) {
                     if (TvDAO.delete(Integer.parseInt(((BoxSet) media).getIdMedia()))) {
 
                         JOptionPane.showMessageDialog(this, "deleted ");
-                        
-                         // *** update the list ***
+
+                        // *** update the list ***
                         createMediaList();
-                        
+
                     } else {
                         JOptionPane.showMessageDialog(this, "Error");
                     }

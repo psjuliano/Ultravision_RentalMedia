@@ -48,8 +48,6 @@ public class NewMediaView extends javax.swing.JFrame {
                 jRadioBBlueray.setSelected(true);
                 break;
         }
-        
-        
 
         jTextidMedia.setVisible(true);
         jTextidMedia.setEditable(false);
@@ -58,7 +56,8 @@ public class NewMediaView extends javax.swing.JFrame {
         jRadioBMusic.setVisible(true);
         jRadioBMusic.setSelected(true);
     }
-     public void setMovie(Movie movie) {
+
+    public void setMovie(Movie movie) {
         this.media = movie;
         jTextTitle.setText(movie.getTitle());
         jTextComplement.setText(movie.getDirector());
@@ -80,9 +79,8 @@ public class NewMediaView extends javax.swing.JFrame {
                 jRadioBBlueray.setSelected(true);
                 break;
         }
-        
+
         jLComplement.setText("Director");
-        
 
         jTextidMedia.setVisible(true);
         jTextidMedia.setEditable(false);
@@ -91,7 +89,8 @@ public class NewMediaView extends javax.swing.JFrame {
         jRadioBMovie.setVisible(true);
         jRadioBMovie.setSelected(true);
     }
-      public void setBoxSet(BoxSet tv) {
+
+    public void setBoxSet(BoxSet tv) {
         this.media = tv;
         jTextTitle.setText(tv.getTitle());
         jTextComplement.setText(tv.getStudio());
@@ -113,7 +112,7 @@ public class NewMediaView extends javax.swing.JFrame {
                 jRadioBBlueray.setSelected(true);
                 break;
         }
-        
+
         jLComplement.setText("Studio");
 
         jTextidMedia.setVisible(true);
@@ -464,10 +463,10 @@ public class NewMediaView extends javax.swing.JFrame {
             if (jRadioBMovie.isSelected()) {
                 media = new Movie();
             }
-             if (jRadioBMusic.isSelected()) {
+            if (jRadioBMusic.isSelected()) {
                 media = new Music();
             }
-              if (jRadioBTv.isSelected()) {
+            if (jRadioBTv.isSelected()) {
                 media = new BoxSet();
             }
         }
@@ -480,85 +479,82 @@ public class NewMediaView extends javax.swing.JFrame {
         //media.setMediaFormat(buttonGroupMediaF.getSelection());
         media.setPrice(Float.parseFloat(jTextPrice.getText()));
 
-        
-        if ( jRadioBMusic.isSelected()) { 
+        if (jRadioBMusic.isSelected()) {
             media.setMediaType(MediaType.MUSIC.name());
-        }else if (jRadioBTv.isSelected()) {
+        } else if (jRadioBTv.isSelected()) {
             media.setMediaType(MediaType.TV.name());
-        }else if (jRadioBMovie.isSelected()) {
-           media.setMediaType(MediaType.MOVIE.name());
-        }else{
+        } else if (jRadioBMovie.isSelected()) {
+            media.setMediaType(MediaType.MOVIE.name());
+        } else {
             JOptionPane.showMessageDialog(this, "Select a Media Type");
             return;
         }
         // Here is to show up the media format selected on the edit page.
         if (jRadioBCd.isSelected()) {
             media.setMediaFormat(MediaFormat.CD.name());
-        }else if(jRadioBDvd.isSelected()){
+        } else if (jRadioBDvd.isSelected()) {
             media.setMediaFormat(MediaFormat.DVD.name());
-        }else if(jRadioBBlueray.isSelected()){
+        } else if (jRadioBBlueray.isSelected()) {
             media.setMediaFormat(MediaFormat.BLUERAY.name());
-         }else{
-            
+        } else {
+
             JOptionPane.showMessageDialog(this, "Select a Media Format");
             return;
         }
-        
-         /* *** save process *** vai verificar o tipo de midia e da acordo com o tipo de 
-         media vai inserir ou alterar */
-         
-            String msg = "Media was registed";
-            boolean sucess = false;
-            if (media.getIdMedia()== null) {
-                if(media.getMediaType().equals(MediaType.MUSIC.name())){
-                  Music music = (Music)media;          
-                    music.setBand(jTextComplement.getText());
-                   sucess =  MusicDAO.insert(music);
-                }
-                if(media.getMediaType().equals(MediaType.MOVIE.name())){
-                  Movie movie = (Movie)media;          
-                    movie.setDirector(jTextComplement.getText());
-                   sucess =  MovieDAO.insert(movie);
-                }
-                if(media.getMediaType().equals(MediaType.TV.name())){
-                  BoxSet tv = (BoxSet)media;          
-                    tv.setStudio(jTextComplement.getText());
-                   sucess =  TvDAO.insert(tv);
-                }
-            }else{
-                if(media.getMediaType().equals(MediaType.MUSIC.name())){
-                  Music music = (Music)media;          
-                  music.setBand(jTextComplement.getText());
-                  sucess = MusicDAO.update(music);
-                }
-                if(media.getMediaType().equals(MediaType.MOVIE.name())){
-                  Movie movie = (Movie)media;          
-                    movie.setDirector(jTextComplement.getText());
-                   sucess =  MovieDAO.update(movie);
-                }
-                if(media.getMediaType().equals(MediaType.TV.name())){
-                  BoxSet tv = (BoxSet)media;          
-                    tv.setStudio(jTextComplement.getText());
-                   sucess =  TvDAO.update(tv);
-                }
-                
-                 msg = "Media was updated";
+
+        /* *** save process *** Here will verify the tyoe of mediaacording to the type of 
+         media inserted or altered */
+        String msg = "Media was registed";
+        boolean sucess = false;
+        if (media.getIdMedia() == null) {
+            if (media.getMediaType().equals(MediaType.MUSIC.name())) {
+                Music music = (Music) media;
+                music.setBand(jTextComplement.getText());
+                sucess = MusicDAO.insert(music);
             }
-            
-            if (sucess) {
-                JOptionPane.showMessageDialog(this, msg);
-                
-                if (mediaList != null) {
-                   mediaList.createMediaList();
-                }
-                dispose();
-                
-            }else{
-                JOptionPane.showMessageDialog(this, "Error in register a media");
+            if (media.getMediaType().equals(MediaType.MOVIE.name())) {
+                Movie movie = (Movie) media;
+                movie.setDirector(jTextComplement.getText());
+                sucess = MovieDAO.insert(movie);
             }
-               
-        
-         
+            if (media.getMediaType().equals(MediaType.TV.name())) {
+                BoxSet tv = (BoxSet) media;
+                tv.setStudio(jTextComplement.getText());
+                sucess = TvDAO.insert(tv);
+            }
+        } else {
+            if (media.getMediaType().equals(MediaType.MUSIC.name())) {
+                Music music = (Music) media;
+                music.setBand(jTextComplement.getText());
+                sucess = MusicDAO.update(music);
+            }
+            if (media.getMediaType().equals(MediaType.MOVIE.name())) {
+                Movie movie = (Movie) media;
+                movie.setDirector(jTextComplement.getText());
+                sucess = MovieDAO.update(movie);
+            }
+            if (media.getMediaType().equals(MediaType.TV.name())) {
+                BoxSet tv = (BoxSet) media;
+                tv.setStudio(jTextComplement.getText());
+                sucess = TvDAO.update(tv);
+            }
+
+            msg = "Media was updated";
+        }
+
+        if (sucess) {
+            JOptionPane.showMessageDialog(this, msg);
+
+            if (mediaList != null) {
+                mediaList.createMediaList();
+            }
+            dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error in register a media");
+        }
+
+
     }//GEN-LAST:event_jBSaveActionPerformed
 
     private void jTextComplementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextComplementActionPerformed
@@ -572,12 +568,12 @@ public class NewMediaView extends javax.swing.JFrame {
 
     private void jRadioBTvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBTvActionPerformed
         // TODO add your handling code here:
-         jLComplement.setText("Studio:");
+        jLComplement.setText("Studio:");
     }//GEN-LAST:event_jRadioBTvActionPerformed
 
     private void jRadioBMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBMovieActionPerformed
         // TODO add your handling code here:
-         jLComplement.setText("Director:");
+        jLComplement.setText("Director:");
     }//GEN-LAST:event_jRadioBMovieActionPerformed
 
     /**

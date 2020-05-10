@@ -49,7 +49,7 @@ public class MovieDAO {
             // *** Execute the program ***
             int result = stmt.executeUpdate();
             if (result > 0) {
-                // aqui vai recuperar a chave gerada em midia
+                // Here it will recover the key generated in media
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
                     int idMedia = rs.getInt(1);
@@ -166,7 +166,7 @@ public class MovieDAO {
 
     public static List<Movie> list() {
 
-        // *** Here is an Array, that is going to list all client from the database. ***
+        // *** Here is an Array, that is going to list all clients from the database. ***
         List<Movie> movieList = new ArrayList<Movie>();
 
         //  *** try..catch is going to treat any possible error. ***      

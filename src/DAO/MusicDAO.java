@@ -1,4 +1,3 @@
-
 package DAO;
 
 import Model.Media;
@@ -50,23 +49,22 @@ public class MusicDAO {
             // *** Execute the program ***
             int result = stmt.executeUpdate();
             if (result > 0) {
-                // aqui vai recuperar a chave gerada em midia
+                // Here it will recover the key generated in media
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
                     int idMedia = rs.getInt(1);
                     music.setIdMedia(String.valueOf(idMedia));
                     String sqlMusic = "INSERT into music(idmedia, band)"
                             + "values (?,?)";
-                    
-              PreparedStatement stmtMusic = connectionClass.prepareStatement(sqlMusic);
-                stmtMusic.setInt(1,idMedia);
-                //stmtMusic.setString(2, music.getDirector());
-                
-                result = stmtMusic.executeUpdate();
-                stmtMusic.close();
+
+                    PreparedStatement stmtMusic = connectionClass.prepareStatement(sqlMusic);
+                    stmtMusic.setInt(1, idMedia);
+                    //stmtMusic.setString(2, music.getDirector());
+
+                    result = stmtMusic.executeUpdate();
+                    stmtMusic.close();
                 }
             }
-                    
 
             // *** Finish the commad and realease space memory that is not being used. ***
             stmt.close();
@@ -108,22 +106,22 @@ public class MusicDAO {
             stmt.setString(6, music.getDescription());
             stmt.setString(7, music.getMediaType());
             stmt.setString(8, music.getIdMedia());
-           
+
             // *** Here is going to make sure if the update was executed. ***  
             int numberRows = stmt.executeUpdate();
-            if (numberRows >0) {
+            if (numberRows > 0) {
                 sql = "update music SET band = ? WHERE idmedia = ? ";
-                
+
                 PreparedStatement stmtMusic = conn.prepareStatement(sql);
                 //stmtMusic.setString(1, music.getDirector());
                 stmtMusic.setString(2, music.getIdMedia());
-                
+
                 numberRows = stmtMusic.executeUpdate();
                 stmtMusic.close();
             }
-            
+
             stmt.close();
-            
+
             return numberRows > 0;
 
         } catch (Exception e) {
@@ -144,15 +142,15 @@ public class MusicDAO {
             stmt.setInt(1, idMedia);
             int numberRows = stmt.executeUpdate();
             stmt.close();
-            if (numberRows >0) {
+            if (numberRows > 0) {
                 sql = "DELETE FROM media WHERE idMedia = ?";
-                
-             PreparedStatement stmtMedia = conn.prepareStatement(sql);
 
-            stmtMedia.setInt(1, idMedia);
-            numberRows = stmtMedia.executeUpdate();
-            stmtMedia.close();
-                
+                PreparedStatement stmtMedia = conn.prepareStatement(sql);
+
+                stmtMedia.setInt(1, idMedia);
+                numberRows = stmtMedia.executeUpdate();
+                stmtMedia.close();
+
             }
             return numberRows > 0;
 
@@ -174,8 +172,8 @@ public class MusicDAO {
             /* *** Here are all fields from the database, also is join the plan_type table
         on the media table.*** */
             String sql = "SELECT * FROM media "
-            + "join music on media.idmedia= music.idmedia ";
-            
+                    + "join music on media.idmedia= music.idmedia ";
+
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql);
 
