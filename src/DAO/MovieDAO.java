@@ -205,3 +205,6 @@ public class MovieDAO {
         return movieList;
     }
 }
+// *** REFERENCES: ***
+/* CrashCourse. “The Constitution, the Articles, and 
+Federalism: Crash Course US History #8.” YouTube, 21 Mar. 2013, https://youtu.be/bO7FQsCcbD8.*/
