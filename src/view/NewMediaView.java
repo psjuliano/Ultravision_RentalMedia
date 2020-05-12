@@ -32,10 +32,13 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextComplement.setText(music.getBand());
         jTextYear.setText(String.valueOf(music.getYearOfRelease()));
         jTextPrice.setText(String.valueOf(music.getPrice()));
-
+        //buttonGroupT.setSelected(mf, rootPaneCheckingEnabled);
+        jTextAvailability.setText(String.valueOf(music.getAvailability()));
+        jTexDescription.setText(music.getDescription());
+        
         // *** GoupButton code:
         String mF = music.getMediaFormat().toUpperCase();
-        System.out.println("stop here " + mF);
+        //System.out.println("stop here " + mF);
 
         switch (mF) {
             case "CD":
@@ -63,10 +66,13 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextComplement.setText(movie.getDirector());
         jTextYear.setText(String.valueOf(movie.getYearOfRelease()));
         jTextPrice.setText(String.valueOf(movie.getPrice()));
+        //buttonGroupT.setSelected(mf, rootPaneCheckingEnabled);
+        jTextAvailability.setText(String.valueOf(movie.getAvailability()));
+        jTexDescription.setText(movie.getDescription());
 
-        //goupButton code:
+        //*** GoupButton code ***
         String mF = movie.getMediaFormat().toUpperCase();
-        System.out.println("stop here " + mF);
+        //System.out.println("stop here " + mF);
 
         switch (mF) {
             case "CD":
@@ -96,6 +102,9 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextComplement.setText(tv.getStudio());
         jTextYear.setText(String.valueOf(tv.getYearOfRelease()));
         jTextPrice.setText(String.valueOf(tv.getPrice()));
+        //buttonGroupT.setSelected(mf, rootPaneCheckingEnabled);
+        jTextAvailability.setText(String.valueOf(tv.getAvailability()));
+        jTexDescription.setText(tv.getDescription());
 
         //goupButton code:
         String mF = tv.getMediaFormat().toUpperCase();
@@ -144,7 +153,13 @@ public class NewMediaView extends javax.swing.JFrame {
      */
     public NewMediaView() {
         initComponents();
+         /* *** Here is going to hide the id field on the NewMediaView and 
+         show the music mediaFormat selected as default *** */
+        jTextidMedia.setVisible(false);
+        jTextidMedia.setEditable(false);
+        jLidMedia.setVisible(false);
         jRadioBMusic.setSelected(rootPaneCheckingEnabled);
+        
     }
 
     /**
@@ -173,7 +188,7 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextComplement = new javax.swing.JTextField();
         jLDescription = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea = new javax.swing.JTextArea();
+        jTexDescription = new javax.swing.JTextArea();
         jLAvailability = new javax.swing.JLabel();
         jTextAvailability = new javax.swing.JTextField();
         jBSave = new javax.swing.JButton();
@@ -233,9 +248,9 @@ public class NewMediaView extends javax.swing.JFrame {
         jLDescription.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLDescription.setText("Description:");
 
-        jTextArea.setColumns(20);
-        jTextArea.setRows(5);
-        jScrollPane1.setViewportView(jTextArea);
+        jTexDescription.setColumns(20);
+        jTexDescription.setRows(5);
+        jScrollPane1.setViewportView(jTexDescription);
 
         jLAvailability.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLAvailability.setText("Availability:");
@@ -302,34 +317,31 @@ public class NewMediaView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextTitle))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLComplement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(6, 6, 6)))
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextComplement, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                    .addComponent(jTextTitle))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLComplement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jTextComplement, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLYear)
-                                            .addGap(12, 12, 12)
-                                            .addComponent(jTextYear))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLMediaF)
-                                            .addGap(196, 196, 196)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18))
+                                    .addComponent(jLMediaF)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 26, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLYear)
+                                .addGap(12, 12, 12)
+                                .addComponent(jTextYear))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jRadioBDvd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioBCd)
+                                .addGap(58, 58, 58)
+                                .addComponent(jRadioBBlueray)
+                                .addGap(45, 45, 45))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -341,18 +353,14 @@ public class NewMediaView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
                                         .addComponent(jRadioBMusic)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(45, 45, 45)
                                         .addComponent(jRadioBTv)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioBMovie))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jRadioBDvd)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioBCd)
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jRadioBBlueray)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jRadioBMovie)))))
+                        .addGap(56, 56, 56)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -390,30 +398,31 @@ public class NewMediaView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLTitle)
                                     .addComponent(jTextTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioBMusic)
+                                    .addComponent(jRadioBTv)
+                                    .addComponent(jRadioBMovie))
+                                .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLComplement)
                                     .addComponent(jTextComplement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
+                                .addGap(38, 38, 38)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLYear)
                                     .addComponent(jTextYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLMediaF)
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jRadioBDvd)
                                     .addComponent(jRadioBCd)
                                     .addComponent(jRadioBBlueray))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRadioBMusic)
-                                    .addComponent(jRadioBTv)
-                                    .addComponent(jRadioBMovie)))))
+                                .addGap(9, 9, 9))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBClose)
                         .addGap(59, 59, 59)
@@ -424,7 +433,7 @@ public class NewMediaView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(jLDescription)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -443,10 +452,7 @@ public class NewMediaView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -455,6 +461,7 @@ public class NewMediaView extends javax.swing.JFrame {
 
     private void jTextidMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextidMediaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextidMediaActionPerformed
 
     private void jTextPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPriceActionPerformed
@@ -477,10 +484,14 @@ public class NewMediaView extends javax.swing.JFrame {
         }
         media.setTitle(jTextTitle.getText());
         //media.setDirector(jTextDirector.getText());
-
-        //media.setBand(jTextBand.getText());
-        //media.setStudio(jTextStudio.getText());
         media.setYearOfRelease(Integer.parseInt(jTextYear.getText()));
+        media.setMediaType(jTextComplement.getText());
+        media.setMediaType(jTextComplement.getText());
+        media.setAvailability(Integer.parseInt(jTextAvailability.getText()));
+        media.setDescription(jTexDescription.getText());
+        //media.setBand(jTextComplement.getText());
+        //media.setStudio(jTextStudio.getText());
+        
         //media.setMediaFormat(buttonGroupMediaF.getSelection());
         media.setPrice(Float.parseFloat(jTextPrice.getText()));
 
@@ -648,7 +659,7 @@ public class NewMediaView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextArea jTextArea;
+    private javax.swing.JTextArea jTexDescription;
     private javax.swing.JTextField jTextAvailability;
     private javax.swing.JTextField jTextComplement;
     private javax.swing.JTextField jTextPrice;
@@ -657,3 +668,7 @@ public class NewMediaView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextidMedia;
     // End of variables declaration//GEN-END:variables
 }
+
+// *** REFERENCES: ***
+/* ula 07 - LTP III - Parte 2 - Exemplo de alteração e exclusão de dados
+YouTube, 26 May. 2016, https://youtu.be/efWt0cVmSuc*/

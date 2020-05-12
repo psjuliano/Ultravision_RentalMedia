@@ -32,7 +32,7 @@ public class ClientsListView extends javax.swing.JFrame {
 
     public void createClientList(ClientsRegister clientSearch) {
 
-        // *** Here is gonna print out the clients on the view ***
+        // *** Here is gonna print out all clients list or search the client on the view ***
         if (clientSearch == null) {
             clientsList = ClientDAO.list();
         } else {
@@ -280,7 +280,7 @@ public class ClientsListView extends javax.swing.JFrame {
         } else {
             ClientsRegister client = this.clientsList.get(row);
 
-            RentProcessView rent = new RentProcessView(null);// fiz05/05 ver se esta certo
+            RentProcessView rent = new RentProcessView(null);
             rent.setClient(client);
 
             // *** Close the window ***
@@ -327,7 +327,7 @@ public class ClientsListView extends javax.swing.JFrame {
     private void jBOkClientLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkClientLActionPerformed
         // TODO add your handling code here:
 
-        // *** Here is going to refresh the window ***
+       // *** Her is calling the loadData method *** 
         loadData();
     }//GEN-LAST:event_jBOkClientLActionPerformed
 

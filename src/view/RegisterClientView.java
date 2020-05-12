@@ -27,7 +27,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         jTextName.setText(client.getName());
         jTextEmail.setText(client.getEmail());
         jTextBankname.setText(client.getBankName());
-        jTextIban.setText(String.valueOf(client.getBankCard()));
+        jTextCard.setText(String.valueOf(client.getBankCard()));
         jTexBalance.setText(String.valueOf(client.getBalance()));
         jTextBonus.setText(String.valueOf(client.getBonus()));
         jTextStatus.setText(client.getPlanStatus());
@@ -126,7 +126,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         jRadioBTv = new javax.swing.JRadioButton();
         jRadioBPr = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
-        jTextIban = new javax.swing.JFormattedTextField();
+        jTextCard = new javax.swing.JFormattedTextField();
 
         jMenu3.setText("File");
         jMenuBar1.add(jMenu3);
@@ -250,13 +250,13 @@ public class RegisterClientView extends javax.swing.JFrame {
         });
 
         try {
-            jTextIban.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### #### ####")));
+            jTextCard.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### #### ####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jTextIban.addActionListener(new java.awt.event.ActionListener() {
+        jTextCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextIbanActionPerformed(evt);
+                jTextCardActionPerformed(evt);
             }
         });
 
@@ -287,7 +287,7 @@ public class RegisterClientView extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(jPanelRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jTextBankname, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                                                .addComponent(jTextIban, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
+                                                .addComponent(jTextCard, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
                                         .addGroup(jPanelRegisterLayout.createSequentialGroup()
                                             .addComponent(jLId)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -377,7 +377,7 @@ public class RegisterClientView extends javax.swing.JFrame {
                 .addGroup(jPanelRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLIban)
                     .addComponent(jBSave)
-                    .addComponent(jTextIban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -448,7 +448,6 @@ public class RegisterClientView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //Here is gonna save the clients details
-        //client.setIdMembership(jTextId.getText());
         client.setName(jTextName.getText());
         try {
             InternetAddress emailAddr = new InternetAddress(jTextEmail.getText());
@@ -459,11 +458,11 @@ public class RegisterClientView extends javax.swing.JFrame {
             return;
         }
         client.setBankName(jTextBankname.getText());
-        //client.setBankCard(jTextCard.getText());
+        //client.setBankCard(Integer.parseInt(jTextCard.getText()));
         //client.setPlanType(jRadioBTvActionPerformed().getText());
         client.setPlanStatus(jTextStatus.getText());
-        //client.setBalance(jTexBalance.getText());
-        //client.setBonus(jTextBonus.getText());
+        client.setBalance(Float.parseFloat(jTexBalance.getText()));
+        client.setBonus(Integer.parseInt(jTextBonus.getText()));
         client.setNotes(jTextAreaNotes.getText());
 
         //goupButton code:
@@ -512,9 +511,9 @@ public class RegisterClientView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioBTvActionPerformed
 
-    private void jTextIbanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIbanActionPerformed
+    private void jTextCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextIbanActionPerformed
+    }//GEN-LAST:event_jTextCardActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -595,8 +594,8 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaNotes;
     private javax.swing.JTextField jTextBankname;
     private javax.swing.JTextField jTextBonus;
+    private javax.swing.JFormattedTextField jTextCard;
     private javax.swing.JTextField jTextEmail;
-    private javax.swing.JFormattedTextField jTextIban;
     private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextName;
     private javax.swing.JTextField jTextStatus;

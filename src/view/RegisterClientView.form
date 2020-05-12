@@ -120,7 +120,7 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jTextBankname" pref="236" max="32767" attributes="0"/>
-                                                  <Component id="jTextIban" pref="244" max="32767" attributes="0"/>
+                                                  <Component id="jTextCard" pref="244" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -241,7 +241,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLIban" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBSave" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextIban" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextCard" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
@@ -497,14 +497,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jTextIban">
+        <Component class="javax.swing.JFormattedTextField" name="jTextCard">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#### #### #### ####" subtype="-1" type="5"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextIbanActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCardActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -1,5 +1,6 @@
 package view;
 
+import DAO.RentalDAO;
 import controller.ClientsRegister;
 import controller.RentRegister;
 import javax.swing.JFrame;
@@ -350,6 +351,16 @@ public class RentProcessView extends javax.swing.JFrame {
 
     private void jBRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRentActionPerformed
         // TODO add your handling code here:
+        
+        /*int item = RentalDAO.getItemRented();
+        if (item <= 4) {
+            System.out.println("Title rented.");
+            
+        }else{
+            
+            System.out.println("You can not rent more than 4 title. ");
+        }*/
+       
 
         // Here is gonna save the media rented:
         //Here is gonna clear the fields

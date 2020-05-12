@@ -203,4 +203,76 @@ public class TvDAO {
         }
         return tvList;
     }
+     public static List<Media> list(Media mediaSearch) {
+        // *** Here is going to search for a client by id or name. ***
+        List<Media> media = new ArrayList<Media>();
+
+        //  *** try..catch is going to treat any possible error. ***
+        try {
+
+            Connection conn = ConnectionClass.getConnectionClass();
+            /* *** Here are all fields from the database, also is join the plan_type table
+        on the client table.*** */
+            String sql = "SELECT * FROM media "
+                    //+ "left join movie on media.plan_id = plan_type.idplan_type "
+                    + "WHERE title like ? or idmedia = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + mediaSearch.getTitle()+ "%");
+            stmt.setString(2, mediaSearch.getIdMedia());
+
+            ResultSet result = stmt.executeQuery();
+
+            while (result.next()) {
+                Media m = new Media();
+                m.setIdMedia(result.getString("idmedia"));
+                m.setYearOfRelease(result.getInt("year_of_release"));
+                m.setPrice(result.getFloat("price"));
+                m.setRentedDays(result.getInt("rented_of_days"));
+                m.setAvailability(result.getInt("availability"));
+                m.setMediaFormat(result.getString("media_format"));
+                m.setDescription(result.getString("description"));
+                m.setMediaType(result.getString("media_type"));
+                
+                BoxSet studio = new BoxSet();
+                studio.setIdMedia(result.getString("idmedia"));
+                studio.setStudio(result.getString("studio"));
+
+               // m.setMovie(director);
+
+                media.add(m);
+            }
+            result.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return media;
+    }
+     public Media getIdMedia(int idMedia) {
+        // *** Here is going to delete any media details, when need. ***
+        Media media = new Media();
+        //  *** try..catch is going to treat any possible error. ***
+        try {
+            Connection conn = ConnectionClass.getConnectionClass();
+            // *** Here are all fields from my database ***   
+            String sql = "SELECT * FROM media WHERE idMedia = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idMedia);
+            
+            ResultSet rs = stmt.executeQuery();
+            //int numberRows = stmt.executeUpdate();
+            //stmt.close();
+            
+            if (rs.next() ) {
+                media.setIdMedia("idmedia");
+                media.setTitle("title");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Sql Error: " + e.getMessage());
+        }
+         return media;
+    }
 }

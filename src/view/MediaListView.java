@@ -118,13 +118,13 @@ public class MediaListView extends javax.swing.JFrame {
 
         jTableMedia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Media:", "Title:", "Director:", "Studio:", "Band:", "Year of Release:", "Media Format:", "Avaiability:", "Price:", "Description:"
+                "ID Media:", "Title", "Year of Release:", "Price:", "Rented of days:", "Avaiability:", "Media Format:", "Description:", "Director/Studio/Band:"
             }
         ));
         jScrollPane1.setViewportView(jTableMedia);
@@ -283,7 +283,8 @@ public class MediaListView extends javax.swing.JFrame {
 
     private void jTextSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSearchKeyReleased
         // TODO add your handling code here:
-
+        
+        // *** Here is going to refresh the the list ***
         if (jTextSearch.getText().isEmpty()) {
             loadData();
         }

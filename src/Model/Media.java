@@ -98,4 +98,8 @@ public class Media {
      public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
     }
+
+   /* public void setMovie(Movie director) {
+        this.director = director;
+    } fix it*/
 }

@@ -20,12 +20,12 @@ public class RentRegister {
     protected String email;
     protected String planType;
     protected String status;
-    protected String bonus;
+    protected int bonus;
     protected String idMedia;
     protected String dateOut;
     protected String returnDate;
     protected String timeReturn;
-    protected String balance;
+    protected Float balance;
     protected String notes;
     protected ArrayList<Media> Media;
 
@@ -62,11 +62,11 @@ public class RentRegister {
         this.status = status;
     }
 
-    public String getBonus() {
+    public int getBonus() {
         return bonus;
     }
 
-    public void setBonus(String bonus) {
+    public void setBonus(int bonus) {
         this.bonus = bonus;
     }
 
@@ -102,11 +102,11 @@ public class RentRegister {
         this.timeReturn = timeReturn;
     }
 
-    public String getBalance() {
+    public Float getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(Float balance) {
         this.balance = balance;
     }
 

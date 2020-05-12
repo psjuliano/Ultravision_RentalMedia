@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Media;
 import controller.ClientsRegister;
 import Model.PlanType;
 import java.sql.Connection;
@@ -100,27 +101,6 @@ public class RentalDAO {
         return false;
     }
 
-    public static boolean delete(String idMembership) {
-        // *** Here is going to delete any rental details, when need. ***
-
-        //  *** try..catch is going to treat any possible error. ***
-        try {
-            Connection conn = ConnectionClass.getConnectionClass();
-            // *** Here are all fields from my database ***            
-            String sql = "DELETE FROM client WHERE idMembership = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-
-            stmt.setString(1, idMembership);
-            int numberRows = stmt.executeUpdate();
-            stmt.close();
-            return numberRows > 0;
-
-        } catch (Exception e) {
-
-            return false;
-        }
-    }
-
     public static List<ClientsRegister> list() {
         // *** Here is an Array, that is going to list all rental from the database. ***
         List<ClientsRegister> client = new ArrayList<ClientsRegister>();
@@ -166,54 +146,36 @@ public class RentalDAO {
         return client;
     }
 
-    public static List<ClientsRegister> list(ClientsRegister clientSearch) {
-        // *** Here is going to search for a client by id or name. ***
-        List<ClientsRegister> client = new ArrayList<ClientsRegister>();
+   
+/*
+    public Media  getItemRented(int idMedia) {
+         // *** Here is going to delete any media details, when need. ***
+        Media itemRented = new Media();
         //  *** try..catch is going to treat any possible error. ***
         try {
-
             Connection conn = ConnectionClass.getConnectionClass();
-            /* *** Here are all fields from the database, also is join the client table
-        on the rental table.*** */
-            String sql = "SELECT * FROM client "
-                    + "left join plan_type on client.plan_id = plan_type.idplan_type "
-                    + "WHERE name like ? or idMembership = ?";
-
+            // *** Here are all fields from my database ***   
+            String sql = "SELECT * FROM media WHERE idMedia = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "%" + clientSearch.getName() + "%");
-            stmt.setString(2, clientSearch.getIdMembership());
-
-            ResultSet result = stmt.executeQuery();
-
-            while (result.next()) {
-                ClientsRegister c = new ClientsRegister();
-                c.setIdMembership(result.getString("idMembership"));
-                c.setName(result.getString("name"));
-                c.setEmail(result.getString("email"));
-                c.setBankName(result.getString("bank_name"));
-                c.setBankCard(result.getInt("Bank_card"));
-                c.setPlanStatus(result.getString("plan_status"));
-                c.setBalance(result.getFloat("balance"));
-                c.setNotes(result.getString("notes"));
-                //c.setEmail(result.getString("plan").charAt(0));
-                PlanType p = new PlanType();
-                p.setIdPlan(result.getInt("plan_id"));
-                p.setPlanName(result.getString("plan"));
-
-                c.setPlanType(p);
-
-                client.add(c);
-
+            stmt.setInt(1, idMedia);
+            
+            ResultSet rs = stmt.executeQuery();
+            //int numberRows = stmt.executeUpdate();
+            //stmt.close();
+            
+            //if (rs.next() ) {
+             //   media.setIdMedia("idmedia");
+             //   media.setTitle("title");
             }
 
-            result.close();
-            stmt.close();
-
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-
+            System.out.println("Sql Error: " + e.getMessage());
         }
-        return client;
+         return media;
     }
+        */
+    }
+    
+   
 
-}
+

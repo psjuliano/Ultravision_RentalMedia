@@ -11,6 +11,8 @@ public class Movie extends Media implements VideoLovers {
 
     // *** Attributes ***
     private String director;
+   // private Movie movie; fix it
+     
 
     // *** Constructor ***
     public Movie(String idMedia, String title, String band, String director, int yearOfRelease) {
@@ -40,7 +42,7 @@ public class Movie extends Media implements VideoLovers {
         }
         return this;
     }
-
+ 
     // *** toString is going to print the attribubes values and methods. ***
     @Override
     public String toString() {
@@ -62,5 +64,5 @@ public class Movie extends Media implements VideoLovers {
     public MediaFormat mediaFormat() {
         return mediaFormat;
     }
-
+       
 }
