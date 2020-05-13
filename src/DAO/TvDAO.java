@@ -29,7 +29,7 @@ public class TvDAO {
 
             // *** Here are all fields from the database ***
             String sql = "INSERT INTO media(title, year_of_release, price, rented_of_day,"
-                    + "avaiability, media_format, description, media_type) "
+                    + "availability, media_format, description, media_type) "
                     // *** Here is going to get the values insert on the database ***
                     + "VALUES (?,?,?,?,?,?,?,?)";
 
@@ -73,7 +73,7 @@ public class TvDAO {
 
             // *** Here is going to return any possible error. ***
         } catch (Exception e) {
-            e.printStackTrace();
+           System.out.println("TVDao.insert: " + e.getMessage());
         }
         return false;
     }
@@ -90,7 +90,7 @@ public class TvDAO {
                     + "year_of_release = ?,"
                     + "price = ?,"
                     + "rented_of_day = ?,"
-                    + "avaiability = ?,"
+                    + "availability = ?,"
                     + "media_format = ?,"
                     + "description = ?,"
                     + "media_type = ?"
@@ -125,6 +125,7 @@ public class TvDAO {
             return numberRows > 0;
 
         } catch (Exception e) {
+            System.out.println("TVDao.update: " + e.getMessage());
             return false;
         }
     }
@@ -155,6 +156,7 @@ public class TvDAO {
             return numberRows > 0;
 
         } catch (Exception e) {
+            System.out.println("TVDao.delete: " + e.getMessage());
 
             return false;
         }
@@ -187,7 +189,7 @@ public class TvDAO {
                 bs.setYearOfRelease(result.getInt("year_of_release"));
                 bs.setPrice(result.getInt("price"));
                 bs.setRentedDays(result.getInt("rented_of_day"));
-                bs.setAvailability(result.getInt("avaiability"));
+                bs.setAvailability(result.getInt("availability"));
                 bs.setMediaFormat(result.getString("media_format"));
                 bs.setDescription(result.getString("description"));
                 //c.setEmail(result.getString("plan").charAt(0));
@@ -198,8 +200,7 @@ public class TvDAO {
             stmt.close();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-
+           System.out.println("TVDao.list: " + e.getMessage());
         }
         return tvList;
     }
@@ -246,7 +247,7 @@ public class TvDAO {
             stmt.close();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+           System.out.println("TVDao.list: " + e.getMessage());
         }
         return media;
     }
@@ -257,7 +258,9 @@ public class TvDAO {
         try {
             Connection conn = ConnectionClass.getConnectionClass();
             // *** Here are all fields from my database ***   
-            String sql = "SELECT * FROM media WHERE idMedia = ?";
+            String sql = "SELECT * FROM media "
+                    + "join tv on media.idmedia = tv.idmedia "
+                    + "WHERE media.idmedia = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idMedia);
             
@@ -280,7 +283,7 @@ public class TvDAO {
             }
 
         } catch (Exception e) {
-            System.out.println("Sql Error: " + e.getMessage());
+        System.out.println("TVDao.getTVById: " + e.getMessage());
         }
          return tv;
     }

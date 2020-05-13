@@ -29,7 +29,7 @@ public class MovieDAO {
 
             // *** Here are all fields from the database ***
             String sql = "INSERT INTO media(title, year_of_release, price, rented_of_day,"
-                    + "avaiability, media_format, description, media_type) "
+                    + "availability, media_format, description, media_type) "
                     // *** Here is going to get the values insert on the database ***
                     + "VALUES (?,?,?,?,?,?,?,?)";
 
@@ -74,7 +74,7 @@ public class MovieDAO {
 
             // *** Here is going to return any possible error. ***
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("MovieDao.insert: " + e.getMessage());
         }
         return false;
     }
@@ -91,7 +91,7 @@ public class MovieDAO {
                     + "year_of_release = ?,"
                     + "price = ?,"
                     + "rented_of_day = ?,"
-                    + "avaiability = ?,"
+                    + "availability = ?,"
                     + "media_format = ?,"
                     + "description = ?,"
                     + "media_type = ?"
@@ -127,7 +127,7 @@ public class MovieDAO {
             return numberRows > 0;
            
         } catch (Exception e) {
-             System.out.println(e);
+            System.out.println("MovieDao.uptade: " + e.getMessage());
 
             return false;
         }
@@ -159,6 +159,7 @@ public class MovieDAO {
             return numberRows > 0;
 
         } catch (Exception e) {
+            System.out.println("MovieDao.delete: " + e.getMessage());
 
             return false;
         }
@@ -189,7 +190,7 @@ public class MovieDAO {
                 m.setYearOfRelease(result.getInt("year_of_release"));
                 m.setPrice(result.getInt("price"));
                 m.setRentedDays(result.getInt("rented_of_day"));
-                m.setAvailability(result.getInt("avaiability"));
+                m.setAvailability(result.getInt("availability"));
                 m.setMediaFormat(result.getString("media_format"));
                 m.setDescription(result.getString("description"));
                 movieList.add(m);
@@ -199,7 +200,7 @@ public class MovieDAO {
             stmt.close();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("MovieDao.list: " + e.getMessage());
 
         }
         return movieList;
@@ -243,7 +244,7 @@ public class MovieDAO {
             stmt.close();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+           System.out.println("MovieDao.list: " + e.getMessage());
         }
         return movieList;
     }
@@ -280,7 +281,7 @@ public class MovieDAO {
             }
 
         } catch (Exception e) {
-            System.out.println("Sql Error: " + e.getMessage());
+           System.out.println("MovieDao.getMovieById: " + e.getMessage());
         }
          return m;
     }

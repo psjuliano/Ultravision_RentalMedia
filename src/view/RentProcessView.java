@@ -4,6 +4,7 @@ import DAO.MovieDAO;
 import DAO.MusicDAO;
 import DAO.TvDAO;
 import Model.BoxSet;
+import Model.Media;
 import Model.Movie;
 import Model.Music;
 import controller.ClientsRegister;
@@ -75,9 +76,7 @@ public class RentProcessView extends javax.swing.JFrame {
         jLEmail = new javax.swing.JLabel();
         jTextEmail = new javax.swing.JTextField();
         jLDateOut = new javax.swing.JLabel();
-        jTextDateOut = new javax.swing.JTextField();
         jLReturn = new javax.swing.JLabel();
-        jTextDateReturn = new javax.swing.JTextField();
         jLPlanType = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextPlanType = new javax.swing.JTextField();
@@ -101,6 +100,8 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextidMedia = new javax.swing.JFormattedTextField();
         jButtonDeleteMedia = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
+        jTextDateOut = new javax.swing.JFormattedTextField();
+        jTextDateReturn = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("***  ULTRA-VISION MEDIA  ***");
@@ -198,6 +199,23 @@ public class RentProcessView extends javax.swing.JFrame {
             }
         });
 
+        try {
+            jTextDateOut.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jTextDateReturn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jTextDateReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextDateReturnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -261,13 +279,13 @@ public class RentProcessView extends javax.swing.JFrame {
                                                     .addComponent(jButtonAddMedia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLReturn)
-                                                    .addComponent(jLDateOut))
-                                                .addGap(15, 15, 15)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(jTextDateOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                                                    .addComponent(jTextDateReturn)))))
+                                                .addComponent(jLReturn)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextDateReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLDateOut)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addComponent(jSeparator4))
                                 .addGap(10, 10, 10)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,7 +421,16 @@ public class RentProcessView extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(this, " You already have 4 Medias selected ");
               return;  
             }
-            
+            if (jTextDateOut.getValue() == null) {
+                JOptionPane.showMessageDialog(this, " Enter with a date ");
+              return;  
+                
+            }
+              if (jTextDateReturn.getValue() == null) {
+                JOptionPane.showMessageDialog(this, " Enter with a date ");
+              return;  
+                
+            }
             int idmedia = Integer.parseInt(jTextidMedia.getText().trim());
             if (addMovieById(idmedia) == false && addMusicById(idmedia) == false 
                     && addBoxSetById(idmedia) == false) {
@@ -413,11 +440,53 @@ public class RentProcessView extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, " Media Id required ");
         }
+       
     }//GEN-LAST:event_jButtonAddMediaActionPerformed
 
     private void jButtonDeleteMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteMediaActionPerformed
         // TODO add your handling code here:
+        
+        int line = jTableRent.getSelectedRow();
+        if (line == -1) {
+            
+            JOptionPane.showMessageDialog(null, " Select a media to delete.");
+        }else{
+            
+            int option = JOptionPane
+                    .showConfirmDialog(this, "Do you want to delete",
+                     "data deleted confirmation", JOptionPane.YES_NO_OPTION);
+
+            // *** Here is going to get the idMedia and delete it from the database. ***
+            if (option == JOptionPane.YES_OPTION) {
+                
+                mediaList.remove(line);
+                 DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
+                    // Aqui apaga todas as linhas e add elas novamente.
+                      /*  table.setRowCount(0);
+                        for(Object o : mediaList){
+                         Media m = (Media)o;
+                        Object [] row = {
+                        m.getIdMedia(),
+                        m.getMediaType(),
+                        jTextDateOut.getText(),
+                        jTextDateReturn.getText(),
+                        jTextAreaNotes.getText(),
+                            
+                        };
+                       // *** Adding data on the mediaList ***  
+                        table.addRow(row);
+                      
+                    }  */
+                      // Aqui só apaga as linhas
+                      table.removeRow(line);
+            }
+        }
+        
     }//GEN-LAST:event_jButtonDeleteMediaActionPerformed
+
+    private void jTextDateReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDateReturnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextDateReturnActionPerformed
     private boolean addMovieById(int idmedia){
         
         /* This method is going to check client`s plan, and check if the media selected can 
@@ -448,6 +517,7 @@ public class RentProcessView extends javax.swing.JFrame {
                         jTextDateOut.setText("");
                         jTextDateReturn.setText("");
                         jTextAreaNotes.setText("");
+                        jTextidMedia.setText("");
                         
                  return true;
                  
@@ -485,6 +555,7 @@ public class RentProcessView extends javax.swing.JFrame {
                         jTextDateOut.setText("");
                         jTextDateReturn.setText("");
                         jTextAreaNotes.setText("");
+                        jTextidMedia.setText("");
                         
                  return true;
                  
@@ -522,6 +593,7 @@ public class RentProcessView extends javax.swing.JFrame {
                         jTextDateOut.setText("");
                         jTextDateReturn.setText("");
                         jTextAreaNotes.setText("");
+                        jTextidMedia.setText("");
                         
                  return true;
                  
@@ -596,8 +668,8 @@ public class RentProcessView extends javax.swing.JFrame {
     private javax.swing.JTable jTableRent;
     private javax.swing.JTextArea jTextAreaNotes;
     private javax.swing.JTextField jTextBonus;
-    private javax.swing.JTextField jTextDateOut;
-    private javax.swing.JTextField jTextDateReturn;
+    private javax.swing.JFormattedTextField jTextDateOut;
+    private javax.swing.JFormattedTextField jTextDateReturn;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextId;

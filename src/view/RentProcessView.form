@@ -121,15 +121,14 @@
                                                   </Group>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLReturn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLDateOut" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="jTextDateOut" alignment="0" pref="66" max="32767" attributes="0"/>
-                                                      <Component id="jTextDateReturn" max="32767" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="jLReturn" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jTextDateReturn" min="-2" pref="101" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLDateOut" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="jTextDateOut" min="-2" pref="101" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -295,8 +294,6 @@
             <Property name="text" type="java.lang.String" value="DateOut: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextDateOut">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLReturn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -304,8 +301,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Return Date:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextDateReturn">
         </Component>
         <Component class="javax.swing.JLabel" name="jLPlanType">
           <Properties>
@@ -465,6 +460,23 @@
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator4">
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jTextDateOut">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##/##/####" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jTextDateReturn">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##/##/####" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextDateReturnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

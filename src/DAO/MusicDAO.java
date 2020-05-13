@@ -29,7 +29,7 @@ public class MusicDAO {
 
             // *** Here are all fields from the database ***
             String sql = "INSERT INTO media(title, year_of_release, price, rented_of_day,"
-                    + "avaiability, media_format, description, media_type) "
+                    + "availability, media_format, description, media_type) "
                     // *** Here is going to get the values insert on the database ***
                     + "VALUES (?,?,?,?,?,?,?,?)";
 
@@ -75,7 +75,8 @@ public class MusicDAO {
 
             // *** Here is going to return any possible error. ***
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+             System.out.println("MusicDao.insert: " + e.getMessage());
         }
         return false;
     }
@@ -92,7 +93,7 @@ public class MusicDAO {
                     + "year_of_release = ?,"
                     + "price = ?,"
                     + "rented_of_day = ?,"
-                    + "avaiability = ?,"
+                    + "availability = ?,"
                     + "media_format = ?,"
                     + "description = ?,"
                     + "media_type = ?"
@@ -126,6 +127,7 @@ public class MusicDAO {
             return numberRows > 0;
 
         } catch (Exception e) {
+           System.out.println("MusicDao.update: " + e.getMessage());
             return false;
         }
     }
@@ -156,6 +158,7 @@ public class MusicDAO {
             return numberRows > 0;
 
         } catch (Exception e) {
+             System.out.println("MusicDao.delete: " + e.getMessage());
 
             return false;
         }
@@ -186,7 +189,7 @@ public class MusicDAO {
                 music.setYearOfRelease(result.getInt("year_of_release"));
                 music.setPrice(result.getInt("price"));
                 music.setRentedDays(result.getInt("rented_of_day"));
-                music.setAvailability(result.getInt("avaiability"));
+                music.setAvailability(result.getInt("availability"));
                 music.setMediaFormat(result.getString("media_format"));
                 music.setDescription(result.getString("description"));
                 musicList.add(music);
@@ -196,7 +199,7 @@ public class MusicDAO {
             stmt.close();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("MusicDao.list: " + e.getMessage());
 
         }
         return musicList;
@@ -244,7 +247,7 @@ public class MusicDAO {
             stmt.close();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("MusicDao.list: " + e.getMessage());
         }
         return media;
     }
@@ -255,7 +258,9 @@ public class MusicDAO {
         try {
             Connection conn = ConnectionClass.getConnectionClass();
             // *** Here are all fields from my database ***   
-            String sql = "SELECT * FROM media WHERE idMedia = ?";
+            String sql = "SELECT * FROM media "
+                    + "join music on media.idmedia = music.idmedia "
+                    + "WHERE media.idmedia = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idMedia);
             
@@ -275,6 +280,7 @@ public class MusicDAO {
             }
 
         } catch (Exception e) {
+            System.out.println("MusicDao.getMusicById: " + e.getMessage());
             System.out.println("Sql Error: " + e.getMessage());
         }
          return music;
