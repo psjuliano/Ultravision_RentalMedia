@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import DAO.ClientDAO;
@@ -64,11 +59,9 @@ public class RegisterClientView extends javax.swing.JFrame {
         jBSave.setText("update");
     }
 
-    /**
-     * Creates new form RegisterClient
-     */
     public RegisterClientView(ClientsListView clientList) {
         initComponents();
+        
         // *** Here is going to hide the id field on the RegisterClientView. ***
         jTextId.setVisible(false);
         jTextId.setEditable(false);
@@ -447,9 +440,10 @@ public class RegisterClientView extends javax.swing.JFrame {
     private void jBSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveActionPerformed
         // TODO add your handling code here:
 
-        //Here is gonna save the clients details
+        // *** Here is gonna save the clients details. ***
         client.setName(jTextName.getText());
         try {
+            // *** This Internet class is treating the email validatation. ***
             InternetAddress emailAddr = new InternetAddress(jTextEmail.getText());
             emailAddr.validate();
             client.setEmail(jTextEmail.getText());
@@ -457,15 +451,17 @@ public class RegisterClientView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "E-mail not valid");
             return;
         }
+        
         client.setBankName(jTextBankname.getText());
-        //client.setBankCard(Integer.parseInt(jTextCard.getText()));
+        // *** Here is treating the bank card register, replacing any space for nothing. ***
+        client.setBankCard(jTextCard.getText().replaceAll(" ", ""));
         //client.setPlanType(jRadioBTvActionPerformed().getText());
         client.setPlanStatus(jTextStatus.getText());
         client.setBalance(Float.parseFloat(jTexBalance.getText()));
         client.setBonus(Integer.parseInt(jTextBonus.getText()));
         client.setNotes(jTextAreaNotes.getText());
 
-        //goupButton code:
+        // *** GoupButton code: defining the plan type. ***
         PlanType p = new PlanType();
         client.setPlanType(p);
 
@@ -481,11 +477,14 @@ public class RegisterClientView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Select a plan");
         }
+        // *** If the field is empty, a new client is registered. ***
         if (p.getIdPlan() != 0) {
-            String msg = "Client was registed";
+            String msg = "Client was registered";
             boolean sucess = false;
             if (client.getIdMembership() == null) {
                 sucess = ClientDAO.insert(client);
+                
+             // If the field is full, the clients details is uptade. *** 
             } else {
                 sucess = ClientDAO.update(client);
                 msg = "Client was updated";
@@ -497,6 +496,7 @@ public class RegisterClientView extends javax.swing.JFrame {
                 if (clientList != null) {
                     clientList.createClientList();
                 }
+               // ** Close ** 
                 dispose();
 
             } else {

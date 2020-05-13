@@ -42,7 +42,7 @@ public class ClientDAO {
             stmt.setString(1, client.getName());
             stmt.setString(2, client.getEmail());
             stmt.setString(3, client.getBankName());
-            stmt.setInt(4, client.getBankCard());
+            stmt.setString(4, client.getBankCard());
             stmt.setString(5, client.getPlanStatus());
             stmt.setFloat(6, client.getBalance());
             stmt.setFloat(7, client.getBonus());
@@ -88,7 +88,7 @@ public class ClientDAO {
             stmt.setString(1, client.getName());
             stmt.setString(2, client.getEmail());
             stmt.setString(3, client.getBankName());
-            stmt.setInt(4, client.getBankCard());
+            stmt.setString(4, client.getBankCard());
             stmt.setString(5, client.getPlanStatus());
             stmt.setInt(6, client.getBonus());
             stmt.setFloat(7, client.getBalance());
@@ -150,7 +150,7 @@ public class ClientDAO {
                 c.setName(result.getString("name"));
                 c.setEmail(result.getString("email"));
                 c.setBankName(result.getString("bank_name"));
-                c.setBankCard(result.getInt("Bank_card"));
+                c.setBankCard(result.getString("Bank_card"));
                 c.setPlanStatus(result.getString("plan_status"));
                 c.setBalance(result.getFloat("balance"));
                 c.setBonus((result.getInt("bonus")));
@@ -200,7 +200,7 @@ public class ClientDAO {
                 c.setName(result.getString("name"));
                 c.setEmail(result.getString("email"));
                 c.setBankName(result.getString("bank_name"));
-                c.setBankCard(result.getInt("Bank_card"));
+                c.setBankCard(result.getString("Bank_card"));
                 c.setPlanStatus(result.getString("plan_status"));
                 c.setBalance(result.getFloat("balance"));
                 c.setNotes(result.getString("notes"));

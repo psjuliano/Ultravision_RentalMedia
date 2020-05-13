@@ -17,7 +17,7 @@ public class TestClientDao {
         client.setName("Lucas");
         client.setEmail("l@hotmail.com");
         client.setBankName("aib");
-        client.setBankCard(123);
+        client.setBankCard("123");
         client.setPlanStatus("ok");
         client.setBalance(0);
         client.setBonus(10);

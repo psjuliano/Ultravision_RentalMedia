@@ -287,7 +287,6 @@ public class ClientsListView extends javax.swing.JFrame {
             rent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             
             rent.setVisible(true);
-            rent.setEnabled(false);
         }
     }//GEN-LAST:event_jBgotoRentPageActionPerformed
 

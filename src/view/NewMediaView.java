@@ -36,7 +36,7 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextAvailability.setText(String.valueOf(music.getAvailability()));
         jTexDescription.setText(music.getDescription());
         
-        // *** GoupButton code:
+        // *** GoupButton code: defining media format. ***
         String mF = music.getMediaFormat().toUpperCase();
         //System.out.println("stop here " + mF);
 
@@ -51,11 +51,14 @@ public class NewMediaView extends javax.swing.JFrame {
                 jRadioBBlueray.setSelected(true);
                 break;
         }
-
+        // *** id media visible, but uneditable. ***
         jTextidMedia.setVisible(true);
-        jTextidMedia.setEditable(false);
         jLidMedia.setVisible(true);
+        jTextidMedia.setEditable(false);
+        // *** Getting id media from database. ***
         jTextidMedia.setText(music.getIdMedia());
+        
+        // *** Selecting media type. ***
         jRadioBMusic.setVisible(true);
         jRadioBMusic.setSelected(true);
     }
@@ -70,7 +73,7 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextAvailability.setText(String.valueOf(movie.getAvailability()));
         jTexDescription.setText(movie.getDescription());
 
-        //*** GoupButton code ***
+        //*** GoupButton code: defining media format. ***
         String mF = movie.getMediaFormat().toUpperCase();
         //System.out.println("stop here " + mF);
 
@@ -85,13 +88,18 @@ public class NewMediaView extends javax.swing.JFrame {
                 jRadioBBlueray.setSelected(true);
                 break;
         }
-
+        // *** Changing the lable to director. ***
         jLComplement.setText("Director");
-
+        
+        // *** id media visible, but uneditable. ***
         jTextidMedia.setVisible(true);
-        jTextidMedia.setEditable(false);
         jLidMedia.setVisible(true);
+        jTextidMedia.setEditable(false);
+        
+        // *** Getting id media from database. ***
         jTextidMedia.setText(movie.getIdMedia());
+        
+        // *** Selecting media type. ***
         jRadioBMovie.setVisible(true);
         jRadioBMovie.setSelected(true);
     }
@@ -106,7 +114,7 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextAvailability.setText(String.valueOf(tv.getAvailability()));
         jTexDescription.setText(tv.getDescription());
 
-        //goupButton code:
+        //goupButton code: defining media format. ***
         String mF = tv.getMediaFormat().toUpperCase();
         System.out.println("stop here " + mF);
 
@@ -121,20 +129,22 @@ public class NewMediaView extends javax.swing.JFrame {
                 jRadioBBlueray.setSelected(true);
                 break;
         }
-
+        // *** Changing the lable to Studio. ***
         jLComplement.setText("Studio");
-
+        // *** id media visible, but uneditable. ***
+        
         jTextidMedia.setVisible(true);
-        jTextidMedia.setEditable(false);
         jLidMedia.setVisible(true);
+        jTextidMedia.setEditable(false);
+        // *** Getting id media from database. ***
         jTextidMedia.setText(tv.getIdMedia());
+        
+        // *** Selecting media type. ***
         jRadioBTv.setVisible(true);
         jRadioBTv.setSelected(true);
     }
 
-    /**
-     * Creates new form RentProcessView
-     */
+    
     public NewMediaView(MediaListView mediaList) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -148,9 +158,7 @@ public class NewMediaView extends javax.swing.JFrame {
         this.mediaList = mediaList;
     }
 
-    /**
-     * Creates new form MediaItens
-     */
+   
     public NewMediaView() {
         initComponents();
          /* *** Here is going to hide the id field on the NewMediaView and 
@@ -470,7 +478,8 @@ public class NewMediaView extends javax.swing.JFrame {
 
     private void jBSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveActionPerformed
         // TODO add your handling code here:
-        //Here is gonna save the medias details
+        
+        //*** Here is gonna save the medias details. ***
         if (media.getIdMedia() == null) {
             if (jRadioBMovie.isSelected()) {
                 media = new Movie();
@@ -494,7 +503,9 @@ public class NewMediaView extends javax.swing.JFrame {
         
         //media.setMediaFormat(buttonGroupMediaF.getSelection());
         media.setPrice(Float.parseFloat(jTextPrice.getText()));
-
+        
+        // *** Treating the group botton implementation. ***
+        // *** Here is going to define if the media is music, tv or movie. ***
         if (jRadioBMusic.isSelected()) {
             media.setMediaType(MediaType.MUSIC.name());
         } else if (jRadioBTv.isSelected()) {
@@ -522,48 +533,63 @@ public class NewMediaView extends javax.swing.JFrame {
          media inserted or altered */
         String msg = "Media was registed";
         boolean sucess = false;
+        // If media field = empty, get Media type, if this is equal Music, set as band. ***
         if (media.getIdMedia() == null) {
             if (media.getMediaType().equals(MediaType.MUSIC.name())) {
                 Music music = (Music) media;
                 music.setBand(jTextComplement.getText());
+                // *** Insert into the database. ***
                 sucess = MusicDAO.insert(music);
             }
+            // If media field = empty, get Media type, if this is equal Movie, set as director. ***
             if (media.getMediaType().equals(MediaType.MOVIE.name())) {
                 Movie movie = (Movie) media;
                 movie.setDirector(jTextComplement.getText());
+                // *** Insert into the database. ***
                 sucess = MovieDAO.insert(movie);
             }
+            // If media field = empty, get Media type, if this is equal TV, set as studio. ***
             if (media.getMediaType().equals(MediaType.TV.name())) {
                 BoxSet tv = (BoxSet) media;
                 tv.setStudio(jTextComplement.getText());
+                // *** Insert into the database. ***
                 sucess = TvDAO.insert(tv);
             }
+            
+            // *** Update Process. ***
         } else {
+            // If media field is full, get Media type, if this is equal Music, set as band. ***
             if (media.getMediaType().equals(MediaType.MUSIC.name())) {
                 Music music = (Music) media;
                 music.setBand(jTextComplement.getText());
+                // *** Uptading database. ***
                 sucess = MusicDAO.update(music);
             }
+             // If media field is full, get Media type, if this is equal Movie, set as director. ***
             if (media.getMediaType().equals(MediaType.MOVIE.name())) {
                 Movie movie = (Movie) media;
                 movie.setDirector(jTextComplement.getText());
+                // *** Uptading database. ***
                 sucess = MovieDAO.update(movie);
             }
+              // If media field is full, get Media type, if this is equal TV, set as studio. ***
             if (media.getMediaType().equals(MediaType.TV.name())) {
                 BoxSet tv = (BoxSet) media;
                 tv.setStudio(jTextComplement.getText());
+                // *** Uptade database. ***
                 sucess = TvDAO.update(tv);
             }
 
             msg = "Media was updated";
         }
-
+        // ***Sucess save process. ***
         if (sucess) {
             JOptionPane.showMessageDialog(this, msg);
 
             if (mediaList != null) {
                 mediaList.createMediaList();
             }
+            // *** close ***
             dispose();
 
         } else {

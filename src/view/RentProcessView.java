@@ -1,10 +1,17 @@
 package view;
 
-import DAO.RentalDAO;
+import DAO.MovieDAO;
+import DAO.MusicDAO;
+import DAO.TvDAO;
+import Model.BoxSet;
+import Model.Movie;
+import Model.Music;
 import controller.ClientsRegister;
-import controller.RentRegister;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,8 +20,7 @@ import javax.swing.JOptionPane;
 public class RentProcessView extends javax.swing.JFrame {
 
     private ClientsRegister client = new ClientsRegister();
-    private RentProcessView clientDetails;
-    // private final RentProcessView clientDetails;
+    List<Object> mediaList = new ArrayList<Object>();
 
     // *** Here is going to bring all clients details to the rent page. ***
     public void setClient(ClientsRegister client) {
@@ -48,7 +54,7 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextStatus.setEditable(false);
         jTextBonus.setEditable(false);
 
-        this.clientDetails = clientDetails;
+      //  this.clientDetails = clientDetails;
     }
 
     /**
@@ -66,7 +72,6 @@ public class RentProcessView extends javax.swing.JFrame {
         jLClient = new javax.swing.JLabel();
         jTextName = new javax.swing.JTextField();
         jLidMedia = new javax.swing.JLabel();
-        jTextidMedia = new javax.swing.JTextField();
         jLEmail = new javax.swing.JLabel();
         jTextEmail = new javax.swing.JTextField();
         jLDateOut = new javax.swing.JLabel();
@@ -92,8 +97,10 @@ public class RentProcessView extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLTime = new javax.swing.JLabel();
-        jTextTime = new javax.swing.JTextField();
+        jButtonAddMedia = new javax.swing.JButton();
+        jTextidMedia = new javax.swing.JFormattedTextField();
+        jButtonDeleteMedia = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("***  ULTRA-VISION MEDIA  ***");
@@ -128,10 +135,7 @@ public class RentProcessView extends javax.swing.JFrame {
         jTableRent.setAutoCreateRowSorter(true);
         jTableRent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "IDMedia:", "Plan Type:", "DateOut:", "Return:", "Notes:"
@@ -178,16 +182,26 @@ public class RentProcessView extends javax.swing.JFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLTime.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLTime.setText("TimeReturn:");
+        jButtonAddMedia.setText("+");
+        jButtonAddMedia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddMediaActionPerformed(evt);
+            }
+        });
+
+        jTextidMedia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
+
+        jButtonDeleteMedia.setText("-");
+        jButtonDeleteMedia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteMediaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,36 +239,47 @@ public class RentProcessView extends javax.swing.JFrame {
                                     .addComponent(jTextStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(26, 26, 26)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                                    .addComponent(jBRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLNotes)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLReturn)
-                                            .addComponent(jLDateOut)
-                                            .addComponent(jLidMedia))
-                                        .addGap(15, 15, 15)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextDateOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                            .addComponent(jTextDateReturn)
-                                            .addComponent(jTextidMedia)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLTime)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextTime, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLNotes)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLidMedia)
+                                                .addGap(32, 32, 32)
+                                                .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jButtonAddMedia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLReturn)
+                                                    .addComponent(jLDateOut))
+                                                .addGap(15, 15, 15)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(jTextDateOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                                                    .addComponent(jTextDateReturn)))))
+                                    .addComponent(jSeparator4))
                                 .addGap(10, 10, 10)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jBPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLBalance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(8, 8, 8))
-                            .addComponent(jBRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(348, 348, 348))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLBalance)
+                                    .addComponent(jBPay, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(396, 396, 396))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,45 +310,44 @@ public class RentProcessView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLidMedia)
-                                            .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLDateOut)
-                                            .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLBalance)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLidMedia)
+                                    .addComponent(jButtonAddMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(2, 2, 2)
+                                .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLReturn)
-                                                    .addComponent(jTextDateReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(13, 13, 13)
-                                                .addComponent(jLTime))
-                                            .addComponent(jTextTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLNotes))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jBPay)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLDateOut)
+                                    .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLReturn)
+                                    .addComponent(jTextDateReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLNotes))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLBalance)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBPay)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jSeparator2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBRent)
-                            .addComponent(jBRedeem)
-                            .addComponent(jTextBonus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jBRedeem)
+                                    .addComponent(jTextBonus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBRent)))))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -334,7 +358,7 @@ public class RentProcessView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,17 +376,8 @@ public class RentProcessView extends javax.swing.JFrame {
     private void jBRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRentActionPerformed
         // TODO add your handling code here:
         
-        /*int item = RentalDAO.getItemRented();
-        if (item <= 4) {
-            System.out.println("Title rented.");
-            
-        }else{
-            
-            System.out.println("You can not rent more than 4 title. ");
-        }*/
-       
+           
 
-        // Here is gonna save the media rented:
         //Here is gonna clear the fields
         jTextId.setText("");
         jTextName.setText("");
@@ -373,11 +388,152 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextidMedia.setText("");
         jTextDateOut.setText("");
         jTextDateReturn.setText("");
-        jTextTime.setText("");
         jTextAreaNotes.setText("");
 
     }//GEN-LAST:event_jBRentActionPerformed
 
+    private void jButtonAddMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddMediaActionPerformed
+        // TODO add your handling code here:
+        
+        /* Here is going to check if the media field is empty, trim is going to take 
+       out all space typed, and it is going to check how many medias was selected. */
+        
+        if (jTextidMedia.getText() != null && jTextidMedia.getText().trim().isEmpty() == false) {
+            if (mediaList.size() == 4) {
+              JOptionPane.showMessageDialog(this, " You already have 4 Medias selected ");
+              return;  
+            }
+            
+            int idmedia = Integer.parseInt(jTextidMedia.getText().trim());
+            if (addMovieById(idmedia) == false && addMusicById(idmedia) == false 
+                    && addBoxSetById(idmedia) == false) {
+                return;
+            }
+           
+        }else{
+            JOptionPane.showMessageDialog(this, " Media Id required ");
+        }
+    }//GEN-LAST:event_jButtonAddMediaActionPerformed
+
+    private void jButtonDeleteMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteMediaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeleteMediaActionPerformed
+    private boolean addMovieById(int idmedia){
+        
+        /* This method is going to check client`s plan, and check if the media selected can 
+        be rented by this client. */
+        
+         Movie movie = MovieDAO.getMovieById(idmedia);
+            if (movie.getIdMedia() != null) {
+                
+            // id 4: Premiun // id 3: Movie lovers
+            // Check plan type by planId, if the client has 4 or 3, he can rent the media. 
+             if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 3) {
+                 
+                    // *** Here is the rental table details ***
+                    DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
+                        Object [] row = {
+                        movie.getIdMedia(),
+                        movie.getMediaType(),
+                        jTextDateOut.getText(),
+                        jTextDateReturn.getText(),
+                        jTextAreaNotes.getText(),
+
+                    };      
+                      // *** Adding data on the mediaList ***  
+                        table.addRow(row);
+                        mediaList.add(movie);
+                        
+                       // *** Cleaning all fields *** 
+                        jTextDateOut.setText("");
+                        jTextDateReturn.setText("");
+                        jTextAreaNotes.setText("");
+                        
+                 return true;
+                 
+                }else{
+                 // Error if clients try to rent a media that doesnt below their plan type.
+                  JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
+             }
+                
+            }
+         return false;
+        
+    }
+       private boolean addMusicById(int idmedia){
+         Music music = MusicDAO.getMusicById(idmedia);
+            if (music.getIdMedia() != null) {
+                
+            // id 4: Premiun // id 1:  Music lovers
+            // Check plan type by planId, if the client has 4 or 1, he can rent the media. 
+             if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 1) {
+                   // *** Here is the rental table details ***
+                    DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
+                        Object [] row = {
+                        music.getIdMedia(),
+                        music.getMediaType(),
+                        jTextDateOut.getText(),
+                        jTextDateReturn.getText(),
+                        jTextAreaNotes.getText(),
+
+                    };      
+                      // *** Adding data on the mediaList ***      
+                        table.addRow(row);
+                        mediaList.add(music);
+                        
+                      // *** Cleaning all fields ***  
+                        jTextDateOut.setText("");
+                        jTextDateReturn.setText("");
+                        jTextAreaNotes.setText("");
+                        
+                 return true;
+                 
+                }else{
+                  // Error if clients try to rent a media that doesnt below their plan type.
+                  JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
+             }
+                
+            }
+         return false;
+        
+    }
+          private boolean addBoxSetById(int idmedia){
+            BoxSet tv = TvDAO.getTvById(idmedia);
+            if (tv.getIdMedia() != null) {
+                
+            // id 4: Premiun // id 2:tv lovers
+            // Check plan type by planId, if the client has 4 or 1, he can rent the media. 
+             if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 2) {
+                  // *** Here is the rental table details ***
+                    DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
+                        Object [] row = {
+                        tv.getIdMedia(),
+                        tv.getMediaType(),
+                        jTextDateOut.getText(),
+                        jTextDateReturn.getText(),
+                        jTextAreaNotes.getText(),
+
+                    };      
+                       // *** Adding data on the mediaList ***        
+                        table.addRow(row);
+                        mediaList.add(tv);
+                        
+                        // *** Cleaning all fields ***   
+                        jTextDateOut.setText("");
+                        jTextDateReturn.setText("");
+                        jTextAreaNotes.setText("");
+                        
+                 return true;
+                 
+                }else{
+                 // Error if clients try to rent a media that doesnt below their plan type.
+                  JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
+             }
+                
+            }
+         return false;
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -417,6 +573,8 @@ public class RentProcessView extends javax.swing.JFrame {
     private javax.swing.JButton jBPay;
     private javax.swing.JButton jBRedeem;
     private javax.swing.JButton jBRent;
+    private javax.swing.JButton jButtonAddMedia;
+    private javax.swing.JButton jButtonDeleteMedia;
     private javax.swing.JLabel jLBalance;
     private javax.swing.JLabel jLClient;
     private javax.swing.JLabel jLDateOut;
@@ -425,7 +583,6 @@ public class RentProcessView extends javax.swing.JFrame {
     private javax.swing.JLabel jLNotes;
     private javax.swing.JLabel jLPlanType;
     private javax.swing.JLabel jLReturn;
-    private javax.swing.JLabel jLTime;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLidMedia;
@@ -435,6 +592,7 @@ public class RentProcessView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTableRent;
     private javax.swing.JTextArea jTextAreaNotes;
     private javax.swing.JTextField jTextBonus;
@@ -446,7 +604,6 @@ public class RentProcessView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextName;
     private javax.swing.JTextField jTextPlanType;
     private javax.swing.JTextField jTextStatus;
-    private javax.swing.JTextField jTextTime;
-    private javax.swing.JTextField jTextidMedia;
+    private javax.swing.JFormattedTextField jTextidMedia;
     // End of variables declaration//GEN-END:variables
 }

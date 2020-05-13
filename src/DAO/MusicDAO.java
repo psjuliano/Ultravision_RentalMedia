@@ -226,7 +226,7 @@ public class MusicDAO {
                 m.setIdMedia(result.getString("idmedia"));
                 m.setYearOfRelease(result.getInt("year_of_release"));
                 m.setPrice(result.getFloat("price"));
-                m.setRentedDays(result.getInt("rented_of_days"));
+                m.setRentedDays(result.getInt("rented_of_day"));
                 m.setAvailability(result.getInt("availability"));
                 m.setMediaFormat(result.getString("media_format"));
                 m.setDescription(result.getString("description"));
@@ -248,9 +248,9 @@ public class MusicDAO {
         }
         return media;
     }
-     public Media getIdMedia(int idMedia) {
+     public static Music getMusicById(int idMedia) {
         // *** Here is going to delete any media details, when need. ***
-        Media media = new Media();
+        Music music = new Music();
         //  *** try..catch is going to treat any possible error. ***
         try {
             Connection conn = ConnectionClass.getConnectionClass();
@@ -259,18 +259,25 @@ public class MusicDAO {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idMedia);
             
-            ResultSet rs = stmt.executeQuery();
-            //int numberRows = stmt.executeUpdate();
-            //stmt.close();
-            
-            if (rs.next() ) {
-                media.setIdMedia("idmedia");
-                media.setTitle("title");
+            ResultSet result = stmt.executeQuery();
+            if (result.next() ) {
+                music.setIdMedia(result.getString("idmedia"));
+                music.setYearOfRelease(result.getInt("year_of_release"));
+                music.setPrice(result.getFloat("price"));
+                music.setRentedDays(result.getInt("rented_of_day"));
+                music.setAvailability(result.getInt("availability"));
+                music.setMediaFormat(result.getString("media_format"));
+                music.setDescription(result.getString("description"));
+                music.setMediaType(result.getString("media_type"));
+                
+                music.setBand(result.getString("band"));
+
             }
 
         } catch (Exception e) {
             System.out.println("Sql Error: " + e.getMessage());
         }
-         return media;
+         return music;
     }
+
 }

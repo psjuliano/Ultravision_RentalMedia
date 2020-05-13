@@ -228,7 +228,7 @@ public class TvDAO {
                 m.setIdMedia(result.getString("idmedia"));
                 m.setYearOfRelease(result.getInt("year_of_release"));
                 m.setPrice(result.getFloat("price"));
-                m.setRentedDays(result.getInt("rented_of_days"));
+                m.setRentedDays(result.getInt("rented_of_day"));
                 m.setAvailability(result.getInt("availability"));
                 m.setMediaFormat(result.getString("media_format"));
                 m.setDescription(result.getString("description"));
@@ -250,9 +250,9 @@ public class TvDAO {
         }
         return media;
     }
-     public Media getIdMedia(int idMedia) {
+     public static BoxSet getTvById(int idMedia) {
         // *** Here is going to delete any media details, when need. ***
-        Media media = new Media();
+        BoxSet tv = new BoxSet();
         //  *** try..catch is going to treat any possible error. ***
         try {
             Connection conn = ConnectionClass.getConnectionClass();
@@ -261,18 +261,27 @@ public class TvDAO {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idMedia);
             
-            ResultSet rs = stmt.executeQuery();
+            ResultSet result = stmt.executeQuery();
             //int numberRows = stmt.executeUpdate();
             //stmt.close();
             
-            if (rs.next() ) {
-                media.setIdMedia("idmedia");
-                media.setTitle("title");
+            if (result.next() ) {
+                tv.setIdMedia(result.getString("idmedia"));
+                tv.setYearOfRelease(result.getInt("year_of_release"));
+                tv.setPrice(result.getFloat("price"));
+                tv.setRentedDays(result.getInt("rented_of_day"));
+                tv.setAvailability(result.getInt("availability"));
+                tv.setMediaFormat(result.getString("media_format"));
+                tv.setDescription(result.getString("description"));
+                tv.setMediaType(result.getString("media_type"));
+                
+                tv.setStudio(result.getString("studio"));
+
             }
 
         } catch (Exception e) {
             System.out.println("Sql Error: " + e.getMessage());
         }
-         return media;
+         return tv;
     }
 }

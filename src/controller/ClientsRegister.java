@@ -20,7 +20,7 @@ public class ClientsRegister {
     private String name;
     private String email;
     private String bankName;
-    private int bankCard;
+    private String bankCard;
     private PlanType planType;
     private String planStatus;
     private float balance;
@@ -60,11 +60,11 @@ public class ClientsRegister {
         this.bankName = bankName;
     }
 
-    public int getBankCard() {
+    public String getBankCard() {
         return bankCard;
     }
 
-    public void setBankCard(int bankCard) {
+    public void setBankCard(String bankCard) {
         this.bankCard = bankCard;
     }
 

@@ -204,9 +204,9 @@ public class MovieDAO {
         }
         return movieList;
     }
-     public static List<Media> list(Media mediaSearch) {
+     public static List<Movie> list(Media mediaSearch) {
         // *** Here is going to search for a client by id or name. ***
-        List<Media> media = new ArrayList<Media>();
+        List<Movie> movieList = new ArrayList<Movie>();
 
         //  *** try..catch is going to treat any possible error. ***
         try {
@@ -215,8 +215,8 @@ public class MovieDAO {
             /* *** Here are all fields from the database, also is join the plan_type table
         on the client table.*** */
             String sql = "SELECT * FROM media "
-                    //+ "left join movie on media.plan_id = plan_type.idplan_type "
-                    + "WHERE title like ? or idmedia = ?";
+                    + "join movie on media.idmedia = movie.idmedia "
+                    + "WHERE title like ? or media.idmedia = ?";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, "%" + mediaSearch.getTitle()+ "%");
@@ -225,23 +225,19 @@ public class MovieDAO {
             ResultSet result = stmt.executeQuery();
 
             while (result.next()) {
-                Media m = new Media();
+                Movie m = new Movie();
                 m.setIdMedia(result.getString("idmedia"));
                 m.setYearOfRelease(result.getInt("year_of_release"));
                 m.setPrice(result.getFloat("price"));
-                m.setRentedDays(result.getInt("rented_of_days"));
+                m.setRentedDays(result.getInt("rented_of_day"));
                 m.setAvailability(result.getInt("availability"));
                 m.setMediaFormat(result.getString("media_format"));
                 m.setDescription(result.getString("description"));
                 m.setMediaType(result.getString("media_type"));
                 
-                Movie director = new Movie();
-                director.setIdMedia(result.getString("idmedia"));
-                director.setDirector(result.getString("director"));
+                m.setDirector(result.getString("director"));
 
-               // m.setMovie(director);
-
-                media.add(m);
+                movieList.add(m);
             }
             result.close();
             stmt.close();
@@ -249,33 +245,44 @@ public class MovieDAO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return media;
+        return movieList;
     }
      
-      public Media getIdMedia(int idMedia) {
+      public static Movie getMovieById(int idMedia) {
         // *** Here is going to delete any media details, when need. ***
-        Media media = new Media();
+        Movie m = new Movie();
         //  *** try..catch is going to treat any possible error. ***
         try {
             Connection conn = ConnectionClass.getConnectionClass();
             // *** Here are all fields from my database ***   
-            String sql = "SELECT * FROM media WHERE idMedia = ?";
+            String sql = "SELECT * FROM media "
+                    + "join movie on media.idmedia = movie.idmedia "
+                    + "WHERE media.idmedia = ?";
+            
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idMedia);
             
-            ResultSet rs = stmt.executeQuery();
-            //int numberRows = stmt.executeUpdate();
+            ResultSet result = stmt.executeQuery();
             //stmt.close();
             
-            if (rs.next() ) {
-                media.setIdMedia("idmedia");
-                media.setTitle("title");
+            if (result.next() ) {
+                m.setIdMedia(result.getString("idmedia"));
+                m.setYearOfRelease(result.getInt("year_of_release"));
+                m.setPrice(result.getFloat("price"));
+                m.setRentedDays(result.getInt("rented_of_day"));
+                m.setAvailability(result.getInt("availability"));
+                m.setMediaFormat(result.getString("media_format"));
+                m.setDescription(result.getString("description"));
+                m.setMediaType(result.getString("media_type"));
+                
+                m.setDirector(result.getString("director"));
+
             }
 
         } catch (Exception e) {
             System.out.println("Sql Error: " + e.getMessage());
         }
-         return media;
+         return m;
     }
 }
 // *** REFERENCES: ***

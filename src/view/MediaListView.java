@@ -21,10 +21,7 @@ public class MediaListView extends javax.swing.JFrame {
 
     List<Object> mediaList = new ArrayList<Object>();
 
-    /**
-     * Creates new form MediaListView
-     */
-    public MediaListView() {
+       public MediaListView() {
         initComponents();
         createMediaList();
 
@@ -38,11 +35,12 @@ public class MediaListView extends javax.swing.JFrame {
 
     public void createMediaList(Media mediaSearch) {
 
-        // *** Here is gonna print out the medias on the view ***
+        // *** Here is going to print out the medias on the view ***
         /* *** Here is going to search the media by title, then it is going 
         to list it on the view *** */
         DefaultTableModel content = (DefaultTableModel) jTableMedia.getModel();
-
+        
+        // *** Movie list ***
         content.setRowCount(0);
         List<Movie> movieList = MovieDAO.list();
         for (Movie m : movieList) {
@@ -52,13 +50,13 @@ public class MediaListView extends javax.swing.JFrame {
                 m.getYearOfRelease(),
                 m.getMediaFormat(),
                 m.getAvailability(),
-               // m.getPlanType().getPlanName(),
+               //m.getPlanType().getPlanName(),
                 m.getPrice(),
                 m.getDescription(),};
             content.addRow(row);
             mediaList.add(m);
         }
-
+        // *** Music list ***
         List<Music> musicList = MusicDAO.list();
         for (Music m : musicList) {
             Object[] row = {
@@ -73,7 +71,7 @@ public class MediaListView extends javax.swing.JFrame {
             content.addRow(row);
             mediaList.add(m);
         }
-
+        // *** TV list ***
         List<BoxSet> tvList = TvDAO.list();
         for (BoxSet bs : tvList) {
             Object[] row = {
@@ -268,7 +266,7 @@ public class MediaListView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // *** Here is going to active the enter on the keyboard ***
-        if (evt.getKeyCode() == 9) {
+        if (evt.getKeyCode() == 13) {
             jTextSearchActionPerformed(null);
         }
 
@@ -355,7 +353,7 @@ public class MediaListView extends javax.swing.JFrame {
                 if (media.getClass() == Movie.class) {
                     if (MovieDAO.delete(Integer.parseInt(((Movie) media).getIdMedia()))) {
 
-                        JOptionPane.showMessageDialog(this, "deleted ");
+                        JOptionPane.showMessageDialog(this, "Deleted ");
 
                         // *** update the list ***
                         createMediaList();
@@ -367,7 +365,7 @@ public class MediaListView extends javax.swing.JFrame {
                 if (media.getClass() == Music.class) {
                     if (MusicDAO.delete(Integer.parseInt(((Music) media).getIdMedia()))) {
 
-                        JOptionPane.showMessageDialog(this, "deleted ");
+                        JOptionPane.showMessageDialog(this, "Deleted ");
 
                         // *** Update the list ***
                         createMediaList();
