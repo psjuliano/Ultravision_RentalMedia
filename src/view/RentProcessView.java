@@ -2,12 +2,15 @@ package view;
 
 import DAO.MovieDAO;
 import DAO.MusicDAO;
+import DAO.RentDAO;
 import DAO.TvDAO;
 import Model.BoxSet;
 import Model.Media;
 import Model.Movie;
 import Model.Music;
 import controller.ClientsRegister;
+import controller.RentRegister;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -21,7 +24,8 @@ import javax.swing.table.DefaultTableModel;
 public class RentProcessView extends javax.swing.JFrame {
 
     private ClientsRegister client = new ClientsRegister();
-    List<Object> mediaList = new ArrayList<Object>();
+    private List<Object> mediaList = new ArrayList<Object>();
+    private float balance = 0;
 
     // *** Here is going to bring all clients details to the rent page. ***
     public void setClient(ClientsRegister client) {
@@ -36,6 +40,10 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextId.setVisible(true);
         jLId.setVisible(true);
         jTextId.setText(client.getIdMembership());
+
+        if (client.getBonus() < 100) {
+            jBRedeem.setVisible(false);
+        }
     }
 
     /**
@@ -55,7 +63,7 @@ public class RentProcessView extends javax.swing.JFrame {
         jTextStatus.setEditable(false);
         jTextBonus.setEditable(false);
 
-      //  this.clientDetails = clientDetails;
+        //  this.clientDetails = clientDetails;
     }
 
     /**
@@ -89,9 +97,8 @@ public class RentProcessView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextBonus = new javax.swing.JTextField();
         jBRedeem = new javax.swing.JButton();
-        jBRent = new javax.swing.JButton();
         jLBalance = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextBalance = new javax.swing.JTextField();
         jBPay = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -139,7 +146,7 @@ public class RentProcessView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IDMedia:", "Plan Type:", "DateOut:", "Return:", "Notes:"
+                "IDMedia:", "Media Type:", "Price:", "Notes:"
             }
         ));
         jScrollPane1.setViewportView(jTableRent);
@@ -157,12 +164,9 @@ public class RentProcessView extends javax.swing.JFrame {
 
         jBRedeem.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jBRedeem.setText("Redeem");
-
-        jBRent.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
-        jBRent.setText("Rent");
-        jBRent.addActionListener(new java.awt.event.ActionListener() {
+        jBRedeem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBRentActionPerformed(evt);
+                jBRedeemActionPerformed(evt);
             }
         });
 
@@ -170,20 +174,19 @@ public class RentProcessView extends javax.swing.JFrame {
         jLBalance.setForeground(new java.awt.Color(255, 0, 0));
         jLBalance.setText("BALANCE:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jBPay.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jBPay.setText("Pay");
+        jBPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPayActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jButtonAddMedia.setText("+");
+        jButtonAddMedia.setText("Add Media");
         jButtonAddMedia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddMediaActionPerformed(evt);
@@ -192,7 +195,7 @@ public class RentProcessView extends javax.swing.JFrame {
 
         jTextidMedia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
 
-        jButtonDeleteMedia.setText("-");
+        jButtonDeleteMedia.setText("Delete Media");
         jButtonDeleteMedia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeleteMediaActionPerformed(evt);
@@ -259,42 +262,45 @@ public class RentProcessView extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                                    .addComponent(jBRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLNotes)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLidMedia)
-                                                .addGap(32, 32, 32)
-                                                .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jButtonAddMedia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLReturn)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextDateReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLDateOut)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jSeparator4))
-                                .addGap(10, 10, 10)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLBalance)
-                                    .addComponent(jBPay, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(396, 396, 396))))
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLNotes)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLidMedia)
+                                                        .addGap(32, 32, 32)
+                                                        .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLReturn)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jTextDateReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLDateOut)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(33, 33, 33))
+                                            .addComponent(jSeparator4))
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLBalance)
+                                            .addComponent(jBPay, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(396, 396, 396))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(jButtonAddMedia)
+                                .addGap(50, 50, 50)
+                                .addComponent(jButtonDeleteMedia)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -330,11 +336,8 @@ public class RentProcessView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLidMedia)
-                                    .addComponent(jButtonAddMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(2, 2, 2)
-                                .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -349,7 +352,7 @@ public class RentProcessView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLBalance)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jBPay)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -363,9 +366,11 @@ public class RentProcessView extends javax.swing.JFrame {
                                     .addComponent(jLabel1)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBRent)))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonAddMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -387,82 +392,60 @@ public class RentProcessView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jBRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRentActionPerformed
-        // TODO add your handling code here:
-        
-           
-
-        //Here is gonna clear the fields
-        jTextId.setText("");
-        jTextName.setText("");
-        jTextEmail.setText("");
-        jTextPlanType.setText("");
-        jTextStatus.setText("");
-        jTextBonus.setText("");
-        jTextidMedia.setText("");
-        jTextDateOut.setText("");
-        jTextDateReturn.setText("");
-        jTextAreaNotes.setText("");
-
-    }//GEN-LAST:event_jBRentActionPerformed
-
     private void jButtonAddMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddMediaActionPerformed
         // TODO add your handling code here:
-        
+
         /* Here is going to check if the media field is empty, trim is going to take 
        out all space typed, and it is going to check how many medias was selected. */
-        
         if (jTextidMedia.getText() != null && jTextidMedia.getText().trim().isEmpty() == false) {
             if (mediaList.size() == 4) {
-              JOptionPane.showMessageDialog(this, " You already have 4 Medias selected ");
-              return;  
+                JOptionPane.showMessageDialog(this, " You already have 4 Medias selected ");
+                return;
             }
             if (jTextDateOut.getValue() == null) {
                 JOptionPane.showMessageDialog(this, " Enter with a date ");
-              return;  
-                
+                return;
+
             }
-              if (jTextDateReturn.getValue() == null) {
+            if (jTextDateReturn.getValue() == null) {
                 JOptionPane.showMessageDialog(this, " Enter with a date ");
-              return;  
-                
+                return;
+
             }
             int idmedia = Integer.parseInt(jTextidMedia.getText().trim());
-            if (addMovieById(idmedia) == false && addMusicById(idmedia) == false 
+            if (addMovieById(idmedia) == false && addMusicById(idmedia) == false
                     && addBoxSetById(idmedia) == false) {
                 return;
             }
-           
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, " Media Id required ");
         }
-       
+
     }//GEN-LAST:event_jButtonAddMediaActionPerformed
 
     private void jButtonDeleteMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteMediaActionPerformed
         // TODO add your handling code here:
-        
+
         int line = jTableRent.getSelectedRow();
         if (line == -1) {
-            
+
             JOptionPane.showMessageDialog(null, " Select a media to delete.");
-        }else{
-            
+        } else {
+
             int option = JOptionPane
                     .showConfirmDialog(this, "Do you want to delete",
-                     "data deleted confirmation", JOptionPane.YES_NO_OPTION);
+                            "data deleted confirmation", JOptionPane.YES_NO_OPTION);
 
             // *** Here is going to get the idMedia and delete it from the database. ***
             if (option == JOptionPane.YES_OPTION) {
-                
+                Media m = (Media) mediaList.get(line);
+                setBalance(-m.getPrice());
+
                 mediaList.remove(line);
-                 DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
-                    // Aqui apaga todas as linhas e add elas novamente.
-                      /*  table.setRowCount(0);
+                DefaultTableModel table = (DefaultTableModel) jTableRent.getModel();
+                // Aqui apaga todas as linhas e add elas novamente.
+                /*  table.setRowCount(0);
                         for(Object o : mediaList){
                          Media m = (Media)o;
                         Object [] row = {
@@ -477,135 +460,164 @@ public class RentProcessView extends javax.swing.JFrame {
                         table.addRow(row);
                       
                     }  */
-                      // Aqui só apaga as linhas
-                      table.removeRow(line);
+                // Aqui só apaga as linhas
+                table.removeRow(line);
             }
         }
-        
+
     }//GEN-LAST:event_jButtonDeleteMediaActionPerformed
 
     private void jTextDateReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDateReturnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextDateReturnActionPerformed
-    private boolean addMovieById(int idmedia){
-        
+
+    private void jBRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRedeemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBRedeemActionPerformed
+
+    private void jBPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPayActionPerformed
+        // TODO add your handling code here:
+        if (mediaList.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Add a media.");
+        } else {
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                RentRegister r = new RentRegister();
+                r.setClient(client);
+                r.setDateOut(df.parse(jTextDateOut.getText()));
+                r.setDateReturn(df.parse(jTextDateReturn.getText()));
+                r.setMedia(mediaList);
+                if (RentDAO.insert(r)) {
+                    JOptionPane.showMessageDialog(this, "Sucess");
+                    dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error execute payment");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error execute payment");
+            }
+
+        }
+    }//GEN-LAST:event_jBPayActionPerformed
+    private void clearAfterAdd() {
+        // *** Cleaning all fields ***  
+
+        jTextAreaNotes.setText("");
+        jTextidMedia.setText("");
+
+    }
+
+    private void setBalance(float balance) {
+        this.balance += balance;
+        jTextBalance.setText(String.valueOf(this.balance));
+    }
+
+    private boolean addMovieById(int idmedia) {
+
         /* This method is going to check client`s plan, and check if the media selected can 
         be rented by this client. */
-        
-         Movie movie = MovieDAO.getMovieById(idmedia);
-            if (movie.getIdMedia() != null) {
-                
+        Movie movie = MovieDAO.getMovieById(idmedia);
+        if (movie.getIdMedia() != null) {
+
             // id 4: Premiun // id 3: Movie lovers
             // Check plan type by planId, if the client has 4 or 3, he can rent the media. 
-             if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 3) {
-                 
-                    // *** Here is the rental table details ***
-                    DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
-                        Object [] row = {
-                        movie.getIdMedia(),
-                        movie.getMediaType(),
-                        jTextDateOut.getText(),
-                        jTextDateReturn.getText(),
-                        jTextAreaNotes.getText(),
+            if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 3) {
 
-                    };      
-                      // *** Adding data on the mediaList ***  
-                        table.addRow(row);
-                        mediaList.add(movie);
-                        
-                       // *** Cleaning all fields *** 
-                        jTextDateOut.setText("");
-                        jTextDateReturn.setText("");
-                        jTextAreaNotes.setText("");
-                        jTextidMedia.setText("");
-                        
-                 return true;
-                 
-                }else{
-                 // Error if clients try to rent a media that doesnt below their plan type.
-                  JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
-             }
-                
+                // *** Here is the rental table details ***
+                DefaultTableModel table = (DefaultTableModel) jTableRent.getModel();
+                Object[] row = {
+                    movie.getIdMedia(),
+                    movie.getMediaType(),
+                    movie.getPrice(),
+                    jTextAreaNotes.getText(),};
+                // *** Adding data on the mediaList ***  
+                table.addRow(row);
+                mediaList.add(movie);
+                setBalance(movie.getPrice());
+
+                // *** Cleaning all fields *** 
+                clearAfterAdd();
+
+                return true;
+
+            } else {
+                // Error if clients try to rent a media that doesnt below their plan type.
+                JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
             }
-         return false;
-        
+
+        }
+        return false;
+
     }
-       private boolean addMusicById(int idmedia){
-         Music music = MusicDAO.getMusicById(idmedia);
-            if (music.getIdMedia() != null) {
-                
+
+    private boolean addMusicById(int idmedia) {
+        Music music = MusicDAO.getMusicById(idmedia);
+        if (music.getIdMedia() != null) {
+
             // id 4: Premiun // id 1:  Music lovers
             // Check plan type by planId, if the client has 4 or 1, he can rent the media. 
-             if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 1) {
-                   // *** Here is the rental table details ***
-                    DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
-                        Object [] row = {
-                        music.getIdMedia(),
-                        music.getMediaType(),
-                        jTextDateOut.getText(),
-                        jTextDateReturn.getText(),
-                        jTextAreaNotes.getText(),
+            if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 1) {
+                // *** Here is the rental table details ***
+                DefaultTableModel table = (DefaultTableModel) jTableRent.getModel();
+                Object[] row = {
+                    music.getIdMedia(),
+                    music.getMediaType(),
+                    music.getPrice(),
+                    jTextAreaNotes.getText(),};
+                // *** Adding data on the mediaList ***      
+                table.addRow(row);
+                mediaList.add(music);
+                setBalance(music.getPrice());
 
-                    };      
-                      // *** Adding data on the mediaList ***      
-                        table.addRow(row);
-                        mediaList.add(music);
-                        
-                      // *** Cleaning all fields ***  
-                        jTextDateOut.setText("");
-                        jTextDateReturn.setText("");
-                        jTextAreaNotes.setText("");
-                        jTextidMedia.setText("");
-                        
-                 return true;
-                 
-                }else{
-                  // Error if clients try to rent a media that doesnt below their plan type.
-                  JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
-             }
-                
+                // *** Cleaning all fields ***     
+                clearAfterAdd();
+
+                return true;
+
+            } else {
+                // Error if clients try to rent a media that doesnt below their plan type.
+                JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
             }
-         return false;
-        
+
+        }
+        return false;
+
     }
-          private boolean addBoxSetById(int idmedia){
-            BoxSet tv = TvDAO.getTvById(idmedia);
-            if (tv.getIdMedia() != null) {
-                
+
+    private boolean addBoxSetById(int idmedia) {
+        BoxSet tv = TvDAO.getTvById(idmedia);
+        if (tv.getIdMedia() != null) {
+
             // id 4: Premiun // id 2:tv lovers
             // Check plan type by planId, if the client has 4 or 1, he can rent the media. 
-             if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 2) {
-                  // *** Here is the rental table details ***
-                    DefaultTableModel table = (DefaultTableModel)jTableRent.getModel();
-                        Object [] row = {
-                        tv.getIdMedia(),
-                        tv.getMediaType(),
-                        jTextDateOut.getText(),
-                        jTextDateReturn.getText(),
-                        jTextAreaNotes.getText(),
+            if (client.getPlanType().getIdPlan() == 4 || client.getPlanType().getIdPlan() == 2) {
+                // *** Here is the rental table details ***
+                DefaultTableModel table = (DefaultTableModel) jTableRent.getModel();
+                Object[] row = {
+                    tv.getIdMedia(),
+                    tv.getMediaType(),
+                    tv.getPrice(),
+                    jTextAreaNotes.getText(),};
+                // *** Adding data on the mediaList ***        
+                table.addRow(row);
+                mediaList.add(tv);
+                setBalance(tv.getPrice());
 
-                    };      
-                       // *** Adding data on the mediaList ***        
-                        table.addRow(row);
-                        mediaList.add(tv);
-                        
-                        // *** Cleaning all fields ***   
-                        jTextDateOut.setText("");
-                        jTextDateReturn.setText("");
-                        jTextAreaNotes.setText("");
-                        jTextidMedia.setText("");
-                        
-                 return true;
-                 
-                }else{
-                 // Error if clients try to rent a media that doesnt below their plan type.
-                  JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
-             }
-                
+                // *** Cleaning all fields ***   
+                clearAfterAdd();
+                return true;
+
+            } else {
+                // Error if clients try to rent a media that doesnt below their plan type.
+                JOptionPane.showMessageDialog(this, " Your Plan Type can not allow you to rent this media");
             }
-         return false;
-        
+
+        }
+        return false;
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -644,7 +656,6 @@ public class RentProcessView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBPay;
     private javax.swing.JButton jBRedeem;
-    private javax.swing.JButton jBRent;
     private javax.swing.JButton jButtonAddMedia;
     private javax.swing.JButton jButtonDeleteMedia;
     private javax.swing.JLabel jLBalance;
@@ -667,11 +678,11 @@ public class RentProcessView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTableRent;
     private javax.swing.JTextArea jTextAreaNotes;
+    private javax.swing.JTextField jTextBalance;
     private javax.swing.JTextField jTextBonus;
     private javax.swing.JFormattedTextField jTextDateOut;
     private javax.swing.JFormattedTextField jTextDateReturn;
     private javax.swing.JTextField jTextEmail;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextName;
     private javax.swing.JTextField jTextPlanType;

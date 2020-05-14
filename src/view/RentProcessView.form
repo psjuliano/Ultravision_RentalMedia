@@ -96,55 +96,59 @@
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jScrollPane2" pref="312" max="32767" attributes="0"/>
-                                      <Component id="jBRent" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane2" min="-2" pref="312" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLNotes" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLidMedia" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                  <Component id="jTextidMedia" min="-2" pref="66" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="jButtonAddMedia" max="32767" attributes="0"/>
-                                                      <Component id="jButtonDeleteMedia" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
                                               <Group type="102" attributes="0">
-                                                  <Component id="jLReturn" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jTextDateReturn" min="-2" pref="101" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLNotes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="jLidMedia" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                                          <Component id="jTextidMedia" min="-2" pref="66" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLReturn" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="jTextDateReturn" min="-2" pref="101" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="jLDateOut" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="jTextDateOut" min="-2" pref="101" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLDateOut" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextDateOut" min="-2" pref="101" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="jSeparator4" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                          <Component id="jSeparator2" min="-2" pref="11" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLBalance" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jBPay" min="-2" pref="64" max="-2" attributes="0"/>
+                                              <Component id="jTextBalance" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Component id="jSeparator4" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="jSeparator2" min="-2" pref="11" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLBalance" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jBPay" min="-2" pref="64" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="jButtonAddMedia" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="jButtonDeleteMedia" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -191,12 +195,9 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLidMedia" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButtonAddMedia" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       <Component id="jTextidMedia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                  <Component id="jButtonDeleteMedia" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="17" max="32767" attributes="0"/>
                                   <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -214,7 +215,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLBalance" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextBalance" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jBPay" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -233,9 +234,12 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Component id="jScrollPane2" min="-2" pref="108" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jBRent" min="-2" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButtonAddMedia" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jButtonDeleteMedia" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -333,11 +337,10 @@
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
+                  <Table columnCount="4" rowCount="0">
                     <Column editable="true" title="IDMedia:" type="java.lang.Object"/>
-                    <Column editable="true" title="Plan Type:" type="java.lang.Object"/>
-                    <Column editable="true" title="DateOut:" type="java.lang.Object"/>
-                    <Column editable="true" title="Return:" type="java.lang.Object"/>
+                    <Column editable="true" title="Media Type:" type="java.lang.Object"/>
+                    <Column editable="true" title="Price:" type="java.lang.Object"/>
                     <Column editable="true" title="Notes:" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -388,16 +391,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Redeem"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBRent">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="11" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Rent"/>
-          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBRentActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBRedeemActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLBalance">
@@ -411,10 +406,7 @@
             <Property name="text" type="java.lang.String" value="BALANCE:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="jTextBalance">
         </Component>
         <Component class="javax.swing.JButton" name="jBPay">
           <Properties>
@@ -423,6 +415,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Pay"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPayActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>
@@ -438,7 +433,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonAddMedia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="Add Media"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddMediaActionPerformed"/>
@@ -453,7 +448,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDeleteMedia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="-"/>
+            <Property name="text" type="java.lang.String" value="Delete Media"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteMediaActionPerformed"/>

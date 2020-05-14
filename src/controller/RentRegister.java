@@ -1,12 +1,8 @@
 package controller;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Date;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.print.attribute.standard.Media;
+import java.util.List;
 
 /**
  *
@@ -15,115 +11,54 @@ import javax.print.attribute.standard.Media;
 public class RentRegister {
 
     // *** Attributes ***
-    protected String iDMembership;
-    protected String client;
-    protected String email;
-    protected String planType;
-    protected String status;
-    protected int bonus;
-    protected String idMedia;
-    protected String dateOut;
-    protected String returnDate;
-    protected String timeReturn;
-    protected Float balance;
-    protected String notes;
-    protected ArrayList<Media> Media;
+    private int id;
+    private ClientsRegister client;
+    private Date dateOut;
+    private Date dateReturn;
+    
+   
+    private List<Object> media;
 
     // *** Getter and Setter ***
-    public String getiDMembership() {
-        return iDMembership;
+
+    public int getId() {
+        return id;
     }
 
-    public void setiDMembership(String iDMembership) {
-        this.iDMembership = iDMembership;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getClient() {
+    public ClientsRegister getClient() {
         return client;
     }
 
-    public void setClient(String client) {
+    public void setClient(ClientsRegister client) {
         this.client = client;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(int bonus) {
-        this.bonus = bonus;
-    }
-
-    public String getIdMedia() {
-        return idMedia;
-    }
-
-    public void setIdMedia(String idMedia) {
-        this.idMedia = idMedia;
-    }
-
-    public String getDateOut() {
+    public Date getDateOut() {
         return dateOut;
     }
 
-    public void setDateOut(String dateOut) {
+    public void setDateOut(Date dateOut) {
         this.dateOut = dateOut;
     }
 
-    public String getReturnDate() {
-        return returnDate;
+    public Date getDateReturn() {
+        return dateReturn;
     }
 
-    public void setReturnDate(String returnDate) {
-        this.returnDate = returnDate;
+    public void setDateReturn(Date dateReturn) {
+        this.dateReturn = dateReturn;
     }
 
-    public String getTimeReturn() {
-        return timeReturn;
+    public List<Object> getMedia() {
+        return media;
     }
 
-    public void setTimeReturn(String timeReturn) {
-        this.timeReturn = timeReturn;
+    public void setMedia(List<Object> media) {
+        this.media = media;
     }
-
-    public Float getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Float balance) {
-        this.balance = balance;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public String getPlanType() {
-        return planType;
-    }
-
-    public void setPlanType(String planType) {
-        this.planType = planType;
-    }
-
+   
 }
