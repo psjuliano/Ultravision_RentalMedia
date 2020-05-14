@@ -33,7 +33,7 @@ public class RentDAO {
 
             // *** PreparedStament is a class that execute commads sql, getting the value. ***
             PreparedStatement stmt = connectionClass.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            // *** Here is going to get the information on the ClientsRegister class. ***
+            // *** Here is going to get the information on the RentRegister class. ***
             stmt.setString(1, rent.getClient().getIdMembership());
             stmt.setDate(2, new java.sql.Date(rent.getDateOut().getTime()));
             stmt.setDate(3, new java.sql.Date(rent.getDateReturn().getTime()));
@@ -147,35 +147,11 @@ public class RentDAO {
     }
 
    
-/*
-    public Media  getItemRented(int idMedia) {
-         // *** Here is going to delete any media details, when need. ***
-        Media itemRented = new Media();
-        //  *** try..catch is going to treat any possible error. ***
-        try {
-            Connection conn = ConnectionClass.getConnectionClass();
-            // *** Here are all fields from my database ***   
-            String sql = "SELECT * FROM media WHERE idMedia = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idMedia);
-            
-            ResultSet rs = stmt.executeQuery();
-            //int numberRows = stmt.executeUpdate();
-            //stmt.close();
-            
-            //if (rs.next() ) {
-             //   media.setIdMedia("idmedia");
-             //   media.setTitle("title");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Sql Error: " + e.getMessage());
-        }
-         return media;
-    }
-        */
     }
     
    
 
 
+// *** REFERENCES: ***
+/* Banco de Dados em Java - Aula 10 - Testando a classe DAO
+YouTube, 10 Jan. 2013, https://youtu.be/5l-dByzcWRQ.*/

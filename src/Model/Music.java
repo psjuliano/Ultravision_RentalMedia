@@ -13,7 +13,6 @@ public class Music extends Media implements MusicLovers {
     protected String band;
 
     // *** Constructor ***
-    // Perguntar se tem problema em não fazer o constructor de todos os atributos
     public Music(String idMedia, String title, String band, int yearOfRelease) {
         this.idMedia = idMedia;
         this.title = title;

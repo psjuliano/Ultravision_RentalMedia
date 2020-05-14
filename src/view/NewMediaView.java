@@ -32,7 +32,6 @@ public class NewMediaView extends javax.swing.JFrame {
         jTextComplement.setText(music.getBand());
         jTextYear.setText(String.valueOf(music.getYearOfRelease()));
         jTextPrice.setText(String.valueOf(music.getPrice()));
-        //buttonGroupT.setSelected(mf, rootPaneCheckingEnabled);
         jTextAvailability.setText(String.valueOf(music.getAvailability()));
         jTexDescription.setText(music.getDescription());
         

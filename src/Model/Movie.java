@@ -11,7 +11,6 @@ public class Movie extends Media implements VideoLovers {
 
     // *** Attributes ***
     private String director;
-   // private Movie movie; fix it
      
 
     // *** Constructor ***

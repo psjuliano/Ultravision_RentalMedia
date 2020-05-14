@@ -417,3 +417,7 @@ public class ClientsListView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 }
+
+// *** REFERENCES: ***
+/* Linguagem Tecnic de Programação - Marcelo Santos.
+Portal Ceilanda, cursos. https://marcelo.portalceilandia.com.br/site/ltp1/*/

@@ -156,7 +156,6 @@ public class ClientDAO {
                 c.setBonus((result.getInt("bonus")));
                 c.setNotes(result.getString("notes"));
 
-                // eu tenho que entender isso melhor
                 PlanType p = new PlanType();
                 p.setIdPlan(result.getInt("plan_id"));
                 p.setPlanName(result.getString("plan"));

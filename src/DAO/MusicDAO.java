@@ -212,10 +212,8 @@ public class MusicDAO {
         try {
 
             Connection conn = ConnectionClass.getConnectionClass();
-            /* *** Here are all fields from the database, also is join the plan_type table
-        on the client table.*** */
+            /* *** Here are all fields from the database music table. */
             String sql = "SELECT * FROM media "
-                    //+ "left join movie on media.plan_id = plan_type.idplan_type "
                     + "WHERE title like ? or idmedia = ?";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -238,9 +236,8 @@ public class MusicDAO {
                 Music band = new Music();
                 band.setIdMedia(result.getString("idmedia"));
                 band.setBand(result.getString("band"));
-
-               // m.setMovie(director);
-
+                
+               
                 media.add(m);
             }
             result.close();
@@ -252,7 +249,7 @@ public class MusicDAO {
         return media;
     }
      public static Music getMusicById(int idMedia) {
-        // *** Here is going to delete any media details, when need. ***
+         // *** Here is going to get the media on the rent page. ***
         Music music = new Music();
         //  *** try..catch is going to treat any possible error. ***
         try {
@@ -287,3 +284,6 @@ public class MusicDAO {
     }
 
 }
+// *** REFERENCES: ***
+/* Banco de Dados em Java - Aula 10 - Testando a classe DAO
+YouTube, 10 Jan. 2013, https://youtu.be/5l-dByzcWRQ.*/

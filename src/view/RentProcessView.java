@@ -207,6 +207,11 @@ public class RentProcessView extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jTextDateOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextDateOutActionPerformed(evt);
+            }
+        });
 
         try {
             jTextDateReturn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -271,7 +276,7 @@ public class RentProcessView extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(jLNotes)
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(jLidMedia)
@@ -279,13 +284,13 @@ public class RentProcessView extends javax.swing.JFrame {
                                                         .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(jLReturn)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextDateReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(jTextDateReturn))
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(jLDateOut)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(33, 33, 33))
+                                                        .addGap(28, 28, 28)
+                                                        .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(53, 53, 53))
                                             .addComponent(jSeparator4))
                                         .addGap(10, 10, 10)
                                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,9 +301,9 @@ public class RentProcessView extends javax.swing.JFrame {
                                             .addComponent(jTextBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(396, 396, 396))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
+                                .addGap(69, 69, 69)
                                 .addComponent(jButtonAddMedia)
-                                .addGap(50, 50, 50)
+                                .addGap(58, 58, 58)
                                 .addComponent(jButtonDeleteMedia)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -339,11 +344,11 @@ public class RentProcessView extends javax.swing.JFrame {
                                     .addComponent(jTextidMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLDateOut)
                                     .addComponent(jTextDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(10, 10, 10)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLReturn)
                                     .addComponent(jTextDateReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,9 +373,9 @@ public class RentProcessView extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAddMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonDeleteMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAddMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -435,7 +440,7 @@ public class RentProcessView extends javax.swing.JFrame {
 
             int option = JOptionPane
                     .showConfirmDialog(this, "Do you want to delete",
-                            "data deleted confirmation", JOptionPane.YES_NO_OPTION);
+                            "Data deleted confirmation", JOptionPane.YES_NO_OPTION);
 
             // *** Here is going to get the idMedia and delete it from the database. ***
             if (option == JOptionPane.YES_OPTION) {
@@ -444,23 +449,8 @@ public class RentProcessView extends javax.swing.JFrame {
 
                 mediaList.remove(line);
                 DefaultTableModel table = (DefaultTableModel) jTableRent.getModel();
-                // Aqui apaga todas as linhas e add elas novamente.
-                /*  table.setRowCount(0);
-                        for(Object o : mediaList){
-                         Media m = (Media)o;
-                        Object [] row = {
-                        m.getIdMedia(),
-                        m.getMediaType(),
-                        jTextDateOut.getText(),
-                        jTextDateReturn.getText(),
-                        jTextAreaNotes.getText(),
-                            
-                        };
-                       // *** Adding data on the mediaList ***  
-                        table.addRow(row);
-                      
-                    }  */
-                // Aqui só apaga as linhas
+                
+                // *** Here is going to remove the row. ***
                 table.removeRow(line);
             }
         }
@@ -488,18 +478,22 @@ public class RentProcessView extends javax.swing.JFrame {
                 r.setDateReturn(df.parse(jTextDateReturn.getText()));
                 r.setMedia(mediaList);
                 if (RentDAO.insert(r)) {
-                    JOptionPane.showMessageDialog(this, "Sucess");
+                    JOptionPane.showMessageDialog(this, "Rental successful");
                     dispose();
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error execute payment");
+                    JOptionPane.showMessageDialog(this, "Transaction Failed");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error execute payment");
+                JOptionPane.showMessageDialog(this, "Transaction Failed");
             }
 
         }
     }//GEN-LAST:event_jBPayActionPerformed
+
+    private void jTextDateOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDateOutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextDateOutActionPerformed
     private void clearAfterAdd() {
         // *** Cleaning all fields ***  
 
@@ -690,3 +684,12 @@ public class RentProcessView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jTextidMedia;
     // End of variables declaration//GEN-END:variables
 }
+
+
+// *** REFERENCES: ***
+/* ula 07 - LTP III - Parte 2 - Exemplo de alteração e exclusão de dados
+YouTube, 26 May. 2016, https://youtu.be/efWt0cVmSuc*/
+
+// *** REFERENCES: ***
+/* Linguagem Tecnica de Programação - Marcelo Santos.
+Portal Ceilanda, cursos. https://marcelo.portalceilandia.com.br/site/ltp1/*/

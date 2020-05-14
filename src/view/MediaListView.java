@@ -104,7 +104,6 @@ public class MediaListView extends javax.swing.JFrame {
         jTextSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jBClose = new javax.swing.JButton();
-        jBRentPage = new javax.swing.JButton();
         jBOk = new javax.swing.JButton();
         jBEdit = new javax.swing.JButton();
         jBDelete = new javax.swing.JButton();
@@ -146,14 +145,6 @@ public class MediaListView extends javax.swing.JFrame {
         jBClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCloseActionPerformed(evt);
-            }
-        });
-
-        jBRentPage.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
-        jBRentPage.setText("Go to the Rent Page");
-        jBRentPage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBRentPageActionPerformed(evt);
             }
         });
 
@@ -200,9 +191,7 @@ public class MediaListView extends javax.swing.JFrame {
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBRentPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jBClose, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,9 +219,7 @@ public class MediaListView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBEdit)
                     .addComponent(jBDelete))
-                .addGap(7, 7, 7)
-                .addComponent(jBRentPage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
                 .addComponent(jBClose)
                 .addGap(18, 18, 18))
         );
@@ -253,10 +240,6 @@ public class MediaListView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBRentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRentPageActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBRentPageActionPerformed
 
     private void jTextSearchActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -443,7 +426,6 @@ public class MediaListView extends javax.swing.JFrame {
     private javax.swing.JButton jBDelete;
     private javax.swing.JButton jBEdit;
     private javax.swing.JButton jBOk;
-    private javax.swing.JButton jBRentPage;
     private javax.swing.JLabel jLSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -453,3 +435,7 @@ public class MediaListView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 }
+
+// *** REFERENCES: ***
+/* Linguagem Tecnica de Programação - Marcelo Santos.
+Portal Ceilanda, cursos. https://marcelo.portalceilandia.com.br/site/ltp1/*/

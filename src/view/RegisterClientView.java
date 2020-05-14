@@ -601,3 +601,12 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextStatus;
     // End of variables declaration//GEN-END:variables
 }
+
+
+// *** REFERENCES: ***
+/* ula 07 - LTP III - Parte 2 - Exemplo de alteração e exclusão de dados
+YouTube, 26 May. 2016, https://youtu.be/efWt0cVmSuc*/
+
+// *** REFERENCES: ***
+/* Linguagem Tecnica de Programação - Marcelo Santos.
+Portal Ceilanda, cursos. https://marcelo.portalceilandia.com.br/site/ltp1/*/

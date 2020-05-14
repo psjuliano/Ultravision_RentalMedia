@@ -212,10 +212,8 @@ public class TvDAO {
         try {
 
             Connection conn = ConnectionClass.getConnectionClass();
-            /* *** Here are all fields from the database, also is join the plan_type table
-        on the client table.*** */
+            /* *** Here are all fields from the database on the tv table.*** */
             String sql = "SELECT * FROM media "
-                    //+ "left join movie on media.plan_id = plan_type.idplan_type "
                     + "WHERE title like ? or idmedia = ?";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -238,8 +236,6 @@ public class TvDAO {
                 BoxSet studio = new BoxSet();
                 studio.setIdMedia(result.getString("idmedia"));
                 studio.setStudio(result.getString("studio"));
-
-               // m.setMovie(director);
 
                 media.add(m);
             }
@@ -288,3 +284,7 @@ public class TvDAO {
          return tv;
     }
 }
+
+// *** REFERENCES: ***
+/* Banco de Dados em Java - Aula 10 - Testando a classe DAO
+YouTube, 10 Jan. 2013, https://youtu.be/5l-dByzcWRQ.*/

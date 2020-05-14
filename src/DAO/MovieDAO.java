@@ -213,10 +213,8 @@ public class MovieDAO {
         try {
 
             Connection conn = ConnectionClass.getConnectionClass();
-            /* *** Here are all fields from the database, also is join the plan_type table
-        on the client table.*** */
+            /* *** Here are all fields from the database on the movie table.*** */
             String sql = "SELECT * FROM media "
-                    + "join movie on media.idmedia = movie.idmedia "
                     + "WHERE title like ? or media.idmedia = ?";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -250,7 +248,7 @@ public class MovieDAO {
     }
      
       public static Movie getMovieById(int idMedia) {
-        // *** Here is going to delete any media details, when need. ***
+        // *** Here is going to get the media on the rent page. ***
         Movie m = new Movie();
         //  *** try..catch is going to treat any possible error. ***
         try {
